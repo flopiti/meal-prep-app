@@ -4,14 +4,13 @@ import styles from '@/styles/Home.module.css'
 import Day from '@/components/Day'
 
 const Calendar = () => {
-  let days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday'];
+  let datesToCover=['2023-03-08', '2023-03-09', '2023-03-10', '2023-03-11' ];
   return (
           <div className={styles.calendar}>
             {
-                days.map((day) => {
+                datesToCover.map((day) => {
                     return <Day day={day}/>
                 })
-            
             }
           </div>          
   )
