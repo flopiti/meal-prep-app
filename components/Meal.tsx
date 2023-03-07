@@ -14,13 +14,23 @@ const Meal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) => {
     const deleteMeal = () => {
         if(!meal) return;
         deleteScheduledMeal(meal.id);
-        removeMeal(meal.mealName, day, mealType);
+        removeMeal({
+            mealName: meal.mealName,
+            date: meal.date,
+            mealType: meal.mealType,
+            id: meal.id
+        });
     };
 
     const { postScheduledMeal } = useScheduledMeals();
     const handleDrop = (data:any) => {
         postScheduledMeal(data, day, mealType).then((res:any) => {
-            scheduleMeal(res.id, res.mealName ,res.date, res.mealType);
+            scheduleMeal({
+                mealName: res.mealName,
+                date: res.date,
+                mealType: res.mealType,
+                id: res.id            
+            });
         });
       };
 

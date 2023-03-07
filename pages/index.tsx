@@ -7,29 +7,25 @@ import MealList from '@/components/MealList'
 import { useEffect, useState } from 'react'
 import { useScheduledMeals } from '@/hooks/useScheduledMeals'
 import { useMeals } from '@/hooks/useMeals'
-const inter = Inter({ subsets: ['latin'] })
+import { Meal } from '@/components/Meal'
 
 export default function Home() {
+  const { getScheduledMeals } = useScheduledMeals();
+  const { getMeals } = useMeals();
+  const[scheduledMeals, setScheduledMeals] = useState<ScheduledMeal[]>([]);
+  const[meals, setMeals] = useState<Meal[]>([]);
 
-  const scheduleMeal = async (id:number, mealName: string, date: string, mealType:string) => {
+  const scheduleMeal = async ({id, mealName, date, mealType}: ScheduledMeal) => {
     setScheduledMeals([...scheduledMeals, {id, mealName, date, mealType}])
   }
-  const removeMeal = async (mealName: string, date: string, mealType:string) => {
+  const removeMeal = async ({mealName, date, mealType}: ScheduledMeal) => {
     setScheduledMeals(scheduledMeals.filter((meal:any) => meal.date !== date || meal.mealType !== mealType || meal.mealName !== mealName))
   }
-  const { getScheduledMeals } = useScheduledMeals();
-  const[scheduledMeals, setScheduledMeals] = useState<any>([]);
-  const { getMeals } = useMeals();
-  const[meals, setMeals] = useState<any>([]);
 
   useEffect(() => {
-  getScheduledMeals().then((data:any) => {
-    setScheduledMeals(data);
-  });
-  getMeals().then((data:any) => {
-    setMeals(data);
-  })
-  }, []);
+    getScheduledMeals().then((data:any) => setScheduledMeals(data));
+    getMeals().then((data:any) => setMeals(data));}, []);
+
   return (
     <>
       <Head>
@@ -43,4 +39,11 @@ export default function Home() {
       <MealList meals={meals} />
     </>
   )
+}
+
+export type ScheduledMeal = {
+  id: number;
+  mealName: string;
+  date: string;
+  mealType: string;
 }
