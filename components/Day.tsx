@@ -1,15 +1,22 @@
 import styles from '@/styles/Home.module.css';
 import Meal from './Meal';
-
+import { useScheduledMeals } from '@/hooks/useScheduledMeals';
 const Day = ({ day } :any) => {
-    let meals = ['Breakfast', 'Lunch', 'Dinner'];
+    let mealTypes = ['Breakfast', 'Lunch', 'Dinner'];
+    const { getScheduledMeals } = useScheduledMeals();
+
+    getScheduledMeals().then((data:any) => {
+        console.log(data);
+    });
+
+
     return (
         <div
         className={styles.day}>
             {day}
-            <Meal meal={meals[0]}/>
-            <Meal meal={meals[1]}/>
-            <Meal meal={meals[2]}/>
+            <Meal meal={mealTypes[0]}/>
+            <Meal meal={mealTypes[1]}/>
+            <Meal meal={mealTypes[2]}/>
         </div>
     );
     };
