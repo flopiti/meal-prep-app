@@ -12,7 +12,6 @@ const MealList = ({meals}:any) => {
     const [isDragging, setIsDragging] = useState(false);
 
     const handleDragStart = (event:any, index:number) => {
-        console.log('dragging')
         setIsDragging(true);
         event.dataTransfer.setData('text/plain', meals[index].mealName);
       };
@@ -25,7 +24,6 @@ const MealList = ({meals}:any) => {
                     <span 
                     draggable
                     onDragStart={()=>handleDragStart(event, index)}
-                    style={{ opacity: isDragging ? 0.5 : 1 }}
                     className={styles.mealItem}>
                         {meal.mealName}
                     </span>)

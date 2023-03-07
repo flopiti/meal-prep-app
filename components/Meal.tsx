@@ -13,10 +13,8 @@ const Meal = ({ meal, mealType , scheduleMeal, day} :any) => {
     const { postScheduledMeal } = useScheduledMeals();
     const handleDrop = (data:any) => {
         postScheduledMeal(data, day, mealType);
-        console.log(data)
         // setMealChoice(data)
         scheduleMeal(data, day, mealType);
-        console.log('done')
       };
 
       useEffect(() => {setMealChoice(meal);}, [meal])
