@@ -4,8 +4,8 @@ import styles from '@/styles/Home.module.css'
 import Day from '@/components/Day'
 
 const Calendar = ({scheduledMeals, scheduleMeal, removeMeal}:any) => {
-  let datesToCover=['2023-03-08', '2023-03-09', '2023-03-10', '2023-03-11' ];
 
+  const datesToCover = getDateStrings();
   return (
           <div className={styles.calendar}>
             {
@@ -18,3 +18,14 @@ const Calendar = ({scheduledMeals, scheduleMeal, removeMeal}:any) => {
 }  
 
 export default Calendar;
+
+export const getDateStrings = () => {
+  const today = new Date();
+  const dateStrings = [];
+  for (let i = 0; i < 4; i++) {
+    const date = new Date(today.getTime() + i * 24 * 60 * 60 * 1000);
+    const dateString = date.toISOString().slice(0, 10);
+    dateStrings.push(dateString);
+  }
+  return dateStrings;
+}
