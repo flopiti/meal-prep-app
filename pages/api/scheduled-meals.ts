@@ -11,7 +11,6 @@ const handleGetMethod = async (req: NextApiRequest, res: NextApiResponse) => {
             'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
         }
     })
-    console.log(response?.data)
     return res.status(200).json(response?.data);
 }
 
@@ -19,7 +18,6 @@ const handleGetMethod = async (req: NextApiRequest, res: NextApiResponse) => {
 const handler = (req: NextApiRequest, res: NextApiResponse<any[]>) => {
     switch(req.method) {
         case 'GET':
-            console.log('get')
             return handleGetMethod(req, res);
         default:
             return res.status(405).end()
