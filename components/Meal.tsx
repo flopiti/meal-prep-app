@@ -8,7 +8,15 @@ export type Meal = {
     mealName: string;
 };
 
-const Meal = ({ meal, mealType , scheduleMeal, day} :any) => {
+const Meal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) => {
+
+    const { deleteScheduledMeal } = useScheduledMeals();
+    const deleteMeal = () => {
+        if(!meal) return;
+        deleteScheduledMeal(meal.id);
+        removeMeal(meal.mealName, day, mealType);
+    };
+
     const { postScheduledMeal } = useScheduledMeals();
     const handleDrop = (data:any) => {
         postScheduledMeal(data, day, mealType);
@@ -17,11 +25,16 @@ const Meal = ({ meal, mealType , scheduleMeal, day} :any) => {
 
     return (
         <div className={styles.meal}>
-            <div>{mealType}</div>
+            <div>
+                <span>{mealType}</span>
+                <button className={styles.xbutton} onClick={deleteMeal}>
+                    X
+                </button>
+            </div>
             {
                 meal ? (
                     <div className={styles.mealChoice}>
-                        {meal }
+                        {meal.mealName }
                     </div>
                 ) : (
                     <DropZone onDrop={handleDrop}>
