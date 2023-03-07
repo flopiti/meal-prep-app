@@ -9,17 +9,17 @@
     ],
     
     "scheduled-meals": [{
-      "date": "2023-03-07",
+      "date": "2023-03-09",
       "mealType": "breakfast",
       "mealName": "Scrambled eggs with bacon and toast"
     },
     {
-      "date": "2023-03-07",
+      "date": "2023-03-09",
       "mealType": "lunch",
       "mealName": "Grilled chicken salad"
     },
     {
-      "date": "2023-03-07",
+      "date": "2023-03-09",
       "mealType": "dinner",
       "mealName": "Beef stroganoff with egg noodles"
     },
