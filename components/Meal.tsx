@@ -1,4 +1,5 @@
 import { useScheduledMeals } from '@/hooks/useScheduledMeals';
+import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
 
 export type Meal = {
@@ -8,26 +9,24 @@ export type Meal = {
 };
 
 const Meal = ({ meal, mealType , scheduleMeal, day} :any) => {
-    console.log('render')
-
+    const[mealChoice, setMealChoice] = useState<string | null>(meal);
     const { postScheduledMeal } = useScheduledMeals();
-
-    
-    const handleDrop = (data) => {
+    const handleDrop = (data:any) => {
         postScheduledMeal(data, day, mealType);
+        console.log(data)
+        // setMealChoice(data)
         scheduleMeal({day, mealType, data});
         console.log('done')
       };
 
-      console.log(meal)
-
+      useEffect(() => {setMealChoice(meal);}, [meal])
     return (
         <div className={styles.meal}>
             <div>{mealType}</div>
             {
-                meal ? (
+                mealChoice ? (
                     <div className={styles.mealChoice}>
-                        {meal}
+                        {mealChoice }
                     </div>
                 ) : (
                     <DropZone onDrop={handleDrop}>
@@ -43,7 +42,7 @@ export default Meal;
 
 
 
-function DropZone(props) {
+function DropZone(props:any) {
     const handleDrop = (event) => {
       event.preventDefault();
       const data = event.dataTransfer.getData('text/plain');
