@@ -1,3 +1,4 @@
+import { useScheduledMeals } from '@/hooks/useScheduledMeals';
 import styles from '../styles/Home.module.css';
 
 export type Meal = {
@@ -6,7 +7,20 @@ export type Meal = {
     mealName: string;
 };
 
-const Meal = ({ meal, mealType } :any) => {
+const Meal = ({ meal, mealType , scheduleMeal, day} :any) => {
+    console.log('render')
+
+    const { postScheduledMeal } = useScheduledMeals();
+
+    
+    const handleDrop = (data) => {
+        postScheduledMeal(data, day, mealType);
+        scheduleMeal({day, mealType, data});
+        console.log('done')
+      };
+
+      console.log(meal)
+
     return (
         <div className={styles.meal}>
             <div>{mealType}</div>
@@ -16,9 +30,9 @@ const Meal = ({ meal, mealType } :any) => {
                         {meal}
                     </div>
                 ) : (
-                    <div className={styles.mealChoice}>
-                        No meal here yet
-                    </div>
+                    <DropZone onDrop={handleDrop}>
+                        Drop here
+                    </DropZone>
                 )
             }
         </div>
@@ -26,3 +40,26 @@ const Meal = ({ meal, mealType } :any) => {
 };
 
 export default Meal;
+
+
+
+function DropZone(props) {
+    const handleDrop = (event) => {
+      event.preventDefault();
+      const data = event.dataTransfer.getData('text/plain');
+      props.onDrop(data);
+    };
+  
+    const handleDragOver = (event) => {
+      event.preventDefault();
+    };
+  
+    return (
+      <div
+        onDrop={handleDrop}
+        onDragOver={handleDragOver}
+        className={styles.mealChoice}      >
+        {props.children}
+      </div>
+    );
+  }
