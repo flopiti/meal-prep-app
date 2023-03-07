@@ -7,11 +7,9 @@ const Day = ({ day } :any) => {
         <div
         className={styles.day}>
             {day}
-            {
-                meals.map((meal) => {
-                    return <Meal meal={meal}/>
-                })       
-            }
+            <Meal meal={meals[0]}/>
+            <Meal meal={meals[1]}/>
+            <Meal meal={meals[2]}/>
         </div>
     );
     };
