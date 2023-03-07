@@ -1,22 +1,15 @@
 import styles from '@/styles/Home.module.css';
 import Meal from './Meal';
-import { useScheduledMeals } from '@/hooks/useScheduledMeals';
-const Day = ({ day } :any) => {
-    let mealTypes = ['Breakfast', 'Lunch', 'Dinner'];
-    const { getScheduledMeals } = useScheduledMeals();
-
-    getScheduledMeals().then((data:any) => {
-        console.log(data);
-    });
-
+const Day = ({ day, meals } :any) => {
+    let mealTypes = ['breakfast', 'lunch', 'dinner'];
 
     return (
         <div
         className={styles.day}>
             {day}
-            <Meal meal={mealTypes[0]}/>
-            <Meal meal={mealTypes[1]}/>
-            <Meal meal={mealTypes[2]}/>
+            <Meal meal={meals.find((meal:any) => meal.mealType === mealTypes[0]) ? meals.find((meal:any) => meal.mealType === mealTypes[0]).mealName : null} mealType={mealTypes[0]}/>
+            <Meal meal={meals.find((meal:any) => meal.mealType === mealTypes[1]) ? meals.find((meal:any) => meal.mealType === mealTypes[1]).mealName : null} mealType={mealTypes[1]} />
+            <Meal meal={meals.find((meal:any) => meal.mealType === mealTypes[2]) ? meals.find((meal:any) => meal.mealType === mealTypes[2]).mealName : null} mealType={mealTypes[2]}/>
         </div>
     );
     };
