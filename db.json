@@ -1,285 +1,311 @@
 {
-    "users": [
-      { "id": 1, "name": "John" },
-      { "id": 2, "name": "Jane" }
-    ],
-    "posts": [
-      { "id": 1, "title": "Post 1", "body": "Lorem ipsum dolor sit amet" },
-      { "id": 2, "title": "Post 2", "body": "Consectetur adipiscing elit" }
-    ],
-    
-    "scheduled-meals": [
+  "users": [
     {
+      "id": 1,
+      "name": "John"
+    },
+    {
+      "id": 2,
+      "name": "Jane"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "Post 1",
+      "body": "Lorem ipsum dolor sit amet"
+    },
+    {
+      "id": 2,
+      "title": "Post 2",
+      "body": "Consectetur adipiscing elit"
+    }
+  ],
+  "scheduled-meals": [
+    {
+      "id": 1,
       "date": "2023-03-09",
       "mealType": "breakfast",
       "mealName": "Scrambled eggs with bacon and toast"
     },
     {
+      "id": 2,
       "date": "2023-03-09",
       "mealType": "lunch",
       "mealName": "Grilled chicken salad"
     },
     {
+      "id": 3,
       "date": "2023-03-09",
       "mealType": "dinner",
       "mealName": "Beef stroganoff with egg noodles"
     },
     {
+      "id": 4,
       "date": "2023-03-08",
       "mealType": "breakfast",
       "mealName": "Greek yogurt with fruit and granola"
     },
     {
+      "id": 5,
       "date": "2023-03-08",
       "mealType": "lunch",
       "mealName": "Turkey and cheese sandwich with chips"
     },
     {
+      "id": 6,
       "date": "2023-03-08",
       "mealType": "dinner",
       "mealName": "Baked salmon with roasted vegetables"
+    },
+    {
+      "mealName": "Spaghetti Bolognese",
+      "date": "2023-03-10",
+      "mealType": "dinner",
+      "id": 7
     }
-    ],
-    "meals":[
-      {
-        "mealName": "Spaghetti Bolognese",
-        "ingredients": [
-          "spaghetti",
-          "ground beef",
-          "canned tomatoes",
-          "onion",
-          "garlic",
-          "olive oil",
-          "salt",
-          "black pepper"
-        ]
-      },
-      {
-        "mealName": "Chicken Curry",
-        "ingredients": [
-          "chicken breast",
-          "coconut milk",
-          "onion",
-          "garlic",
-          "ginger",
-          "curry powder",
-          "turmeric",
-          "cumin",
-          "coriander",
-          "salt",
-          "black pepper"
-        ]
-      },
-      {
-        "mealName": "Grilled Salmon",
-        "ingredients": [
-          "salmon fillet",
-          "lemon",
-          "garlic",
-          "olive oil",
-          "salt",
-          "black pepper"
-        ]
-      },
-      {
-        "mealName": "Margherita Pizza",
-        "ingredients": [
-          "pizza dough",
-          "mozzarella cheese",
-          "tomato sauce",
-          "fresh basil",
-          "olive oil",
-          "salt"
-        ]
-      },
-      {
-        "mealName": "Beef Stir-Fry",
-        "ingredients": [
-          "beef sirloin",
-          "soy sauce",
-          "cornstarch",
-          "garlic",
-          "ginger",
-          "broccoli",
-          "red bell pepper",
-          "carrots",
-          "onion",
-          "olive oil",
-          "salt",
-          "black pepper"
-        ]
-      },
-      {
-        "mealName": "Tuna Salad",
-        "ingredients": [
-          "tuna",
-          "celery",
-          "red onion",
-          "mayonnaise",
-          "lemon juice",
-          "dill",
-          "salt",
-          "black pepper"
-        ]
-      },
-      {
-        "mealName": "Pesto Pasta",
-        "ingredients": [
-          "spaghetti",
-          "basil",
-          "parmesan cheese",
-          "garlic",
-          "pine nuts",
-          "olive oil",
-          "salt",
-          "black pepper"
-        ]
-      },
-        {
-    "mealName": "Beef Tacos",
-    "ingredients": [
-      "ground beef",
-      "taco seasoning",
-      "taco shells",
-      "shredded lettuce",
-      "diced tomato",
-      "shredded cheese",
-      "sour cream"
-    ]
-  },
-  {
-    "mealName": "Chicken Fajitas",
-    "ingredients": [
-      "chicken breast",
-      "bell pepper",
-      "onion",
-      "fajita seasoning",
-      "flour tortillas",
-      "shredded cheese",
-      "sour cream"
-    ]
-  },
-  {
-    "mealName": "Beef Stroganoff",
-    "ingredients": [
-      "beef sirloin",
-      "onion",
-      "mushrooms",
-      "beef broth",
-      "sour cream",
-      "egg noodles",
-      "salt",
-      "black pepper"
-    ]
-  },
-  {
-    "mealName": "Roasted Chicken",
-    "ingredients": [
-      "whole chicken",
-      "lemon",
-      "garlic",
-      "rosemary",
-      "olive oil",
-      "salt",
-      "black pepper"
-    ]
-  },
-  {
-    "mealName": "Greek Salad",
-    "ingredients": [
-      "romaine lettuce",
-      "cucumber",
-      "tomato",
-      "red onion",
-      "kalamata olives",
-      "feta cheese",
-      "olive oil",
-      "red wine vinegar",
-      "oregano",
-      "salt",
-      "black pepper"
-    ]
-  },
-  {
-    "mealName": "Beef Chili",
-    "ingredients": [
-      "ground beef",
-      "kidney beans",
-      "tomato sauce",
-      "onion",
-      "green bell pepper",
-      "garlic",
-      "chili powder",
-      "cumin",
-      "paprika",
-      "cayenne pepper",
-      "salt",
-      "black pepper"
-    ]
-  },
-  {
-    "mealName": "Vegetable Curry",
-    "ingredients": [
-      "cauliflower",
-      "potato",
-      "carrot",
-      "onion",
-      "garlic",
-      "ginger",
-      "coconut milk",
-      "curry powder",
-      "turmeric",
-      "cumin",
-      "coriander",
-      "salt",
-      "black pepper"
-    ]
-  },
-  {
-    "mealName": "Shrimp Scampi",
-    "ingredients": [
-      "shrimp",
-      "spaghetti",
-      "butter",
-      "garlic",
-      "lemon",
-      "white wine",
-      "parsley",
-      "salt",
-      "black pepper"
-    ]
-  },
-  {
-    "mealName": "Teriyaki Chicken",
-    "ingredients": [
-      "chicken breast",
-      "soy sauce",
-      "brown sugar",
-      "rice vinegar",
-      "garlic",
-      "ginger",
-      "cornstarch",
-      "broccoli",
-      "rice",
-      "sesame seeds",
-      "green onion",
-      "salt",
-      "black pepper"
-    ]
-  },
-  {
-    "mealName": "Beef and Broccoli Stir-Fry",
-    "ingredients": [
-      "beef sirloin",
-      "broccoli",
-      "soy sauce",
-      "brown sugar",
-      "cornstarch",
-      "garlic",
-      "ginger",
-      "rice",
-      "salt",
-      "black pepper"
-    ]}
-    ]
-  }
+  ],
+  "meals": [
+    {
+      "mealName": "Spaghetti Bolognese",
+      "ingredients": [
+        "spaghetti",
+        "ground beef",
+        "canned tomatoes",
+        "onion",
+        "garlic",
+        "olive oil",
+        "salt",
+        "black pepper"
+      ]
+    },
+    {
+      "mealName": "Chicken Curry",
+      "ingredients": [
+        "chicken breast",
+        "coconut milk",
+        "onion",
+        "garlic",
+        "ginger",
+        "curry powder",
+        "turmeric",
+        "cumin",
+        "coriander",
+        "salt",
+        "black pepper"
+      ]
+    },
+    {
+      "mealName": "Grilled Salmon",
+      "ingredients": [
+        "salmon fillet",
+        "lemon",
+        "garlic",
+        "olive oil",
+        "salt",
+        "black pepper"
+      ]
+    },
+    {
+      "mealName": "Margherita Pizza",
+      "ingredients": [
+        "pizza dough",
+        "mozzarella cheese",
+        "tomato sauce",
+        "fresh basil",
+        "olive oil",
+        "salt"
+      ]
+    },
+    {
+      "mealName": "Beef Stir-Fry",
+      "ingredients": [
+        "beef sirloin",
+        "soy sauce",
+        "cornstarch",
+        "garlic",
+        "ginger",
+        "broccoli",
+        "red bell pepper",
+        "carrots",
+        "onion",
+        "olive oil",
+        "salt",
+        "black pepper"
+      ]
+    },
+    {
+      "mealName": "Tuna Salad",
+      "ingredients": [
+        "tuna",
+        "celery",
+        "red onion",
+        "mayonnaise",
+        "lemon juice",
+        "dill",
+        "salt",
+        "black pepper"
+      ]
+    },
+    {
+      "mealName": "Pesto Pasta",
+      "ingredients": [
+        "spaghetti",
+        "basil",
+        "parmesan cheese",
+        "garlic",
+        "pine nuts",
+        "olive oil",
+        "salt",
+        "black pepper"
+      ]
+    },
+    {
+      "mealName": "Beef Tacos",
+      "ingredients": [
+        "ground beef",
+        "taco seasoning",
+        "taco shells",
+        "shredded lettuce",
+        "diced tomato",
+        "shredded cheese",
+        "sour cream"
+      ]
+    },
+    {
+      "mealName": "Chicken Fajitas",
+      "ingredients": [
+        "chicken breast",
+        "bell pepper",
+        "onion",
+        "fajita seasoning",
+        "flour tortillas",
+        "shredded cheese",
+        "sour cream"
+      ]
+    },
+    {
+      "mealName": "Beef Stroganoff",
+      "ingredients": [
+        "beef sirloin",
+        "onion",
+        "mushrooms",
+        "beef broth",
+        "sour cream",
+        "egg noodles",
+        "salt",
+        "black pepper"
+      ]
+    },
+    {
+      "mealName": "Roasted Chicken",
+      "ingredients": [
+        "whole chicken",
+        "lemon",
+        "garlic",
+        "rosemary",
+        "olive oil",
+        "salt",
+        "black pepper"
+      ]
+    },
+    {
+      "mealName": "Greek Salad",
+      "ingredients": [
+        "romaine lettuce",
+        "cucumber",
+        "tomato",
+        "red onion",
+        "kalamata olives",
+        "feta cheese",
+        "olive oil",
+        "red wine vinegar",
+        "oregano",
+        "salt",
+        "black pepper"
+      ]
+    },
+    {
+      "mealName": "Beef Chili",
+      "ingredients": [
+        "ground beef",
+        "kidney beans",
+        "tomato sauce",
+        "onion",
+        "green bell pepper",
+        "garlic",
+        "chili powder",
+        "cumin",
+        "paprika",
+        "cayenne pepper",
+        "salt",
+        "black pepper"
+      ]
+    },
+    {
+      "mealName": "Vegetable Curry",
+      "ingredients": [
+        "cauliflower",
+        "potato",
+        "carrot",
+        "onion",
+        "garlic",
+        "ginger",
+        "coconut milk",
+        "curry powder",
+        "turmeric",
+        "cumin",
+        "coriander",
+        "salt",
+        "black pepper"
+      ]
+    },
+    {
+      "mealName": "Shrimp Scampi",
+      "ingredients": [
+        "shrimp",
+        "spaghetti",
+        "butter",
+        "garlic",
+        "lemon",
+        "white wine",
+        "parsley",
+        "salt",
+        "black pepper"
+      ]
+    },
+    {
+      "mealName": "Teriyaki Chicken",
+      "ingredients": [
+        "chicken breast",
+        "soy sauce",
+        "brown sugar",
+        "rice vinegar",
+        "garlic",
+        "ginger",
+        "cornstarch",
+        "broccoli",
+        "rice",
+        "sesame seeds",
+        "green onion",
+        "salt",
+        "black pepper"
+      ]
+    },
+    {
+      "mealName": "Beef and Broccoli Stir-Fry",
+      "ingredients": [
+        "beef sirloin",
+        "broccoli",
+        "soy sauce",
+        "brown sugar",
+        "cornstarch",
+        "garlic",
+        "ginger",
+        "rice",
+        "salt",
+        "black pepper"
+      ]
+    }
+  ]
+}
