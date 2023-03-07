@@ -1,5 +1,6 @@
 import { useScheduledMeals } from '@/hooks/useScheduledMeals';
 import styles from '../styles/Home.module.css';
+import { DropZone } from './Dropzone';
 
 export type Meal = {
     date: string;
@@ -7,7 +8,15 @@ export type Meal = {
     mealName: string;
 };
 
-const Meal = ({ meal, mealType , scheduleMeal, day} :any) => {
+const Meal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) => {
+
+    const { deleteScheduledMeal } = useScheduledMeals();
+    const deleteMeal = () => {
+        if(!meal) return;
+        deleteScheduledMeal(meal.id);
+        removeMeal(meal.mealName, day, mealType);
+    };
+
     const { postScheduledMeal } = useScheduledMeals();
     const handleDrop = (data:any) => {
         postScheduledMeal(data, day, mealType);
@@ -16,11 +25,16 @@ const Meal = ({ meal, mealType , scheduleMeal, day} :any) => {
 
     return (
         <div className={styles.meal}>
-            <div>{mealType}</div>
+            <div>
+                <span>{mealType}</span>
+                <button className={styles.xbutton} onClick={deleteMeal}>
+                    X
+                </button>
+            </div>
             {
                 meal ? (
                     <div className={styles.mealChoice}>
-                        {meal }
+                        {meal.mealName }
                     </div>
                 ) : (
                     <DropZone onDrop={handleDrop}>
@@ -33,24 +47,3 @@ const Meal = ({ meal, mealType , scheduleMeal, day} :any) => {
 };
 
 export default Meal;
-
-function DropZone(props:any) {
-    const handleDrop = (event:any) => {
-      event.preventDefault();
-      const data = event.dataTransfer.getData('text/plain');
-      props.onDrop(data);
-    };
-  
-    const handleDragOver = (event:any) => {
-      event.preventDefault();
-    };
-  
-    return (
-      <div
-        onDrop={handleDrop}
-        onDragOver={handleDragOver}
-        className={styles.mealChoice}      >
-        {props.children}
-      </div>
-    );
-  }

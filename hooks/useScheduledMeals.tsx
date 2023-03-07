@@ -42,5 +42,17 @@ export const useScheduledMeals = () => {
         return await makeRequest(options);
         }
 
-        return { getScheduledMeals, postScheduledMeal };
+    const deleteScheduledMeal = async (id:number) => {
+        const options = {
+            config: { 
+            method: 'DELETE',
+            url: `/api/scheduled-meals`,
+            data: {id}
+            },
+            authenticated: true,
+        };
+        return await makeRequest(options);
+        }
+
+        return { getScheduledMeals, postScheduledMeal, deleteScheduledMeal };
     }
