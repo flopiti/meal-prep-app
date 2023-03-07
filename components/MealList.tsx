@@ -22,6 +22,7 @@ const MealList = ({meals}:any) => {
                 meals.map((meal:Meal, index:number) => {
                     return (
                     <span 
+                    key={index}
                     draggable
                     onDragStart={()=>handleDragStart(event, index)}
                     className={styles.mealItem}>
