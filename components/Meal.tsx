@@ -15,7 +15,7 @@ const Meal = ({ meal, mealType , scheduleMeal, day} :any) => {
         postScheduledMeal(data, day, mealType);
         console.log(data)
         // setMealChoice(data)
-        scheduleMeal({day, mealType, data});
+        scheduleMeal(data, day, mealType);
         console.log('done')
       };
 
