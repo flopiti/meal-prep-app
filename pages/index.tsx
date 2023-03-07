@@ -14,12 +14,14 @@ export default function Home() {
   const scheduleMeal = async (mealName: string, date: string, mealType:string) => {
     setScheduledMeals([...scheduledMeals, {mealName, date, mealType}])
   }
+  const removeMeal = async (mealName: string, date: string, mealType:string) => {
+    setScheduledMeals(scheduledMeals.filter((meal:any) => meal.date !== date || meal.mealType !== mealType || meal.mealName !== mealName))
+  }
   const { getScheduledMeals } = useScheduledMeals();
   const[scheduledMeals, setScheduledMeals] = useState<any>([]);
   const { getMeals } = useMeals();
   const[meals, setMeals] = useState<any>([]);
 
-  
   useEffect(() => {
   getScheduledMeals().then((data:any) => {
     setScheduledMeals(data);
@@ -37,7 +39,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <a href="/api/auth/login">Login</a>
-      <Calendar scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal}/>
+      <Calendar scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal}/>
       <MealList meals={meals} />
     </>
   )
