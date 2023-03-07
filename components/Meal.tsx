@@ -1,15 +1,15 @@
 import styles from '../styles/Home.module.css';
 
 export type Meal = {
-    id: string;
-    name: string;
-    ingredients: string[];
+    date: string;
+    mealType: string;
+    mealName: string;
 };
 
-const Meal = ({ meal } :any) => {
+const Meal = ({ meal, mealType } :any) => {
     return (
         <div className={styles.meal}>
-            <div>{meal}</div>
+            <div>{mealType}</div>
             {
                 meal ? (
                     <div className={styles.mealChoice}>
