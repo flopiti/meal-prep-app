@@ -1,5 +1,11 @@
 import styles from '../styles/Home.module.css';
 
+export type Meal = {
+    id: string;
+    name: string;
+    ingredients: string[];
+};
+
 const Meal = ({ meal } :any) => {
     return (
         <div className={styles.meal}>
