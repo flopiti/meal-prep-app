@@ -1,5 +1,6 @@
 .main{
-  max-width: 1000px;
+  max-width: 1200px;
+  margin: 10vh auto;
 }
 
 .description {
@@ -299,4 +300,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.mealItem{
+  border: 1px solid #000;
+  height: 3vh;
+  margin: .25rem;
+  padding: .25rem;
+  border-radius: 5px;
+}
+
+.mealList{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  height: 100%;
+  flex-wrap: wrap;
+
 }

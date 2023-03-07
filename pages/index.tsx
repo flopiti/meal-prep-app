@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import Calendar from '@/components/Calendar'
 import styles from '@/styles/Home.module.css'
+import MealList from '@/components/MealList'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
       </Head>
       <a href="/api/auth/login">Login</a>
       <Calendar/>
+      <MealList/>
     </>
   )
 }

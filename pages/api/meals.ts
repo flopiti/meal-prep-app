@@ -4,7 +4,7 @@ import axios from 'axios'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 const handleGetMethod = async (req: NextApiRequest, res: NextApiResponse) => {
-    const response = await axios.get(`http://mock-api:3000/scheduled-meals`, {
+    const response = await axios.get(`http://mock-api:3000/meals`, {
         headers: {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
