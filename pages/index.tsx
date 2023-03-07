@@ -11,6 +11,9 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
 
+  const scheduleMeal = async (mealName: string, date: string, mealType:string) => {
+    setScheduledMeals([...scheduledMeals, {mealName, date, mealType}])
+  }
   const { getScheduledMeals } = useScheduledMeals();
   const[scheduledMeals, setScheduledMeals] = useState<any>([]);
   const { getMeals } = useMeals();
@@ -34,10 +37,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <a href="/api/auth/login">Login</a>
-      <Calendar scheduledMeals={scheduledMeals}/>
+      <Calendar scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal}/>
       <MealList meals={meals} />
     </>
   )
 }
-
-    
