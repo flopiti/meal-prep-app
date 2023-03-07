@@ -11,8 +11,8 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
 
-  const scheduleMeal = async (mealName: string, date: string, mealType:string) => {
-    setScheduledMeals([...scheduledMeals, {mealName, date, mealType}])
+  const scheduleMeal = async (id:number, mealName: string, date: string, mealType:string) => {
+    setScheduledMeals([...scheduledMeals, {id, mealName, date, mealType}])
   }
   const removeMeal = async (mealName: string, date: string, mealType:string) => {
     setScheduledMeals(scheduledMeals.filter((meal:any) => meal.date !== date || meal.mealType !== mealType || meal.mealName !== mealName))
