@@ -20,6 +20,17 @@ export const useScheduledMeals = () => {
       }
     };
 
+    const postScheduledMeal = async (mealName: string, date: string, mealType:string) => {
+        const options = {
+            config: {
+            method: 'POST',
+            url: `/api/scheduled-meals`,
+            data: {mealName, date, mealType}
+            },
+            authenticated: true,
+        };
+        return await makeRequest(options);
+        }
     const getScheduledMeals = async () => {
         const options = {
             config: {
@@ -31,5 +42,5 @@ export const useScheduledMeals = () => {
         return await makeRequest(options);
         }
 
-        return { getScheduledMeals };
+        return { getScheduledMeals, postScheduledMeal };
     }

@@ -7,21 +7,29 @@ export type Meal = {
     ingredients: string[]
   }
 
-const MealList = () => {
-    const {getMeals} = useMeals();
-    const[meals, setMeals] = useState<Meal[]>([]);
+const MealList = ({meals}:any) => {
 
-    useEffect (() => {  
-        getMeals().then((data:any) => {
-            setMeals(data); 
-        })}, []);
+    const [isDragging, setIsDragging] = useState(false);
+
+    const handleDragStart = (event:any) => {
+        console.log('dragging')
+        setIsDragging(true);
+        event.dataTransfer.setData('text/plain', meals[0].mealName);
+      };
+    
     return (
         <div className={styles.mealList}>
             {
                 meals.map((meal:Meal) => {
-                    return <span className={styles.mealItem}>
+                    return (
+                    <span 
+                    draggable
+                    onDragStart={handleDragStart}
+                    style={{ opacity: isDragging ? 0.5 : 1 }}
+
+                    className={styles.mealItem}>
                         {meal.mealName}
-                    </span>
+                    </span>)
                 })
             }
         </div>
