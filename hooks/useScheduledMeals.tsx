@@ -31,6 +31,7 @@ export const useScheduledMeals = () => {
         };
         return await makeRequest(options);
         }
+
     const getScheduledMeals = async () => {
         const options = {
             config: {
