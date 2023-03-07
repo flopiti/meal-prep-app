@@ -1,5 +1,6 @@
 import { useScheduledMeals } from '@/hooks/useScheduledMeals';
 import styles from '../styles/Home.module.css';
+import { DropZone } from './Dropzone';
 
 export type Meal = {
     date: string;
@@ -33,24 +34,3 @@ const Meal = ({ meal, mealType , scheduleMeal, day} :any) => {
 };
 
 export default Meal;
-
-function DropZone(props:any) {
-    const handleDrop = (event:any) => {
-      event.preventDefault();
-      const data = event.dataTransfer.getData('text/plain');
-      props.onDrop(data);
-    };
-  
-    const handleDragOver = (event:any) => {
-      event.preventDefault();
-    };
-  
-    return (
-      <div
-        onDrop={handleDrop}
-        onDragOver={handleDragOver}
-        className={styles.mealChoice}      >
-        {props.children}
-      </div>
-    );
-  }
