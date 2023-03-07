@@ -11,22 +11,20 @@ const MealList = ({meals}:any) => {
 
     const [isDragging, setIsDragging] = useState(false);
 
-    const handleDragStart = (event:any) => {
-        console.log('dragging')
+    const handleDragStart = (event:any, index:number) => {
         setIsDragging(true);
-        event.dataTransfer.setData('text/plain', meals[0].mealName);
+        event.dataTransfer.setData('text/plain', meals[index].mealName);
       };
     
     return (
         <div className={styles.mealList}>
             {
-                meals.map((meal:Meal) => {
+                meals.map((meal:Meal, index:number) => {
                     return (
                     <span 
+                    key={index}
                     draggable
-                    onDragStart={handleDragStart}
-                    style={{ opacity: isDragging ? 0.5 : 1 }}
-
+                    onDragStart={()=>handleDragStart(event, index)}
                     className={styles.mealItem}>
                         {meal.mealName}
                     </span>)

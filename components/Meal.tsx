@@ -8,18 +8,11 @@ export type Meal = {
 };
 
 const Meal = ({ meal, mealType , scheduleMeal, day} :any) => {
-    console.log('render')
-
     const { postScheduledMeal } = useScheduledMeals();
-
-    
-    const handleDrop = (data) => {
+    const handleDrop = (data:any) => {
         postScheduledMeal(data, day, mealType);
-        scheduleMeal({day, mealType, data});
-        console.log('done')
+        scheduleMeal(data, day, mealType);
       };
-
-      console.log(meal)
 
     return (
         <div className={styles.meal}>
@@ -27,7 +20,7 @@ const Meal = ({ meal, mealType , scheduleMeal, day} :any) => {
             {
                 meal ? (
                     <div className={styles.mealChoice}>
-                        {meal}
+                        {meal }
                     </div>
                 ) : (
                     <DropZone onDrop={handleDrop}>
@@ -41,16 +34,14 @@ const Meal = ({ meal, mealType , scheduleMeal, day} :any) => {
 
 export default Meal;
 
-
-
-function DropZone(props) {
-    const handleDrop = (event) => {
+function DropZone(props:any) {
+    const handleDrop = (event:any) => {
       event.preventDefault();
       const data = event.dataTransfer.getData('text/plain');
       props.onDrop(data);
     };
   
-    const handleDragOver = (event) => {
+    const handleDragOver = (event:any) => {
       event.preventDefault();
     };
   
