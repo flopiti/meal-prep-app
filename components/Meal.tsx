@@ -19,8 +19,9 @@ const Meal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) => {
 
     const { postScheduledMeal } = useScheduledMeals();
     const handleDrop = (data:any) => {
-        postScheduledMeal(data, day, mealType);
-        scheduleMeal(data, day, mealType);
+        postScheduledMeal(data, day, mealType).then((res:any) => {
+            scheduleMeal(res.id, res.mealName ,res.date, res.mealType);
+        });
       };
 
     return (
