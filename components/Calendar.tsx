@@ -1,6 +1,7 @@
 
 import React from 'react'
 import styles from '@/styles/Home.module.css'
+import Day from '@/components/Day'
 
 const Calendar = () => {
     let days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday'];
@@ -8,7 +9,7 @@ const Calendar = () => {
           <div className={styles.calendar}>
             {
                 days.map((day) => {
-                    return <div className={styles.day}>{day}</div>
+                    return <Day day={day}/>
                 })
             
             }
