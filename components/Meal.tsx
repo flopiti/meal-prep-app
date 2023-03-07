@@ -9,22 +9,19 @@ export type Meal = {
 };
 
 const Meal = ({ meal, mealType , scheduleMeal, day} :any) => {
-    const[mealChoice, setMealChoice] = useState<string | null>(meal);
     const { postScheduledMeal } = useScheduledMeals();
     const handleDrop = (data:any) => {
         postScheduledMeal(data, day, mealType);
-        // setMealChoice(data)
         scheduleMeal(data, day, mealType);
       };
 
-      useEffect(() => {setMealChoice(meal);}, [meal])
     return (
         <div className={styles.meal}>
             <div>{mealType}</div>
             {
-                mealChoice ? (
+                meal ? (
                     <div className={styles.mealChoice}>
-                        {mealChoice }
+                        {meal }
                     </div>
                 ) : (
                     <DropZone onDrop={handleDrop}>
