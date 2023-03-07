@@ -4,9 +4,27 @@ import { Inter } from '@next/font/google'
 import Calendar from '@/components/Calendar'
 import styles from '@/styles/Home.module.css'
 import MealList from '@/components/MealList'
+import { useEffect, useState } from 'react'
+import { useScheduledMeals } from '@/hooks/useScheduledMeals'
+import { useMeals } from '@/hooks/useMeals'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+
+  const { getScheduledMeals } = useScheduledMeals();
+  const[scheduledMeals, setScheduledMeals] = useState<any>([]);
+  const { getMeals } = useMeals();
+  const[meals, setMeals] = useState<any>([]);
+
+  
+  useEffect(() => {
+  getScheduledMeals().then((data:any) => {
+    setScheduledMeals(data);
+  });
+  getMeals().then((data:any) => {
+    setMeals(data);
+  })
+  }, []);
   return (
     <>
       <Head>
@@ -16,8 +34,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <a href="/api/auth/login">Login</a>
-      <Calendar/>
-      <MealList/>
+      <Calendar scheduledMeals={scheduledMeals}/>
+      <MealList meals={meals} />
     </>
   )
 }
+
+    

@@ -7,14 +7,7 @@ export type Meal = {
     ingredients: string[]
   }
 
-const MealList = () => {
-    const {getMeals} = useMeals();
-    const[meals, setMeals] = useState<Meal[]>([]);
-
-    useEffect (() => {  
-        getMeals().then((data:any) => {
-            setMeals(data); 
-        })}, []);
+const MealList = ({meals}:any) => {
     return (
         <div className={styles.mealList}>
             {
