@@ -34,7 +34,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <a href="/api/auth/login">Login</a>
+      {/* <a href="/api/auth/login">Login</a> */}
       <Calendar scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal}/>
       <MealList meals={meals} />
     </>
