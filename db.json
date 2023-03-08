@@ -23,12 +23,6 @@
   ],
   "scheduled-meals": [
     {
-      "id": 1,
-      "date": "2023-03-09",
-      "mealType": "breakfast",
-      "mealName": "Scrambled eggs with bacon and toast"
-    },
-    {
       "id": 2,
       "date": "2023-03-09",
       "mealType": "lunch",
@@ -63,6 +57,24 @@
       "date": "2023-03-10",
       "mealType": "dinner",
       "id": 7
+    },
+    {
+      "mealName": "Beef Tacos",
+      "date": "2023-03-10",
+      "mealType": "lunch",
+      "id": 8
+    },
+    {
+      "mealName": "Beef Stir-Fry",
+      "date": "2023-03-11",
+      "mealType": "lunch",
+      "id": 9
+    },
+    {
+      "mealName": "Fetuccine Alfredo",
+      "date": "2023-03-09",
+      "mealType": "breakfast",
+      "id": 10
     }
   ],
   "meals": [
@@ -303,6 +315,19 @@
         "garlic",
         "ginger",
         "rice",
+        "salt",
+        "black pepper"
+      ]
+    },
+    {
+      "mealName": "Fetuccine Alfredo",
+      "iconUrl": "https://i.ibb.co/kQVNLVf/Im-Apollo216-icon-of-fettucine-alfredo-i-Os-style-9f5afd6e-e2a9-4248-a2f1-a7c50deac2ee.png",
+      "ingredients": [
+        "chicken breast",
+        "tomato sauce",
+        "mozzarella cheese",
+        "parmesan cheese",
+        "pasta",
         "salt",
         "black pepper"
       ]
