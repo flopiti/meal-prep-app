@@ -316,6 +316,9 @@
   justify-content: center;
   align-items: center;
   border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .mealItem{
