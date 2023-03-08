@@ -1,10 +1,12 @@
 import { useMeals } from "@/hooks/useMeals";
 import { useEffect, useState } from "react";
 import styles from '@/styles/Home.module.css'
+import Image from 'next/image'
 
 export type Meal = {
     mealName: string,
-    ingredients: string[]
+    ingredients: string[],
+    iconUrl: string,
   }
 
 const MealList = ({meals}:any) => {
@@ -26,7 +28,10 @@ const MealList = ({meals}:any) => {
                     draggable
                     onDragStart={()=>handleDragStart(event, index)}
                     className={styles.mealItem}>
-                        {meal.mealName}
+                        <span>{meal.mealName}</span>
+                        {
+                            meal.iconUrl ?  <Image src={meal.iconUrl} alt="food" width={25} height={25} /> : <span>🍔</span>
+                        }
                     </span>)
                 })
             }
