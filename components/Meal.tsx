@@ -1,6 +1,7 @@
 import { useScheduledMeals } from '@/hooks/useScheduledMeals';
 import styles from '../styles/Home.module.css';
 import { DropZone } from './Dropzone';
+import {motion } from 'framer-motion';
 
 export type Meal = {
     date: string;
@@ -34,6 +35,7 @@ const Meal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) => {
         });
       };
 
+
     return (
         <div className={styles.meal}>
             <div>
@@ -42,17 +44,27 @@ const Meal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) => {
                     X
                 </button>
             </div>
+            <motion.div 
+            >
             {
                 meal ? (
-                    <div className={styles.mealChoice}>
+                    <motion.div className={styles.mealChoice}
+                    animate={{ backgroundColor: "#28afb0", scale: [0.25, 1] }}
+                    transition={{ duration: 2, type : "spring", stiffness: 200}}
+                    >
                         {meal.mealName }
-                    </div>
+                    </motion.div>
                 ) : (
-                    <DropZone onDrop={handleDrop}>
-                        Drop here
-                    </DropZone>
+                    <div>
+                        <DropZone onDrop={handleDrop}>
+                            Drop here
+                        </DropZone>
+                    </div>
                 )
             }
+
+            </motion.div>
+
         </div>
     );
 };
