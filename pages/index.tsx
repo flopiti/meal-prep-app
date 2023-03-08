@@ -15,8 +15,8 @@ export default function Home() {
   const[scheduledMeals, setScheduledMeals] = useState<ScheduledMeal[]>([]);
   const[meals, setMeals] = useState<Meal[]>([]);
 
-  const scheduleMeal = async ({id, mealName, date, mealType}: ScheduledMeal) => {
-    setScheduledMeals([...scheduledMeals, {id, mealName, date, mealType}])
+  const scheduleMeal = async ({id, mealName, date, mealType, iconUrl  }: ScheduledMeal) => {
+    setScheduledMeals([...scheduledMeals, {id, mealName, date, mealType, iconUrl}])
   }
   const removeMeal = async ({mealName, date, mealType}: ScheduledMeal) => {
     setScheduledMeals(scheduledMeals.filter((meal:any) => meal.date !== date || meal.mealType !== mealType || meal.mealName !== mealName))
@@ -46,4 +46,5 @@ export type ScheduledMeal = {
   mealName: string;
   date: string;
   mealType: string;
+  iconUrl: string;
 }
