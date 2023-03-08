@@ -2,6 +2,7 @@ import { useScheduledMeals } from '@/hooks/useScheduledMeals';
 import styles from '../styles/Home.module.css';
 import { DropZone } from './Dropzone';
 import {motion } from 'framer-motion';
+import Image from 'next/image'
 
 export type Meal = {
     date: string;
@@ -10,7 +11,6 @@ export type Meal = {
 };
 
 const Meal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) => {
-
     const { deleteScheduledMeal } = useScheduledMeals();
     const deleteMeal = () => {
         if(!meal) return;
@@ -24,13 +24,14 @@ const Meal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) => {
     };
 
     const { postScheduledMeal } = useScheduledMeals();
-    const handleDrop = (data:any) => {
-        postScheduledMeal(data, day, mealType).then((res:any) => {
+    const handleDrop = (data:any, iconUrl:any) => {
+        postScheduledMeal(data, day, mealType, iconUrl).then((res:any) => {
             scheduleMeal({
                 mealName: res.mealName,
                 date: res.date,
                 mealType: res.mealType,
-                id: res.id            
+                id: res.id, 
+                iconUrl: res.iconUrl
             });
         });
       };
@@ -52,7 +53,12 @@ const Meal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) => {
                     animate={{ backgroundColor: "#28afb0", scale: [0.25, 1] }}
                     transition={{ duration: 2, type : "spring", stiffness: 200}}
                     >
-                        {meal.mealName }
+                        <div>
+                            {meal.mealName }
+                        </div>
+                        <div>
+                            {meal.iconUrl ?  <Image src={meal.iconUrl} alt="food" width={64} height={64} /> : <span>🍔</span>}
+                        </div>
                     </motion.div>
                 ) : (
                     <div>
@@ -62,9 +68,7 @@ const Meal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) => {
                     </div>
                 )
             }
-
             </motion.div>
-
         </div>
     );
 };
