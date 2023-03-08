@@ -45,18 +45,21 @@ const Meal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) => {
                 </button>
             </div>
             <motion.div 
-            // className={styles.mealBox}
-            animate={{ backgroundColor: meal ? "#f03f35" : "blue" }}
-            transition={{ duration: 10, ease: "easeInOut" }}>
+            >
             {
                 meal ? (
-                    <div className={styles.mealChoice}>
+                    <motion.div className={styles.mealChoice}
+                    animate={{ backgroundColor: "#28afb0", scale: [0.25, 1] }}
+                    transition={{ duration: 2, type : "spring", stiffness: 200}}
+                    >
                         {meal.mealName }
-                    </div>
+                    </motion.div>
                 ) : (
-                    <DropZone onDrop={handleDrop}>
-                        Drop here
-                    </DropZone>
+                    <div>
+                        <DropZone onDrop={handleDrop}>
+                            Drop here
+                        </DropZone>
+                    </div>
                 )
             }
 
