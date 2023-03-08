@@ -332,6 +332,18 @@
         "salt",
         "black pepper"
       ]
+    },
+    {
+      "mealName": "Baked Salmon",
+      "iconUrl": "https://i.ibb.co/K7q6XSM/baked-salmon.png",
+      "ingredients": [
+        "salmon fillet",
+        "lemon",
+        "garlic",
+        "olive oil",
+        "salt",
+        "black pepper"
+      ]
     }
   ]
 }
