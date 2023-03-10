@@ -1,3 +1,5 @@
 {
-    "breakfast": "Breakfast"
+    "breakfast": "Breakfast",
+    "lunch": "Lunch",
+    "dinner": "Dinner"
 }
