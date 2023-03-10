@@ -25,6 +25,17 @@ const handlePostMethod = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(200).json(response?.data);
 }
 
+const handlePutMethod = async (req: NextApiRequest, res: NextApiResponse) => {
+    const response = await axios.put(`http://mock-api:3000/scheduled-meals/${req.body.id}`, req.body, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+        }
+    })
+    return res.status(200).json(response?.data);
+}
+
 const handleDeleteMethod = async (req: NextApiRequest, res: NextApiResponse) => {
     const response = await axios.delete(`http://mock-api:3000/scheduled-meals/${req.body.id}`, {
         headers: {
@@ -44,6 +55,8 @@ const handler = (req: NextApiRequest, res: NextApiResponse<any[]>) => {
             return handlePostMethod(req, res);
         case 'DELETE':
             return handleDeleteMethod(req, res);
+        case 'PUT':
+            return handlePutMethod(req, res);
         default:
             return res.status(405).end()
     }

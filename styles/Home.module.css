@@ -331,6 +331,22 @@
   z-index: 2;
 }
 
+.twoMealChoice{
+  overflow: hidden;
+  padding: 1rem;
+  height: 13vh;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
 .mealItem{
   border: 1px solid #000;
   height: 3vh;
