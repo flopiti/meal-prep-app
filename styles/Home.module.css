@@ -311,6 +311,7 @@
   border : 1px solid #000;
 }
 .mealChoice{
+  overflow: hidden;
   padding: 1rem;
   height: 10vh;
   margin: 1rem;
