@@ -1,13 +1,12 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
 import Calendar from '@/components/Calendar'
-import styles from '@/styles/Home.module.css'
 import MealList from '@/components/MealList'
 import { useEffect, useState } from 'react'
 import { useScheduledMeals } from '@/hooks/useScheduledMeals'
 import { useMeals } from '@/hooks/useMeals'
 import { Meal } from '@/components/Meal'
+import { GetServerSidePropsContext } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 export default function Home() {
   const { getScheduledMeals } = useScheduledMeals();
@@ -47,4 +46,12 @@ export type ScheduledMeal = {
   date: string;
   mealType: string;
   iconUrl: string;
+}
+
+export const getServerSideProps = async ({locale,}: GetServerSidePropsContext) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale || 'en', ['common'])),
+    },
+  }
 }

@@ -3,6 +3,7 @@ import styles from '../styles/Home.module.css';
 import { DropZone } from './Dropzone';
 import {motion } from 'framer-motion';
 import Image from 'next/image'
+import { useTranslation } from 'react-i18next'
 
 export type Meal = {
     ingredients: string[];
@@ -10,6 +11,7 @@ export type Meal = {
 };
 
 const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) => {
+    const { t } = useTranslation('common')
     const { deleteScheduledMeal } = useScheduledMeals();
     const deleteMeal = () => {
         if(!meal) return;
@@ -39,7 +41,7 @@ const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) =
     return (
         <div className={styles.meal}>
             <div>
-                <span>{mealType}</span>
+                <span>{t(mealType)}</span>
                 <button className={styles.xbutton} onClick={deleteMeal}>
                     X
                 </button>
@@ -62,7 +64,7 @@ const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) =
                             }
                         }   transition={{ duration: 1, stiffness: 100}}
                         >
-                            {meal.iconUrl ?  <Image src={meal.iconUrl} alt="food" width={64} height={64} /> : <span>🍔</span>}
+                            {meal.iconUrl ?  <Image src={meal.iconUrl} alt="food" width={64} height={64} /> : <span></span>}
                         </motion.div>
                     </motion.div>
                 ) : (
