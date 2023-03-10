@@ -344,6 +344,33 @@
         "salt",
         "black pepper"
       ]
-    }
+    },
+  {
+    "mealName": "Eggs & Bacon",
+    "iconUrl": "https://i.ibb.co/d5YV4Vz/Im-Apollo216-A-breakfast-plate-with-bacon-and-eggs-in-the-style-41a6f0c2-857d-462e-ad33-d65c4e334c30.png",
+    "ingredients": [
+      "eggs",
+      "bacon",
+      "salt",
+      "black pepper"
+    ]
+  },
+  {
+    "mealName": "Greek Salad",
+    "iconUrl": "https://i.ibb.co/K6xG8ZB/Im-Apollo216-greek-salad-IOs-icon-style-in-a-white-bowl-5e080c08-c6ce-4009-8725-2f964d899f46-removeb.png",
+    "ingredients": [
+      "romaine lettuce",
+      "cucumber",
+      "tomato",
+      "red onion",
+      "kalamata olives",
+      "feta cheese",
+      "olive oil",
+      "red wine vinegar",
+      "oregano",
+      "salt",
+      "black pepper"
+    ]
+  }
   ]
 }
