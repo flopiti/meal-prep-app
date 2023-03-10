@@ -31,7 +31,7 @@ const MealList = ({meals}:any) => {
                     className={styles.mealItem}>
                         <span>{meal.mealName}</span>
                         {
-                            meal.iconUrl ?  <Image src={meal.iconUrl} alt="food" width={25} height={25} /> : <span>🍔</span>
+                            meal.iconUrl ?  <Image className={styles.mealIconSmall}  src={meal.iconUrl} alt="food" width={25} height={25} /> : <span></span>
                         }
                     </span>)
                 })

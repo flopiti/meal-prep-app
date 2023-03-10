@@ -64,7 +64,7 @@ const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) =
                             }
                         }   transition={{ duration: 1, stiffness: 100}}
                         >
-                            {meal.iconUrl ?  <Image src={meal.iconUrl} alt="food" width={64} height={64} /> : <span>🍔</span>}
+                            {meal.iconUrl ?  <Image src={meal.iconUrl} alt="food" width={64} height={64} /> : <span></span>}
                         </motion.div>
                     </motion.div>
                 ) : (

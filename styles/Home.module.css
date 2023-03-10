@@ -329,13 +329,19 @@
 .mealItem{
   border: 1px solid #000;
   height: 3vh;
-  margin: .25rem;
+  margin:.25rem;
   padding: .25rem;
   border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
 
+.mealIconSmall{
+  margin-top: .25rem;
+  margin-bottom: .25rem;
+  margin-right: .5rem;
+  margin-left: .5rem;
 }
 
 .mealList{
