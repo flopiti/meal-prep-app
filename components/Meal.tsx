@@ -10,34 +10,49 @@ export type Meal = {
     mealName: string;
 };
 
-const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) => {
+const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal, addMealToScheduledMeal} :any) => {
     const { t } = useTranslation('common')
-    const { deleteScheduledMeal } = useScheduledMeals();
+    const { deleteScheduledMeal, putScheduledMeal } = useScheduledMeals();
     const deleteMeal = () => {
         if(!meal) return;
-        deleteScheduledMeal(meal.id);
-        removeMeal({
-            mealName: meal.mealName,
-            date: meal.date,
-            mealType: meal.mealType,
-            id: meal.id
+        deleteScheduledMeal(meal.id).then(() => {
+            removeMeal({
+                mealName: meal.mealName,
+                date: meal.date,
+                mealType: meal.mealType,
+                id: meal.id
+            })
         });
     };
 
     const { postScheduledMeal } = useScheduledMeals();
+
     const handleDrop = (data:any, iconUrl:any) => {
-        postScheduledMeal(data, day, mealType, iconUrl).then((res:any) => {
-            scheduleMeal({
-                mealName: res.mealName,
-                date: res.date,
-                mealType: res.mealType,
-                id: res.id, 
-                iconUrl: res.iconUrl
+        if(meal){
+            putScheduledMeal(meal.id, data, day, mealType, iconUrl, meal.mealName, meal.iconUrl).then((res:any) => {
+                addMealToScheduledMeal({
+                    mealName: meal.mealName,
+                    date: meal.date,
+                    mealType: meal.mealType,
+                    id: meal.id,
+                    iconUrl: meal.iconUrl,
+                    meal2Name: res.mealName,
+                    icon2Url: res.icon2Url
+                });
             });
-        });
+        }
+        else{
+            postScheduledMeal(data, day, mealType, iconUrl).then((res:any) => {
+                scheduleMeal({
+                    mealName: res.mealName,
+                    date: res.date,
+                    mealType: res.mealType,
+                    id: res.id, 
+                    iconUrl: res.iconUrl
+                });
+            });
+        }
       };
-
-
     return (
         <div className={styles.meal}>
             <div>
@@ -49,8 +64,39 @@ const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) =
             <motion.div 
             >
             {
-                meal ? (
-                    <motion.div className={styles.mealChoice}
+                meal?.mealName && meal?.meal2Name ? (
+                    <DropZone onDrop={handleDrop}>
+                    <motion.div 
+                    className={styles.twoMealChoice}
+                    animate={{ backgroundColor: "#28afb0", scale: [0.25, 1] }}
+                    transition={{ duration: 2, type : "spring", stiffness: 200}}
+                    >
+                        <motion.div
+                            className={styles.mealIcon}
+                            initial={{ y: 150 }}
+                            animate={{ y: [150,5], rotate: [0, 360]                          
+                            }
+                        }   transition={{ duration: 1, stiffness: 100}}
+                        >
+                            {meal.iconUrl ?  <Image src={meal.iconUrl} alt="food" width={84} height={84} /> : <span></span>}
+                        </motion.div>
+                        <motion.div
+                            className={styles.mealIcon}
+                            initial={{ y: 150 }}
+                            animate={{ y: [150,5], rotate: [0, 360]                          
+                            }
+                        }   transition={{ duration: 1, stiffness: 100}}
+                        >
+                            {meal.icon2Url ?  <Image src={meal.icon2Url} alt="food" width={84} height={84} /> : <span></span>}
+                        </motion.div>
+                    </motion.div>
+                </DropZone>
+                ) :
+
+                meal ? (                        
+                <DropZone onDrop={handleDrop}>
+                    <motion.div 
+                    className={styles.mealChoice}
                     animate={{ backgroundColor: "#28afb0", scale: [0.25, 1] }}
                     transition={{ duration: 2, type : "spring", stiffness: 200}}
                     >
@@ -62,11 +108,12 @@ const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) =
                             initial={{ y: 150 }}
                             animate={{ y: [150,5], rotate: [0, 360]                          
                             }
-                        }   transition={{ duration: 1, stiffness: 100}}
+                        }   transition={{ duration: .5, stiffness: 100}}
                         >
                             {meal.iconUrl ?  <Image src={meal.iconUrl} alt="food" width={64} height={64} /> : <span></span>}
                         </motion.div>
                     </motion.div>
+                </DropZone>
                 ) : (
                     <div>
                         <DropZone onDrop={handleDrop}>

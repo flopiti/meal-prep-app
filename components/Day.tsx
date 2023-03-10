@@ -1,6 +1,6 @@
 import styles from '@/styles/Home.module.css';
 import ScheduledMeal from './Meal';
-const Day = ({ day, meals , scheduleMeal, removeMeal} :any) => {
+const Day = ({ day, meals , scheduleMeal, removeMeal, addMealToScheduledMeal} :any) => {
     let mealTypes = ['breakfast', 'lunch', 'dinner'];
     const today = new Date();
     const dateString = today.toISOString().slice(0, 10);
@@ -14,9 +14,9 @@ const Day = ({ day, meals , scheduleMeal, removeMeal} :any) => {
                 <h1 className={styles.dayTitle}>{dateString===day ? 'Today' : dateStringTomorrow===day ? 'Tomorrow' : '' }</h1>
             </div>
             {day}
-            <ScheduledMeal meal={meals.find((meal:any) => meal.mealType === mealTypes[0]) ? meals.find((meal:any) => meal.mealType === mealTypes[0]) : null} mealType={mealTypes[0]} scheduleMeal={scheduleMeal} day={day} removeMeal={removeMeal}/>
-            <ScheduledMeal meal={meals.find((meal:any) => meal.mealType === mealTypes[1]) ? meals.find((meal:any) => meal.mealType === mealTypes[1]) : null} mealType={mealTypes[1]} scheduleMeal={scheduleMeal} day={day} removeMeal={removeMeal}/>
-            <ScheduledMeal meal={meals.find((meal:any) => meal.mealType === mealTypes[2]) ? meals.find((meal:any) => meal.mealType === mealTypes[2]) : null} mealType={mealTypes[2]} scheduleMeal={scheduleMeal} day={day} removeMeal={removeMeal}/>
+            <ScheduledMeal meal={meals.find((meal:any) => meal.mealType === mealTypes[0]) ? meals.find((meal:any) => meal.mealType === mealTypes[0]) : null} mealType={mealTypes[0]} scheduleMeal={scheduleMeal} day={day} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
+            <ScheduledMeal meal={meals.find((meal:any) => meal.mealType === mealTypes[1]) ? meals.find((meal:any) => meal.mealType === mealTypes[1]) : null} mealType={mealTypes[1]} scheduleMeal={scheduleMeal} day={day} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
+            <ScheduledMeal meal={meals.find((meal:any) => meal.mealType === mealTypes[2]) ? meals.find((meal:any) => meal.mealType === mealTypes[2]) : null} mealType={mealTypes[2]} scheduleMeal={scheduleMeal} day={day} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
         </div>
     );
     };

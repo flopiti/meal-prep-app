@@ -3,14 +3,14 @@ import React from 'react'
 import styles from '@/styles/Home.module.css'
 import Day from '@/components/Day'
 
-const Calendar = ({scheduledMeals, scheduleMeal, removeMeal}:any) => {
+const Calendar = ({scheduledMeals, scheduleMeal, removeMeal, addMealToScheduledMeal}:any) => {
 
   const datesToCover = getDateStrings();
   return (
           <div className={styles.calendar}>
             {
                 datesToCover.map((day, index) => {
-                    return <Day key={index} scheduleMeal={scheduleMeal} day={day} meals={scheduledMeals.filter((meal:any) => meal.date === day)} removeMeal={removeMeal}/>
+                    return <Day key={index} scheduleMeal={scheduleMeal} day={day} meals={scheduledMeals.filter((meal:any) => meal.date === day)} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
                 })
             }
           </div>          

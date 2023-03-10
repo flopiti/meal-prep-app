@@ -14,17 +14,19 @@ export default function Home() {
   const[scheduledMeals, setScheduledMeals] = useState<ScheduledMeal[]>([]);
   const[meals, setMeals] = useState<Meal[]>([]);
 
-  const scheduleMeal = async ({id, mealName, date, mealType, iconUrl  }: ScheduledMeal) => {
-    setScheduledMeals([...scheduledMeals, {id, mealName, date, mealType, iconUrl}])
+  const scheduleMeal = async ({id, mealName, date, mealType, iconUrl, meal2Name, icon2Url }: ScheduledMeal) => {
+    setScheduledMeals([...scheduledMeals, {id, mealName, date, mealType, iconUrl, meal2Name, icon2Url }])
   }
   const removeMeal = async ({mealName, date, mealType}: ScheduledMeal) => {
     setScheduledMeals(scheduledMeals.filter((meal:any) => meal.date !== date || meal.mealType !== mealType || meal.mealName !== mealName))
   }
-
+  const addMealToScheduledMeal = async ({id, mealName, date, mealType, iconUrl, meal2Name, icon2Url}: ScheduledMeal) => {
+    setScheduledMeals([...scheduledMeals.filter((meal:any) => meal.date !== date || meal.mealType !== mealType || meal.mealName !== mealName), {id, mealName, date, mealType, iconUrl, meal2Name, icon2Url } ])
+  }
   useEffect(() => {
-    getScheduledMeals().then((data:any) => setScheduledMeals(data));
-    getMeals().then((data:any) => setMeals(data));}, []);
-
+    getScheduledMeals().then((data:any) => {
+      setScheduledMeals(data)}).then(() =>getMeals().then((data:any) => setMeals(data)));
+  }, [])  
   return (
     <>
       <Head>
@@ -34,7 +36,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* <a href="/api/auth/login">Login</a> */}
-      <Calendar scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal}/>
+      <Calendar scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
       <MealList meals={meals} />
     </>
   )
@@ -46,6 +48,8 @@ export type ScheduledMeal = {
   date: string;
   mealType: string;
   iconUrl: string;
+  meal2Name: string;
+  icon2Url: string;
 }
 
 export const getServerSideProps = async ({locale,}: GetServerSidePropsContext) => {
