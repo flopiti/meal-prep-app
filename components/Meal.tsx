@@ -5,12 +5,11 @@ import {motion } from 'framer-motion';
 import Image from 'next/image'
 
 export type Meal = {
-    date: string;
-    mealType: string;
+    ingredients: string[];
     mealName: string;
 };
 
-const Meal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) => {
+const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) => {
     const { deleteScheduledMeal } = useScheduledMeals();
     const deleteMeal = () => {
         if(!meal) return;
@@ -56,9 +55,15 @@ const Meal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) => {
                         <div>
                             {meal.mealName }
                         </div>
-                        <div>
+                        <motion.div
+                            className={styles.mealIcon}
+                            initial={{ y: 150 }}
+                            animate={{ y: [150,5], rotate: [0, 360]                          
+                            }
+                        }   transition={{ duration: 1, stiffness: 100}}
+                        >
                             {meal.iconUrl ?  <Image src={meal.iconUrl} alt="food" width={64} height={64} /> : <span>🍔</span>}
-                        </div>
+                        </motion.div>
                     </motion.div>
                 ) : (
                     <div>
@@ -73,4 +78,4 @@ const Meal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) => {
     );
 };
 
-export default Meal;
+export default ScheduledMeal;
