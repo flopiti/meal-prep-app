@@ -22,9 +22,9 @@ export default function Home() {
   }
 
   useEffect(() => {
-    getScheduledMeals().then((data:any) => setScheduledMeals(data));
-    getMeals().then((data:any) => setMeals(data));}, []);
-
+    getScheduledMeals().then((data:any) => {
+      setScheduledMeals(data)}).then(() =>getMeals().then((data:any) => setMeals(data)));
+  }, [])  
   return (
     <>
       <Head>
@@ -46,6 +46,8 @@ export type ScheduledMeal = {
   date: string;
   mealType: string;
   iconUrl: string;
+  meal2Name: string;
+  icon2Url: string;
 }
 
 export const getServerSideProps = async ({locale,}: GetServerSidePropsContext) => {
