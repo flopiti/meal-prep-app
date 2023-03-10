@@ -10,7 +10,7 @@ export type Meal = {
     mealName: string;
 };
 
-const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) => {
+const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal, addMealToScheduledMeal} :any) => {
     const { t } = useTranslation('common')
     const { deleteScheduledMeal, putScheduledMeal } = useScheduledMeals();
     const deleteMeal = () => {
@@ -30,36 +30,29 @@ const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) =
     const handleDrop = (data:any, iconUrl:any) => {
         if(meal){
             putScheduledMeal(meal.id, data, day, mealType, iconUrl, meal.mealName, meal.iconUrl).then((res:any) => {
-                console.log('hello')
-                removeMeal({
+                addMealToScheduledMeal({
                     mealName: meal.mealName,
                     date: meal.date,
                     mealType: meal.mealType,
-                    id: meal.id
-                });
-                scheduleMeal({
-                    mealName: res.mealName,
-                    date: res.date,
-                    mealType: res.mealType,
-                    id: res.id,
-                    iconUrl: res.iconUrl,
-                    meal2Name: res.meal2Name,
+                    id: meal.id,
+                    iconUrl: meal.iconUrl,
+                    meal2Name: res.mealName,
                     icon2Url: res.icon2Url
                 });
             });
         }
-        postScheduledMeal(data, day, mealType, iconUrl).then((res:any) => {
-            scheduleMeal({
-                mealName: res.mealName,
-                date: res.date,
-                mealType: res.mealType,
-                id: res.id, 
-                iconUrl: res.iconUrl
+        else{
+            postScheduledMeal(data, day, mealType, iconUrl).then((res:any) => {
+                scheduleMeal({
+                    mealName: res.mealName,
+                    date: res.date,
+                    mealType: res.mealType,
+                    id: res.id, 
+                    iconUrl: res.iconUrl
+                });
             });
-        });
+        }
       };
-
-
     return (
         <div className={styles.meal}>
             <div>
