@@ -41,7 +41,7 @@ const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) =
     return (
         <div className={styles.meal}>
             <div>
-                <span>{t('breakfast')}</span>
+                <span>{t(mealType)}</span>
                 <button className={styles.xbutton} onClick={deleteMeal}>
                     X
                 </button>
