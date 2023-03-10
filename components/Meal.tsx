@@ -55,9 +55,15 @@ const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) =
                         <div>
                             {meal.mealName }
                         </div>
-                        <div>
+                        <motion.div
+                            className={styles.mealIcon}
+                            initial={{ y: 150 }}
+                            animate={{ y: [150,5], rotate: [0, 360]                          
+                            }
+                        }   transition={{ duration: 1, stiffness: 100}}
+                        >
                             {meal.iconUrl ?  <Image src={meal.iconUrl} alt="food" width={64} height={64} /> : <span>🍔</span>}
-                        </div>
+                        </motion.div>
                     </motion.div>
                 ) : (
                     <div>
