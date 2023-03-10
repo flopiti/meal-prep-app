@@ -43,6 +43,18 @@ export const useScheduledMeals = () => {
         return await makeRequest(options);
         }
 
+    const putScheduledMeal = async (id:number, mealName: string, date: string, mealType:string, iconUrl:string, meal2Name: string, icon2Url:string) => {
+        const options = {
+            config: {
+            method: 'PUT',
+            url: `/api/scheduled-meals`,
+            data: {id, mealName, date, mealType, iconUrl, meal2Name, icon2Url}
+            },
+            authenticated: true,
+        };
+        return await makeRequest(options);
+        }
+
     const deleteScheduledMeal = async (id:number) => {
         const options = {
             config: { 
@@ -55,5 +67,5 @@ export const useScheduledMeals = () => {
         return await makeRequest(options);
         }
 
-        return { getScheduledMeals, postScheduledMeal, deleteScheduledMeal };
+        return { getScheduledMeals, postScheduledMeal, deleteScheduledMeal, putScheduledMeal };
     }
