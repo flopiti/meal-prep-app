@@ -281,8 +281,13 @@
 }
 
 .dayTitle{
-  width: 100%;
-  height: 10vh;
+  display: block;
+  height: 5vh;
+  margin-top: 0.67em; 
+  margin-bottom: 0.67em; 
+  margin-left: 0; 
+  margin-right: 0; 
+  font-weight: bold;
 }
 
 .day{
