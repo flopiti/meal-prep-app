@@ -1,8 +1,9 @@
 .main{
   max-width: 1200px;
-  margin-top: 5rem;
+  margin-top: 3rem;
   margin-right: auto;
   margin-left: auto;
+  max-height: 100%;
 }
 
 .description {
