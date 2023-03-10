@@ -15,12 +15,13 @@ const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) =
     const { deleteScheduledMeal } = useScheduledMeals();
     const deleteMeal = () => {
         if(!meal) return;
-        deleteScheduledMeal(meal.id);
-        removeMeal({
-            mealName: meal.mealName,
-            date: meal.date,
-            mealType: meal.mealType,
-            id: meal.id
+        deleteScheduledMeal(meal.id).then(() => {
+            removeMeal({
+                mealName: meal.mealName,
+                date: meal.date,
+                mealType: meal.mealType,
+                id: meal.id
+            })
         });
     };
 
@@ -49,8 +50,10 @@ const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) =
             <motion.div 
             >
             {
-                meal ? (
-                    <motion.div className={styles.mealChoice}
+                meal ? (                        
+                <DropZone onDrop={handleDrop}>
+                    <motion.div 
+                    className={styles.mealChoice}
                     animate={{ backgroundColor: "#28afb0", scale: [0.25, 1] }}
                     transition={{ duration: 2, type : "spring", stiffness: 200}}
                     >
@@ -67,6 +70,7 @@ const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) =
                             {meal.iconUrl ?  <Image src={meal.iconUrl} alt="food" width={64} height={64} /> : <span></span>}
                         </motion.div>
                     </motion.div>
+                </DropZone>
                 ) : (
                     <div>
                         <DropZone onDrop={handleDrop}>
