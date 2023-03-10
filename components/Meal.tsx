@@ -5,12 +5,11 @@ import {motion } from 'framer-motion';
 import Image from 'next/image'
 
 export type Meal = {
-    date: string;
-    mealType: string;
+    ingredients: string[];
     mealName: string;
 };
 
-const Meal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) => {
+const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) => {
     const { deleteScheduledMeal } = useScheduledMeals();
     const deleteMeal = () => {
         if(!meal) return;
@@ -73,4 +72,4 @@ const Meal = ({ meal, mealType , scheduleMeal, day, removeMeal} :any) => {
     );
 };
 
-export default Meal;
+export default ScheduledMeal;
