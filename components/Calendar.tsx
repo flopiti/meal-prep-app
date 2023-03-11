@@ -1,19 +1,34 @@
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '@/styles/Home.module.css'
 import Day from '@/components/Day'
 
 const Calendar = ({scheduledMeals, scheduleMeal, removeMeal, addMealToScheduledMeal}:any) => {
 
+  const [isMobile, setIsMobile] = useState(false);
   const datesToCover = getDateStrings();
+
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      setIsMobile(true);
+    }
+  }, []);
   return (
-          <div className={styles.calendar}>
-            {
-                datesToCover.map((day, index) => {
-                    return <Day key={index} scheduleMeal={scheduleMeal} day={day} meals={scheduledMeals.filter((meal:any) => meal.date === day)} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
-                })
-            }
-          </div>          
+    <div className={styles.calendar}>
+      {
+        isMobile ? <Day
+        key={datesToCover[0]}
+        scheduleMeal={scheduleMeal}
+        day={datesToCover[0]}
+        meals={scheduledMeals.filter((meal: any) => meal.date === datesToCover[0])}
+        removeMeal={removeMeal}
+        addMealToScheduledMeal={addMealToScheduledMeal}
+      /> : 
+        datesToCover.map((day, index) => {
+          return <Day key={index} scheduleMeal={scheduleMeal} day={day} meals={scheduledMeals.filter((meal:any) => meal.date === day)} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
+        })
+      }
+    </div>
   )
 }  
 
