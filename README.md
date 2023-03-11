@@ -6,4 +6,7 @@ Things to do when using this skeleton to start a new project:
 ```
 openssl rand -hex 32
 ```
+Base URL : http:localhost:3000
+Issuer Base URL : https://{yourDomain}
+
 5. Make sure that in the Auth0 application, you add the callback URL. (ex:http://localhost:3001/api/auth/callback)
