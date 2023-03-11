@@ -53,33 +53,61 @@
       "mealName": "Baked salmon with roasted vegetables"
     },
     {
-      "mealName": "Spaghetti Bolognese",
-      "date": "2023-03-10",
-      "mealType": "dinner",
-      "id": 7
-    },
-    {
-      "mealName": "Beef Tacos",
-      "date": "2023-03-10",
-      "mealType": "lunch",
-      "id": 8
-    },
-    {
-      "mealName": "Beef Stir-Fry",
-      "date": "2023-03-11",
-      "mealType": "lunch",
-      "id": 9
-    },
-    {
       "mealName": "Fetuccine Alfredo",
       "date": "2023-03-09",
       "mealType": "breakfast",
+      "iconUrl": "https://i.ibb.co/w0qpRH1/fetuccine-alfredo-removebg-preview.png",
       "id": 10
+    },
+    {
+      "id": 11,
+      "mealName": "Greek Salad",
+      "date": "2023-03-11",
+      "mealType": "dinner",
+      "iconUrl": "https://i.ibb.co/K6xG8ZB/Im-Apollo216-greek-salad-IOs-icon-style-in-a-white-bowl-5e080c08-c6ce-4009-8725-2f964d899f46-removeb.png",
+      "meal2Name": "Oreos",
+      "icon2Url": "https://i.ibb.co/cCH91b5/oro.png"
+    },
+    {
+      "mealName": "Greek Salad",
+      "date": "2023-03-11",
+      "mealType": "lunch",
+      "iconUrl": "https://i.ibb.co/SnKV97q/greek-salad.png",
+      "id": 12
+    },
+    {
+      "mealName": "Beef Chili",
+      "date": "2023-03-12",
+      "mealType": "dinner",
+      "iconUrl": "https://i.ibb.co/J3wHVR2/beef-chili.png",
+      "id": 13
+    },
+    {
+      "mealName": "Tuna Salad",
+      "date": "2023-03-12",
+      "mealType": "lunch",
+      "iconUrl": "https://i.ibb.co/D95XnCb/tuna-salad.png",
+      "id": 14
+    },
+    {
+      "mealName": "Beef Tacos",
+      "date": "2023-03-12",
+      "mealType": "breakfast",
+      "iconUrl": "https://i.ibb.co/ZMtyRvx/beef-tacos.png",
+      "id": 15
+    },
+    {
+      "mealName": "Spaghetti Bolognese",
+      "date": "2023-03-10",
+      "mealType": "lunch",
+      "iconUrl": "https://i.ibb.co/8gYKXxF/spagetti.png",
+      "id": 16
     }
   ],
   "meals": [
     {
       "mealName": "Spaghetti Bolognese",
+      "iconUrl": "https://i.ibb.co/8gYKXxF/spagetti.png",
       "ingredients": [
         "spaghetti",
         "ground beef",
@@ -93,6 +121,7 @@
     },
     {
       "mealName": "Chicken Curry",
+      "iconUrl": "https://i.ibb.co/yRp1DSV/chicken-curry.png",
       "ingredients": [
         "chicken breast",
         "coconut milk",
@@ -148,6 +177,7 @@
     },
     {
       "mealName": "Tuna Salad",
+      "iconUrl": "https://i.ibb.co/D95XnCb/tuna-salad.png",
       "ingredients": [
         "tuna",
         "celery",
@@ -161,6 +191,7 @@
     },
     {
       "mealName": "Pesto Pasta",
+      "iconUrl": "https://i.ibb.co/ZxL83N9/pesto-salad.png",
       "ingredients": [
         "spaghetti",
         "basil",
@@ -174,6 +205,7 @@
     },
     {
       "mealName": "Beef Tacos",
+      "iconUrl": "https://i.ibb.co/ZMtyRvx/beef-tacos.png",
       "ingredients": [
         "ground beef",
         "taco seasoning",
@@ -211,6 +243,7 @@
     },
     {
       "mealName": "Roasted Chicken",
+      "iconUrl": "https://i.ibb.co/bQ4GQc9/roastedchiken.png",
       "ingredients": [
         "whole chicken",
         "lemon",
@@ -223,6 +256,7 @@
     },
     {
       "mealName": "Greek Salad",
+      "iconUrl": "https://i.ibb.co/SnKV97q/greek-salad.png",
       "ingredients": [
         "romaine lettuce",
         "cucumber",
@@ -239,6 +273,7 @@
     },
     {
       "mealName": "Beef Chili",
+      "iconUrl": "https://i.ibb.co/J3wHVR2/beef-chili.png",
       "ingredients": [
         "ground beef",
         "kidney beans",
@@ -306,7 +341,7 @@
     },
     {
       "mealName": "Beef and Broccoli Stir-Fry",
-      "iconUrl":"https://i.ibb.co/gDgX8vv/beef-stir-fry.png",
+      "iconUrl": "https://i.ibb.co/gDgX8vv/beef-stir-fry.png",
       "ingredients": [
         "beef sirloin",
         "broccoli",
@@ -345,32 +380,71 @@
         "black pepper"
       ]
     },
-  {
-    "mealName": "Eggs & Bacon",
-    "iconUrl": "https://i.ibb.co/d5YV4Vz/Im-Apollo216-A-breakfast-plate-with-bacon-and-eggs-in-the-style-41a6f0c2-857d-462e-ad33-d65c4e334c30.png",
-    "ingredients": [
-      "eggs",
-      "bacon",
-      "salt",
-      "black pepper"
-    ]
-  },
-  {
-    "mealName": "Greek Salad",
-    "iconUrl": "https://i.ibb.co/K6xG8ZB/Im-Apollo216-greek-salad-IOs-icon-style-in-a-white-bowl-5e080c08-c6ce-4009-8725-2f964d899f46-removeb.png",
-    "ingredients": [
-      "romaine lettuce",
-      "cucumber",
-      "tomato",
-      "red onion",
-      "kalamata olives",
-      "feta cheese",
-      "olive oil",
-      "red wine vinegar",
-      "oregano",
-      "salt",
-      "black pepper"
-    ]
-  }
+    {
+      "mealName": "Eggs & Bacon",
+      "iconUrl": "https://i.ibb.co/d5YV4Vz/Im-Apollo216-A-breakfast-plate-with-bacon-and-eggs-in-the-style-41a6f0c2-857d-462e-ad33-d65c4e334c30.png",
+      "ingredients": [
+        "eggs",
+        "bacon",
+        "salt",
+        "black pepper"
+      ]
+    },
+    {
+      "mealName": "Greek Salad",
+      "iconUrl": "https://i.ibb.co/K6xG8ZB/Im-Apollo216-greek-salad-IOs-icon-style-in-a-white-bowl-5e080c08-c6ce-4009-8725-2f964d899f46-removeb.png",
+      "ingredients": [
+        "romaine lettuce",
+        "cucumber",
+        "tomato",
+        "red onion",
+        "kalamata olives",
+        "feta cheese",
+        "olive oil",
+        "red wine vinegar",
+        "oregano",
+        "salt",
+        "black pepper"
+      ]
+    },
+    {
+      "mealName": "Oreos",
+      "iconUrl": "https://i.ibb.co/cCH91b5/oro.png",
+      "ingredients": [
+        "oreos",
+        "milk"
+      ]
+    },
+    {
+      "mealName": "Tiramisu",
+      "iconUrl": "https://i.ibb.co/Nynz5wZ/tiramisu.png",
+      "ingredients": [
+        "eggs",
+        "sugar",
+        "mascarpone",
+        "coffee",
+        "sponge cake",
+        "cocoa powder"
+      ]
+    },
+    {
+      "mealName": "Popcorn",
+      "iconUrl": "https://i.ibb.co/bJxSr1v/popcorn.png",
+      "ingredients": [
+        "popcorn",
+        "butter",
+        "salt"
+      ]
+    },
+    {
+      "mealName": "Avocado Toast",
+      "iconUrl": "https://i.ibb.co/6FfgPrg/avocado-toast.png",
+      "ingredients": [
+        "avocado",
+        "bread",
+        "salt",
+        "black pepper"
+      ]
+    }
   ]
 }
