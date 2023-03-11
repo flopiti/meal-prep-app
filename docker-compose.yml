@@ -5,7 +5,7 @@ services:
     container_name: next-13-docker-pages-auth0-prod
     build: .
     ports:
-      - 3001:3001
+      - 3006:3001
     volumes:
       - .:/app
     entrypoint: /bin/sh -c "npm install && npm run build && npm run start"
@@ -18,7 +18,7 @@ services:
       - ./:/app
     entrypoint: /bin/sh -c "npm install && npm run mock"
     ports:
-      - 3000:3000
+      - 3005:3000
     networks:
     - meal-network1
 
