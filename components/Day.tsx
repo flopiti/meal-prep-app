@@ -1,5 +1,5 @@
 import styles from '@/styles/Home.module.css';
-import ScheduledMeal from './Meal';
+import ScheduledMeal from './ScheduledMeal';
 const Day = ({ day, meals , scheduleMeal, removeMeal, addMealToScheduledMeal} :any) => {
     let mealTypes = ['breakfast', 'lunch', 'dinner'];
     const today = new Date();

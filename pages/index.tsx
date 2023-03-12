@@ -4,7 +4,7 @@ import MealList from '@/components/MealList'
 import { useEffect, useState } from 'react'
 import { useScheduledMeals } from '@/hooks/useScheduledMeals'
 import { useMeals } from '@/hooks/useMeals'
-import { Meal } from '@/components/Meal'
+import { Meal } from '@/components/ScheduledMeal'
 import { GetServerSidePropsContext } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
