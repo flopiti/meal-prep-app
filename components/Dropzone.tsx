@@ -17,7 +17,8 @@ export const DropZone = (props:any) => {
       <div
         onDrop={handleDrop}
         onDragOver={handleDragOver}
-        className={styles.mealChoice}      >
+        className={styles.dropzone}
+        >
         {props.children}
       </div>
     );
