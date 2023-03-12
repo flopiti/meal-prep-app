@@ -55,7 +55,8 @@ const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal, addMeal
       };
     return (
         <div className={styles.meal}>
-            <div>
+            <div className={styles.mealType}   
+            >
                 <span>{t(mealType)}</span>
                 <button className={styles.xbutton} onClick={deleteMeal}>
                     X
@@ -116,11 +117,9 @@ const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal, addMeal
                     </motion.div>
                 </DropZone>
                 ) : (
-                    <div>
                         <DropZone onDrop={handleDrop}>
                             Drop here
                         </DropZone>
-                    </div>
                 )
             }
             </motion.div>
