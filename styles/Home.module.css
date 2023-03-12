@@ -331,6 +331,7 @@
 
 .dropzone{
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -338,6 +339,7 @@
 
 .mealChoice{
   overflow: hidden;
+  height: 60%;
   padding: 1rem;
   width: 90%;
   display: flex;
