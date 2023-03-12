@@ -62,6 +62,7 @@ const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal, addMeal
                 </button>
             </div>
             <motion.div 
+                className={styles.scheduledSpot}
             >
             {
                 meal?.mealName && meal?.meal2Name ? (
