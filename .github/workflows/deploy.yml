@@ -24,6 +24,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            cd /apps/meal-prep-app
+            cd /apps/meal-prep-appl
+            ls
             ./scripts/deploy.sh
 
