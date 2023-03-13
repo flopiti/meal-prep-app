@@ -9,7 +9,7 @@ const BaseLayout = ({ children } : any) => {
             <div className={styles.main}>
                 <div className={styles.title}>
                         <span>
-                            MeMeals 2
+                            MeMeals 3
                         </span>
                         <Image         
                             className={styles.mainLogo} 
