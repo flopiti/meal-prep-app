@@ -1,5 +1,5 @@
 #!/bin/bash
 git fetch
-git pull origin master
+git checkout origin/main
 docker compose down
 docker compose up -d --build
