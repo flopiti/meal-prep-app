@@ -4,7 +4,7 @@ import axios from 'axios'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 const handleGetMethod = async (req: NextApiRequest, res: NextApiResponse) => {
-    const response = await axios.get(`http://mock-api:3000/scheduled-meals`, {
+    const response = await axios.get(`${process.env.BACKEND_URL}/scheduled-meals`, {
         headers: {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
@@ -15,7 +15,7 @@ const handleGetMethod = async (req: NextApiRequest, res: NextApiResponse) => {
 }
 
 const handlePostMethod = async (req: NextApiRequest, res: NextApiResponse) => {
-    const response = await axios.post(`http://mock-api:3000/scheduled-meals`, req.body, {
+    const response = await axios.post(`${process.env.BACKEND_URL}/scheduled-meals`, req.body, {
         headers: {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
@@ -26,7 +26,7 @@ const handlePostMethod = async (req: NextApiRequest, res: NextApiResponse) => {
 }
 
 const handlePutMethod = async (req: NextApiRequest, res: NextApiResponse) => {
-    const response = await axios.put(`http://mock-api:3000/scheduled-meals/${req.body.id}`, req.body, {
+    const response = await axios.put(`${process.env.BACKEND_URL}/scheduled-meals/${req.body.id}`, req.body, {
         headers: {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
@@ -37,7 +37,7 @@ const handlePutMethod = async (req: NextApiRequest, res: NextApiResponse) => {
 }
 
 const handleDeleteMethod = async (req: NextApiRequest, res: NextApiResponse) => {
-    const response = await axios.delete(`http://mock-api:3000/scheduled-meals/${req.body.id}`, {
+    const response = await axios.delete(`${process.env.BACKEND_URL}/scheduled-meals/${req.body.id}`, {
         headers: {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
