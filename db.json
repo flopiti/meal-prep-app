@@ -26,82 +26,73 @@
       "id": 2,
       "date": "2023-03-09",
       "mealType": "lunch",
-      "mealName": "Grilled chicken salad"
+      "mealID": 1
     },
     {
       "id": 3,
       "date": "2023-03-09",
       "mealType": "dinner",
-      "mealName": "Beef stroganoff with egg noodles"
+      "mealID": 2
     },
     {
       "id": 4,
       "date": "2023-03-08",
       "mealType": "breakfast",
-      "mealName": "Greek yogurt with fruit and granola"
+      "mealID": 3
     },
     {
       "id": 5,
       "date": "2023-03-08",
       "mealType": "lunch",
-      "mealName": "Turkey and cheese sandwich with chips"
+      "mealID": 4
     },
     {
       "id": 6,
       "date": "2023-03-08",
       "mealType": "dinner",
-      "mealName": "Baked salmon with roasted vegetables"
+      "mealID": 5
     },
     {
-      "mealName": "Fetuccine Alfredo",
       "date": "2023-03-09",
       "mealType": "breakfast",
-      "iconUrl": "https://i.ibb.co/w0qpRH1/fetuccine-alfredo-removebg-preview.png",
-      "id": 10
+      "id": 10,
+      "mealID": 6
     },
     {
       "id": 11,
-      "mealName": "Greek Salad",
       "date": "2023-03-11",
       "mealType": "dinner",
-      "iconUrl": "https://i.ibb.co/K6xG8ZB/Im-Apollo216-greek-salad-IOs-icon-style-in-a-white-bowl-5e080c08-c6ce-4009-8725-2f964d899f46-removeb.png",
-      "meal2Name": "Oreos",
-      "icon2Url": "https://i.ibb.co/cCH91b5/oro.png"
+      "mealID": 7
     },
     {
-      "mealName": "Greek Salad",
       "date": "2023-03-11",
       "mealType": "lunch",
-      "iconUrl": "https://i.ibb.co/SnKV97q/greek-salad.png",
-      "id": 12
+      "id": 12,
+      "mealID": 8
     },
     {
-      "mealName": "Beef Chili",
       "date": "2023-03-12",
       "mealType": "dinner",
-      "iconUrl": "https://i.ibb.co/J3wHVR2/beef-chili.png",
-      "id": 13
+      "id": 13,
+      "mealID": 9
     },
     {
-      "mealName": "Tuna Salad",
       "date": "2023-03-12",
       "mealType": "lunch",
-      "iconUrl": "https://i.ibb.co/D95XnCb/tuna-salad.png",
-      "id": 14
+      "id": 14,
+      "mealID": 10
     },
     {
-      "mealName": "Beef Tacos",
       "date": "2023-03-12",
       "mealType": "breakfast",
-      "iconUrl": "https://i.ibb.co/ZMtyRvx/beef-tacos.png",
-      "id": 15
+      "id": 15,
+      "mealID": 11
     },
     {
-      "mealName": "Spaghetti Bolognese",
       "date": "2023-03-10",
       "mealType": "lunch",
-      "iconUrl": "https://i.ibb.co/8gYKXxF/spagetti.png",
-      "id": 16
+      "id": 16,
+      "mealID": 12
     }
   ],
   "meals": [
