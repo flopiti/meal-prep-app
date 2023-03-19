@@ -37,9 +37,9 @@ const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal, addMeal
 
     const { postScheduledMeal } = useScheduledMeals();
 
-    const handleDrop = (data:any, iconUrl:any) => {
+    const handleDrop = (mealId:any, iconUrl:any) => {
         if(meal){
-            putScheduledMeal(meal.id,  mealName!, day, mealType, iconUrl, data,  iconUrl).then((res:any) => {
+            putScheduledMeal(meal.id,  mealName!, day, mealType, iconUrl, mealId,  iconUrl).then((res:any) => {
                 addMealToScheduledMeal({
                     mealName: mealName,
                     date: meal.date,
@@ -52,13 +52,14 @@ const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal, addMeal
             });
         }
         else{
-            postScheduledMeal(data, day, mealType, iconUrl).then((res:any) => {
+            postScheduledMeal(mealId, day, mealType, iconUrl).then((res:any) => {
                 scheduleMeal({
                     mealName: res.mealName,
                     date: res.date,
                     mealType: res.mealType,
                     id: res.id, 
-                    iconUrl: res.iconUrl
+                    iconUrl: res.iconUrl,
+                    mealId: mealId
                 });
             });
         }
