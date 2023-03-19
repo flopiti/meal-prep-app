@@ -4,51 +4,62 @@ import { DropZone } from './Dropzone';
 import {motion } from 'framer-motion';
 import Image from 'next/image'
 import { useTranslation } from 'react-i18next'
+import { useMeals } from '@/hooks/useMeals';
+import { useState } from 'react';
 
 export type Meal = {
     ingredients: string[];
     mealName: string;
+    mealId: number;
 };
 
 const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal, addMealToScheduledMeal} :any) => {
+
     const { t } = useTranslation('common')
     const { deleteScheduledMeal, putScheduledMeal } = useScheduledMeals();
+    const { getMeal } = useMeals();
+
+    const[iconUrl, setIconUrl] = useState<string|null>(null)
+    const[mealName, setMealName] = useState<string|null>(null)
+
+    if (meal){
+        getMeal(meal.mealId).then((res:any) => {
+            setIconUrl(res.iconUrl)
+            setMealName(res.mealName)
+        })
+    }
     const deleteMeal = () => {
         if(!meal) return;
         deleteScheduledMeal(meal.id).then(() => {
-            removeMeal({
-                mealName: meal.mealName,
-                date: meal.date,
-                mealType: meal.mealType,
-                id: meal.id
-            })
+            removeMeal(meal.id)
         });
     };
 
     const { postScheduledMeal } = useScheduledMeals();
 
-    const handleDrop = (data:any, iconUrl:any) => {
+    const handleDrop = (mealId:any, iconUrl:any) => {
         if(meal){
-            putScheduledMeal(meal.id,  meal.mealName, day, mealType, meal.iconUrl, data,  iconUrl).then((res:any) => {
+            putScheduledMeal(meal.id,  mealName!, day, mealType, iconUrl, mealId,  iconUrl).then((res:any) => {
                 addMealToScheduledMeal({
-                    mealName: meal.mealName,
+                    mealName: mealName,
                     date: meal.date,
                     mealType: meal.mealType,
                     id: meal.id,
-                    iconUrl: meal.iconUrl,
+                    iconUrl: iconUrl,
                     meal2Name: res.mealName,
                     icon2Url: res.icon2Url
                 });
             });
         }
         else{
-            postScheduledMeal(data, day, mealType, iconUrl).then((res:any) => {
+            postScheduledMeal( day, mealType, mealId).then((res:any) => {
                 scheduleMeal({
                     mealName: res.mealName,
                     date: res.date,
                     mealType: res.mealType,
                     id: res.id, 
-                    iconUrl: res.iconUrl
+                    iconUrl: res.iconUrl,
+                    mealId: mealId
                 });
             });
         }
@@ -80,7 +91,7 @@ const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal, addMeal
                             }
                         }   transition={{ duration: 1, stiffness: 100}}
                         >
-                            {meal.iconUrl ?  <Image src={meal.iconUrl} alt="food" width={84} height={84} /> : <span></span>}
+                            {iconUrl ?  <Image src={iconUrl} alt="food" width={84} height={84} /> : <span></span>}
                         </motion.div>
                         <motion.div
                             className={styles.mealIcon}
@@ -103,7 +114,7 @@ const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal, addMeal
                     transition={{ duration: 2, type : "spring", stiffness: 200}}
                     >
                         <div>
-                            {meal.mealName }
+                            {mealName }
                         </div>
                         <motion.div
                             className={styles.mealIcon}
@@ -112,7 +123,7 @@ const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal, addMeal
                             }
                         }   transition={{ duration: .5, stiffness: 100}}
                         >
-                            {meal.iconUrl ?  <Image src={meal.iconUrl} alt="food" width={64} height={64} /> : <span></span>}
+                            {iconUrl ?  <Image src={iconUrl} alt="food" width={64} height={64} /> : <span></span>}
                         </motion.div>
                     </motion.div>
                 </DropZone>

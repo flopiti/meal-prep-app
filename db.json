@@ -26,86 +26,78 @@
       "id": 2,
       "date": "2023-03-09",
       "mealType": "lunch",
-      "mealName": "Grilled chicken salad"
+      "mealId": 1
     },
     {
       "id": 3,
       "date": "2023-03-09",
       "mealType": "dinner",
-      "mealName": "Beef stroganoff with egg noodles"
+      "mealId": 2
     },
     {
       "id": 4,
       "date": "2023-03-08",
       "mealType": "breakfast",
-      "mealName": "Greek yogurt with fruit and granola"
+      "mealId": 3
     },
     {
       "id": 5,
       "date": "2023-03-08",
       "mealType": "lunch",
-      "mealName": "Turkey and cheese sandwich with chips"
+      "mealId": 4
     },
     {
       "id": 6,
       "date": "2023-03-08",
       "mealType": "dinner",
-      "mealName": "Baked salmon with roasted vegetables"
+      "mealId": 5
     },
     {
-      "mealName": "Fetuccine Alfredo",
+      "id": 10,
       "date": "2023-03-09",
       "mealType": "breakfast",
-      "iconUrl": "https://i.ibb.co/w0qpRH1/fetuccine-alfredo-removebg-preview.png",
-      "id": 10
+      "mealId": 6
     },
     {
       "id": 11,
-      "mealName": "Greek Salad",
       "date": "2023-03-11",
       "mealType": "dinner",
-      "iconUrl": "https://i.ibb.co/K6xG8ZB/Im-Apollo216-greek-salad-IOs-icon-style-in-a-white-bowl-5e080c08-c6ce-4009-8725-2f964d899f46-removeb.png",
-      "meal2Name": "Oreos",
-      "icon2Url": "https://i.ibb.co/cCH91b5/oro.png"
+      "mealId": 7
     },
     {
-      "mealName": "Greek Salad",
+      "id": 12,
       "date": "2023-03-11",
       "mealType": "lunch",
-      "iconUrl": "https://i.ibb.co/SnKV97q/greek-salad.png",
-      "id": 12
+      "mealId": 8
     },
     {
-      "mealName": "Beef Chili",
+      "id": 13,
       "date": "2023-03-12",
       "mealType": "dinner",
-      "iconUrl": "https://i.ibb.co/J3wHVR2/beef-chili.png",
-      "id": 13
+      "mealId": 9
     },
     {
-      "mealName": "Tuna Salad",
+      "id": 14,
       "date": "2023-03-12",
       "mealType": "lunch",
-      "iconUrl": "https://i.ibb.co/D95XnCb/tuna-salad.png",
-      "id": 14
+      "mealId": 10
     },
     {
-      "mealName": "Beef Tacos",
+      "id": 15,
       "date": "2023-03-12",
       "mealType": "breakfast",
-      "iconUrl": "https://i.ibb.co/ZMtyRvx/beef-tacos.png",
-      "id": 15
+      "mealId": 11
     },
     {
-      "mealName": "Spaghetti Bolognese",
+      "id": 16,
       "date": "2023-03-10",
       "mealType": "lunch",
-      "iconUrl": "https://i.ibb.co/8gYKXxF/spagetti.png",
-      "id": 16
+      "mealId": 12
     }
   ],
   "meals": [
     {
+      "id": 1,
       "mealName": "Spaghetti Bolognese",
       "iconUrl": "https://i.ibb.co/8gYKXxF/spagetti.png",
       "ingredients": [
@@ -120,6 +112,7 @@
       ]
     },
     {
+      "id": 2,
       "mealName": "Chicken Curry",
       "iconUrl": "https://i.ibb.co/yRp1DSV/chicken-curry.png",
       "ingredients": [
@@ -137,6 +130,7 @@
       ]
     },
     {
+      "id": 3,
       "mealName": "Grilled Salmon",
       "ingredients": [
         "salmon fillet",
@@ -148,6 +142,7 @@
       ]
     },
     {
+      "id": 4,
       "mealName": "Margherita Pizza",
       "ingredients": [
         "pizza dough",
@@ -159,6 +154,7 @@
       ]
     },
     {
+      "id": 5,
       "mealName": "Beef Stir-Fry",
       "ingredients": [
         "beef sirloin",
@@ -176,6 +172,7 @@
       ]
     },
     {
+      "id": 6,
       "mealName": "Tuna Salad",
       "iconUrl": "https://i.ibb.co/D95XnCb/tuna-salad.png",
       "ingredients": [
@@ -190,6 +187,7 @@
       ]
     },
     {
+      "id": 7,
       "mealName": "Pesto Pasta",
       "iconUrl": "https://i.ibb.co/ZxL83N9/pesto-salad.png",
       "ingredients": [
@@ -204,6 +202,7 @@
       ]
     },
     {
+      "id": 8,
       "mealName": "Beef Tacos",
       "iconUrl": "https://i.ibb.co/ZMtyRvx/beef-tacos.png",
       "ingredients": [
@@ -217,6 +216,7 @@
       ]
     },
     {
+      "id": 9,
       "mealName": "Chicken Fajitas",
       "ingredients": [
         "chicken breast",
@@ -229,6 +229,7 @@
       ]
     },
     {
+      "id": 10,
       "mealName": "Beef Stroganoff",
       "ingredients": [
         "beef sirloin",
@@ -242,6 +243,7 @@
       ]
     },
     {
+      "id": 11,
       "mealName": "Roasted Chicken",
       "iconUrl": "https://i.ibb.co/bQ4GQc9/roastedchiken.png",
       "ingredients": [
@@ -255,6 +257,7 @@
       ]
     },
     {
+      "id": 12,
       "mealName": "Greek Salad",
       "iconUrl": "https://i.ibb.co/SnKV97q/greek-salad.png",
       "ingredients": [
@@ -272,6 +275,7 @@
       ]
     },
     {
+      "id": 13,
       "mealName": "Beef Chili",
       "iconUrl": "https://i.ibb.co/J3wHVR2/beef-chili.png",
       "ingredients": [
@@ -290,6 +294,7 @@
       ]
     },
     {
+      "id": 14,
       "mealName": "Vegetable Curry",
       "ingredients": [
         "cauliflower",
@@ -308,6 +313,7 @@
       ]
     },
     {
+      "id": 15,
       "mealName": "Shrimp Scampi",
       "ingredients": [
         "shrimp",
@@ -322,6 +328,7 @@
       ]
     },
     {
+      "id": 16,
       "mealName": "Teriyaki Chicken",
       "ingredients": [
         "chicken breast",
@@ -340,6 +347,7 @@
       ]
     },
     {
+      "id": 17,
       "mealName": "Beef and Broccoli Stir-Fry",
       "iconUrl": "https://i.ibb.co/gDgX8vv/beef-stir-fry.png",
       "ingredients": [
@@ -356,6 +364,7 @@
       ]
     },
     {
+      "id": 18,
       "mealName": "Fetuccine Alfredo",
       "iconUrl": "https://i.ibb.co/w0qpRH1/fetuccine-alfredo-removebg-preview.png",
       "ingredients": [
@@ -369,6 +378,7 @@
       ]
     },
     {
+      "id": 19,
       "mealName": "Baked salmon with roasted vegetables",
       "iconUrl": "https://i.ibb.co/CKYWH6K/baked-salmon.png",
       "ingredients": [
@@ -381,6 +391,7 @@
       ]
     },
     {
+      "id": 20,
       "mealName": "Eggs & Bacon",
       "iconUrl": "https://i.ibb.co/d5YV4Vz/Im-Apollo216-A-breakfast-plate-with-bacon-and-eggs-in-the-style-41a6f0c2-857d-462e-ad33-d65c4e334c30.png",
       "ingredients": [
@@ -391,6 +402,7 @@
       ]
     },
     {
+      "id": 21,
       "mealName": "Greek Salad",
       "iconUrl": "https://i.ibb.co/K6xG8ZB/Im-Apollo216-greek-salad-IOs-icon-style-in-a-white-bowl-5e080c08-c6ce-4009-8725-2f964d899f46-removeb.png",
       "ingredients": [
@@ -408,6 +420,7 @@
       ]
     },
     {
+      "id": 22,
       "mealName": "Oreos",
       "iconUrl": "https://i.ibb.co/cCH91b5/oro.png",
       "ingredients": [
@@ -416,6 +429,7 @@
       ]
     },
     {
+      "id": 23,
       "mealName": "Tiramisu",
       "iconUrl": "https://i.ibb.co/Nynz5wZ/tiramisu.png",
       "ingredients": [
@@ -428,6 +442,7 @@
       ]
     },
     {
+      "id": 24,
       "mealName": "Popcorn",
       "iconUrl": "https://i.ibb.co/bJxSr1v/popcorn.png",
       "ingredients": [
@@ -437,6 +452,7 @@
       ]
     },
     {
+      "id": 25,
       "mealName": "Avocado Toast",
       "iconUrl": "https://i.ibb.co/6FfgPrg/avocado-toast.png",
       "ingredients": [

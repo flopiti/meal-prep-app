@@ -15,8 +15,7 @@ const MealList = ({meals}:any) => {
 
     const handleDragStart = (event:any, index:number) => {
         setIsDragging(true);
-        event.dataTransfer.setData('1', meals[index].mealName);
-        event.dataTransfer.setData('2', meals[index].iconUrl ? meals[index].iconUrl : '');
+        event.dataTransfer.setData('1', meals[index].id);
       };
     
     return (

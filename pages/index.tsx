@@ -14,14 +14,14 @@ export default function Home() {
   const[scheduledMeals, setScheduledMeals] = useState<ScheduledMeal[]>([]);
   const[meals, setMeals] = useState<Meal[]>([]);
 
-  const scheduleMeal = async ({id, mealName, date, mealType, iconUrl, meal2Name, icon2Url }: ScheduledMeal) => {
-    setScheduledMeals([...scheduledMeals, {id, mealName, date, mealType, iconUrl, meal2Name, icon2Url }])
+  const scheduleMeal = async ({id, date, mealType,mealId, mealName, iconUrl, meal2Name, icon2Url }: ScheduledMeal) => {
+    setScheduledMeals([...scheduledMeals, {id, date, mealType,mealId, mealName, iconUrl, meal2Name, icon2Url }])
   }
-  const removeMeal = async ({mealName, date, mealType}: ScheduledMeal) => {
-    setScheduledMeals(scheduledMeals.filter((meal:any) => meal.date !== date || meal.mealType !== mealType || meal.mealName !== mealName))
+  const removeMeal = async (id:number) => {
+    setScheduledMeals(scheduledMeals.filter((meal:any) => meal.id !== id))
   }
-  const addMealToScheduledMeal = async ({id, mealName, date, mealType, iconUrl, meal2Name, icon2Url}: ScheduledMeal) => {
-    setScheduledMeals([...scheduledMeals.filter((meal:any) => meal.date !== date || meal.mealType !== mealType || meal.mealName !== mealName), {id, mealName, date, mealType, iconUrl, meal2Name, icon2Url } ])
+  const addMealToScheduledMeal = async ({id, date, mealType, mealId, mealName, iconUrl, meal2Name, icon2Url}: ScheduledMeal) => {
+    setScheduledMeals([...scheduledMeals.filter((meal:any) => meal.date !== date || meal.mealType !== mealType || meal.mealName !== mealName), {id, date, mealType, mealId, mealName, iconUrl, meal2Name, icon2Url } ])
   }
   useEffect(() => {
     getScheduledMeals().then((data:any) => {
@@ -44,9 +44,10 @@ export default function Home() {
 
 export type ScheduledMeal = {
   id: number;
-  mealName: string;
   date: string;
   mealType: string;
+  mealId: number;
+  mealName: string;
   iconUrl: string;
   meal2Name: string;
   icon2Url: string;

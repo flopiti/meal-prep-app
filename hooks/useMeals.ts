@@ -31,5 +31,16 @@ export const useMeals = () => {
         return await makeRequest(options);
         }
 
-        return { getMeals };
+    const getMeal = async (id:string) => {
+        const options = { 
+            config: {
+            method: 'GET',
+            url: `/api/meals/${id}`,
+            },
+            authenticated: true,
+        };
+        return await makeRequest(options);
+        }
+
+        return { getMeals, getMeal };
     }
