@@ -52,7 +52,7 @@ const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal, addMeal
             });
         }
         else{
-            postScheduledMeal(mealId, day, mealType, iconUrl).then((res:any) => {
+            postScheduledMeal( day, mealType, mealId).then((res:any) => {
                 scheduleMeal({
                     mealName: res.mealName,
                     date: res.date,

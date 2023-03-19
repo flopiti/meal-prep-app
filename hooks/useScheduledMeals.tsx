@@ -20,12 +20,12 @@ export const useScheduledMeals = () => {
       }
     };
 
-    const postScheduledMeal = async (mealName: string, date: string, mealType:string, iconUrl:string) => {
+    const postScheduledMeal = async (date: string,  mealType:string, mealId:number) => {
         const options = {
             config: {
             method: 'POST',
             url: `/api/scheduled-meals`,
-            data: {mealName, date, mealType, iconUrl}
+            data: {date, mealType, mealId}
             },
             authenticated: true,
         };
