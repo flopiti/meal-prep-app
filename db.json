@@ -26,73 +26,73 @@
       "id": 2,
       "date": "2023-03-09",
       "mealType": "lunch",
-      "mealID": 1
+      "mealId": 1
     },
     {
       "id": 3,
       "date": "2023-03-09",
       "mealType": "dinner",
-      "mealID": 2
+      "mealId": 2
     },
     {
       "id": 4,
       "date": "2023-03-08",
       "mealType": "breakfast",
-      "mealID": 3
+      "mealId": 3
     },
     {
       "id": 5,
       "date": "2023-03-08",
       "mealType": "lunch",
-      "mealID": 4
+      "mealId": 4
     },
     {
       "id": 6,
       "date": "2023-03-08",
       "mealType": "dinner",
-      "mealID": 5
+      "mealId": 5
     },
     {
       "date": "2023-03-09",
       "mealType": "breakfast",
       "id": 10,
-      "mealID": 6
+      "mealId": 6
     },
     {
       "id": 11,
       "date": "2023-03-11",
       "mealType": "dinner",
-      "mealID": 7
+      "mealId": 7
     },
     {
       "date": "2023-03-11",
       "mealType": "lunch",
       "id": 12,
-      "mealID": 8
+      "mealId": 8
     },
     {
       "date": "2023-03-12",
       "mealType": "dinner",
       "id": 13,
-      "mealID": 9
+      "mealId": 9
     },
     {
       "date": "2023-03-12",
       "mealType": "lunch",
       "id": 14,
-      "mealID": 10
+      "mealId": 10
     },
     {
       "date": "2023-03-12",
       "mealType": "breakfast",
       "id": 15,
-      "mealID": 11
+      "mealId": 11
     },
     {
       "date": "2023-03-10",
       "mealType": "lunch",
       "id": 16,
-      "mealID": 12
+      "mealId": 12
     }
   ],
   "meals": [

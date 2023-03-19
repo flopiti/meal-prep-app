@@ -10,7 +10,7 @@ import { useState } from 'react';
 export type Meal = {
     ingredients: string[];
     mealName: string;
-    mealID: number;
+    mealId: number;
 };
 
 const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal, addMealToScheduledMeal} :any) => {
@@ -23,7 +23,7 @@ const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal, addMeal
     const[mealName, setMealName] = useState<string|null>(null)
 
     if (meal){
-        getMeal(meal.mealID).then((res:any) => {
+        getMeal(meal.mealId).then((res:any) => {
             setIconUrl(res.iconUrl)
             setMealName(res.mealName)
         })
