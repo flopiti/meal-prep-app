@@ -16,3 +16,4 @@ services:
 
 networks:
   meal-network1:
+    external: true
