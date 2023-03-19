@@ -28,16 +28,10 @@ const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal, addMeal
             setMealName(res.mealName)
         })
     }
-    
     const deleteMeal = () => {
         if(!meal) return;
         deleteScheduledMeal(meal.id).then(() => {
-            removeMeal({
-                mealName: mealName,
-                date: meal.date,
-                mealType: meal.mealType,
-                id: meal.id
-            })
+            removeMeal(meal.id)
         });
     };
 
