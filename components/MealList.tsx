@@ -22,11 +22,6 @@ const MealList = ({meals, addMeal}:any) => {
         event.dataTransfer.setData('1', meals[index].id);
       };
 
-    const addNewMeal = () => {
-        
-        console.log("add meal")
-    }
-
     const handleOpen = () => {
         setOpen(true);
       };
@@ -78,7 +73,7 @@ const MealList = ({meals, addMeal}:any) => {
                     </h2>
                     <p id="child-modal-description">
                     </p>
-                    <AddMealForm closeForm={handleClose} />
+                    <AddMealForm closeForm={handleClose} addMeal={addMeal} />
                     <Button onClick={handleClose}>Close</Button>
                     </Box>
                 </Modal>
