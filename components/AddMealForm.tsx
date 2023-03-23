@@ -14,7 +14,6 @@ const AddMealForm = () => {
 
     const handleSubmit = (event:any) => {
         event.preventDefault();
-        console.log(mealName, iconUrl, ingredients); 
         createMeal({mealName, iconUrl, ingredients});
     }
 
