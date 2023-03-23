@@ -2,6 +2,5 @@
 git fetch
 git reset --hard HEAD
 git checkout origin/master
-npm install
-npm run build
-nohup npm start
+docker compose down 
+docker compose up -d --build
