@@ -23,10 +23,15 @@ export default function Home() {
   const addMealToScheduledMeal = async ({id, date, mealType, mealId, mealName, iconUrl, meal2Name, icon2Url}: ScheduledMeal) => {
     setScheduledMeals([...scheduledMeals.filter((meal:any) => meal.date !== date || meal.mealType !== mealType || meal.mealName !== mealName), {id, date, mealType, mealId, mealName, iconUrl, meal2Name, icon2Url } ])
   }
+  const addMeal = async (meal:Meal) => {
+    setMeals([...meals, meal])
+  }
+
   useEffect(() => {
     getScheduledMeals().then((data:any) => {
       setScheduledMeals(data)}).then(() =>getMeals().then((data:any) => setMeals(data)));
   }, [])  
+
   return (
     <>
       <Head>
@@ -37,7 +42,7 @@ export default function Home() {
       </Head>
       {/* <a href="/api/auth/login">Login</a> */}
       <Calendar scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
-      <MealList meals={meals} />
+      <MealList meals={meals} addMeal={addMeal}/>
     </>
   )
 }
