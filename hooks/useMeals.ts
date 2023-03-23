@@ -41,6 +41,21 @@ export const useMeals = () => {
         };
         return await makeRequest(options);
         }
+    const createMeal = async (meal:any) => { 
+        const options = {
 
-        return { getMeals, getMeal };
+            config: {
+            method: 'POST',
+            url: `/api/meals`,
+            data: meal,
+            },
+            authenticated: true,
+        };
+        return await makeRequest(options);
+        }
+
+        return { getMeals, getMeal, createMeal };
     }
+  
+
+// Path: pages/meals/index.ts
