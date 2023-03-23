@@ -78,7 +78,7 @@ const MealList = ({meals, addMeal}:any) => {
                     </h2>
                     <p id="child-modal-description">
                     </p>
-                    <AddMealForm />
+                    <AddMealForm closeForm={handleClose} />
                     <Button onClick={handleClose}>Close</Button>
                     </Box>
                 </Modal>
