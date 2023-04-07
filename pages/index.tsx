@@ -7,6 +7,7 @@ import { useMeals } from '@/hooks/useMeals'
 import { Meal } from '@/components/ScheduledMeal'
 import { GetServerSidePropsContext } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { withPageAuthRequired } from '@auth0/nextjs-auth0'
 
 export default function Home() {
   const { getScheduledMeals } = useScheduledMeals();
@@ -58,10 +59,12 @@ export type ScheduledMeal = {
   icon2Url: string;
 }
 
-export const getServerSideProps = async ({locale,}: GetServerSidePropsContext) => {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale || 'en', ['common'])),
-    },
-  }
-}
+export const getServerSideProps = withPageAuthRequired({
+  getServerSideProps: async ({ locale }: GetServerSidePropsContext) => {
+    return {
+      props: {
+        ...(await serverSideTranslations(locale || 'en', ['common'])),
+      },
+    };
+  },
+});
