@@ -7,6 +7,7 @@ export default handleAuth(
     {
         async login(req,res){
             try {
+                console.log(serverRuntimeConfig.auth0RedirectUri)
                 await handleLogin(req, res, {
                     authorizationParams: {
                         audience: serverRuntimeConfig.auth0Audience,
