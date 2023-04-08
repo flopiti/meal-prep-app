@@ -11,7 +11,7 @@ export default handleAuth(
                     authorizationParams: {
                         audience: serverRuntimeConfig.auth0Audience,
                         scope : 'offline_access openid profile email',
-                        redirect_uri: process.env.NEXT_PUBLIC_AUTH0_REDIRECT_URI, // Add this line
+                        redirect_uri: process.env.AUTH0_REDIRECT_URI, // Add this line
                     },
                     returnTo: process.env.NEXT_PUBLIC_AUTH0_RETURN_TO, // Add this line
                 })
