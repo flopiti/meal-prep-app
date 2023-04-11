@@ -50,7 +50,8 @@ const AddMealForm = ({closeForm, addMeal}:any) => {
         
         if (formValid) {
             createMeal({mealName, iconUrl, ingredients}).then((res) => {
-                addMeal({mealName, iconUrl, ingredients})
+                const id = res.id
+                addMeal({id, mealName, iconUrl, ingredients})
                 closeForm();
             });
         }
