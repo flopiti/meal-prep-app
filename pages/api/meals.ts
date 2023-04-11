@@ -18,11 +18,13 @@ const handleGetMethod = async (req: NextApiRequest, res: NextApiResponse) => {
 }
 
 const handlePostMethod = async (req: NextApiRequest, res: NextApiResponse) => { 
+    const {accessToken} = await getAccessToken(req, res)
     const response = await axios.post(`${process.env.BACKEND_URL}/meals`, req.body, {
         headers: {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+            'Authorization': `Bearer ${accessToken}`
         }
     })
     return res.status(200).json(response?.data);
