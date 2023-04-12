@@ -22,7 +22,7 @@ const AddMealForm = ({closeForm, addMeal}:any) => {
         setIngredient('');
     };
 
-    const handleKeyPress = (event:KeyboardEvent ) => {
+    const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement> ) => {
         if (event.key === 'Enter') {
             if (event.target instanceof HTMLInputElement && event.target.id === 'ingredientInput') {
                 addIngredient();
