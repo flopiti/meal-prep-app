@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Modal, Box, Button } from '@mui/material';
 import React from "react";
 import AddMealForm from "./AddMealForm";
+import ModalX from "./ModalX";
 
 export type Meal = {
     mealName: string,
@@ -41,6 +42,10 @@ const MealList = ({meals, addMeal}:any) => {
         px: 4,
         pb: 3,
       };
+  const[isOpen, setIsOpen] = useState<boolean>(false);
+  const showModal = () => {
+    setIsOpen(true);
+  };
     return (
         <div className={styles.mealList}>
             {
@@ -58,25 +63,10 @@ const MealList = ({meals, addMeal}:any) => {
                     </span>)
                 })
             }
-                <button className={styles.xbutton} onClick={(()=>setOpen(true))}>
-                    +
-                </button>
-                <Modal
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="child-modal-title"
-                    aria-describedby="child-modal-description"
-                >
-                    <Box sx={{ ...style, width: 200 }}>
-                    <h2 id="child-modal-title">
-                        Add Meal
-                    </h2>
-                    <p id="child-modal-description">
-                    </p>
-                    <AddMealForm closeForm={handleClose} addMeal={addMeal} />
-                    <Button onClick={handleClose}>Close</Button>
-                    </Box>
-                </Modal>
+          <button onClick={showModal}>+</button>
+          <ModalX open={isOpen} setOpen={setIsOpen}> 
+              <AddMealForm closeForm={setIsOpen} addMeal={addMeal} />
+          </ModalX>
         </div>
         );
     };

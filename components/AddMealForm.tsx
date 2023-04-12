@@ -1,6 +1,6 @@
 import { useMeals } from '@/hooks/useMeals';
 import React, { useState } from 'react';
-
+import styles from '../styles/AddMealForm.module.css';
 const AddMealForm = ({closeForm, addMeal}:any) => {
     const [mealName, setMealName] = useState('');
     const [iconUrl, setIconUrl] = useState('');
@@ -22,6 +22,15 @@ const AddMealForm = ({closeForm, addMeal}:any) => {
         setIngredient('');
     };
 
+    const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement> ) => {
+        if (event.key === 'Enter') {
+            if (event.target instanceof HTMLInputElement && event.target.id === 'ingredientInput') {
+                addIngredient();
+                event.preventDefault();
+            }
+        }
+    };
+
     const isValidUrl = (url:string) => {
         try {
             new URL(url);
@@ -29,6 +38,16 @@ const AddMealForm = ({closeForm, addMeal}:any) => {
         } catch (_) {
             return false;
         }
+    };
+
+    const resetForm = () => {
+        setMealName('');
+        setIconUrl('');
+        setIngredient('');
+        setIngredients([]);
+        setMealNameError(false);
+        setIconUrlError(false);
+        setIngredientError(false);
     };
 
     const handleSubmit = (event:any) => {
@@ -54,13 +73,14 @@ const AddMealForm = ({closeForm, addMeal}:any) => {
                 addMeal({id, mealName, iconUrl, ingredients})
                 closeForm();
             });
+            resetForm();
         }
     }
 
     const {createMeal} = useMeals();
     
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={styles.formBox}>
             <div>
                 <label>
                     Meal Name: 
@@ -75,7 +95,7 @@ const AddMealForm = ({closeForm, addMeal}:any) => {
             </label>
             <label>
                 Ingredient:
-                <input type="text" value={ingredient} onChange={(event)=>setIngredient(event.target.value)} />
+                <input type="text" id="ingredientInput" value={ingredient} onChange={(event)=>setIngredient(event.target.value)} onKeyDown={handleKeyPress}/>
                 {ingredientError && <span style={{color: 'red'}}>Please enter an ingredient</span>}
             </label>
             <button type="button" onClick={addIngredient}>Add Ingredient</button>
