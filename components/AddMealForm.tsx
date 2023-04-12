@@ -22,6 +22,15 @@ const AddMealForm = ({closeForm, addMeal}:any) => {
         setIngredient('');
     };
 
+    const handleKeyPress = (event:KeyboardEvent ) => {
+        if (event.key === 'Enter') {
+            if (event.target instanceof HTMLInputElement && event.target.id === 'ingredientInput') {
+                addIngredient();
+                event.preventDefault();
+            }
+        }
+    };
+
     const isValidUrl = (url:string) => {
         try {
             new URL(url);
@@ -29,6 +38,16 @@ const AddMealForm = ({closeForm, addMeal}:any) => {
         } catch (_) {
             return false;
         }
+    };
+
+    const resetForm = () => {
+        setMealName('');
+        setIconUrl('');
+        setIngredient('');
+        setIngredients([]);
+        setMealNameError(false);
+        setIconUrlError(false);
+        setIngredientError(false);
     };
 
     const handleSubmit = (event:any) => {
@@ -54,6 +73,7 @@ const AddMealForm = ({closeForm, addMeal}:any) => {
                 addMeal({id, mealName, iconUrl, ingredients})
                 closeForm();
             });
+            resetForm();
         }
     }
 
@@ -75,7 +95,7 @@ const AddMealForm = ({closeForm, addMeal}:any) => {
             </label>
             <label>
                 Ingredient:
-                <input type="text" value={ingredient} onChange={(event)=>setIngredient(event.target.value)} />
+                <input type="text" id="ingredientInput" value={ingredient} onChange={(event)=>setIngredient(event.target.value)} onKeyDown={handleKeyPress}/>
                 {ingredientError && <span style={{color: 'red'}}>Please enter an ingredient</span>}
             </label>
             <button type="button" onClick={addIngredient}>Add Ingredient</button>
