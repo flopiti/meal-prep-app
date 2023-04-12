@@ -63,13 +63,10 @@ const MealList = ({meals, addMeal}:any) => {
                     </span>)
                 })
             }
-                    <button onClick={showModal}>Open Dialog</button>
-                    <ModalX open={isOpen} setOpen={setIsOpen}> 
-                        <AddMealForm closeForm={setIsOpen} addMeal={addMeal} />
-                    </ModalX>
-                <button className={styles.xbutton} onClick={(()=>setOpen(true))}>
-                    +
-                </button>
+          <button onClick={showModal}>+</button>
+          <ModalX open={isOpen} setOpen={setIsOpen}> 
+              <AddMealForm closeForm={setIsOpen} addMeal={addMeal} />
+          </ModalX>
         </div>
         );
     };
