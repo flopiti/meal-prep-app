@@ -39,8 +39,6 @@ const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal, addMeal
     const { postScheduledMeal } = useScheduledMeals();
 
     const handleDrop = (mealId:any, iconUrl:any) => {
-
-        console.log(mealId)
         if(meal){
             putScheduledMeal(meal.id,  mealName!, day, mealType, iconUrl, mealId,  iconUrl).then((res:any) => {
                 addMealToScheduledMeal({
