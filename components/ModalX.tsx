@@ -4,8 +4,9 @@ import styles from '../styles/Modal.module.css';
 const ModalX = ({ open , setOpen, children}:any) => {
 
     const onClose = () => {
-        window.dialog.close()
-        setOpen(false)
+      if ('dialog' in window) {
+        (window as any).dialog.close();
+    }        setOpen(false)
     };
 
     
