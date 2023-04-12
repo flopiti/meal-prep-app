@@ -1,6 +1,6 @@
 import { useMeals } from '@/hooks/useMeals';
 import React, { useState } from 'react';
-
+import styles from '../styles/AddMealForm.module.css';
 const AddMealForm = ({closeForm, addMeal}:any) => {
     const [mealName, setMealName] = useState('');
     const [iconUrl, setIconUrl] = useState('');
@@ -80,7 +80,7 @@ const AddMealForm = ({closeForm, addMeal}:any) => {
     const {createMeal} = useMeals();
     
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={styles.formBox}>
             <div>
                 <label>
                     Meal Name: 
