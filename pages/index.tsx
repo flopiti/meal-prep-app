@@ -29,8 +29,8 @@ export default function Home() {
   }
 
   useEffect(() => {
-    getScheduledMeals().then((data:any) => {
-      setScheduledMeals(data)}).then(() =>getMeals().then((data:any) => setMeals(data)));
+    getMeals().then((data:any) => setMeals(data))
+    getScheduledMeals().then((data:any) =>  setScheduledMeals(data));
   }, [])  
 
   return (
