@@ -70,6 +70,7 @@ export async function createUser(user: any, accessToken : any) {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+          'Authorization': `Bearer ${accessToken}`
       }
   });
      return response.status === 200;
