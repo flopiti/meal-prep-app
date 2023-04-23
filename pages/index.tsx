@@ -29,9 +29,9 @@ export default function Home() {
     setMeals([...meals, meal])
   }
 
-  getMealsLike().then((data:any) => setLikedMeals(data))
   
   useEffect(() => {
+    getMealsLike().then((data:any) => setLikedMeals(data))
     getMeals().then((data:any) => setMeals(data))
     getScheduledMeals().then((data:any) =>  setScheduledMeals(data));
   }, [])  

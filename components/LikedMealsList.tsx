@@ -46,7 +46,7 @@ const LikedMealsList = ({meals, addMeal}:any) => {
     return (
         <div className={styles.mealList}>
             {
-                meals.map((meal:Meal, index:number) => {
+                meals?.map((meal:Meal, index:number) => {
                     return (
                     <span 
                     key={index}
