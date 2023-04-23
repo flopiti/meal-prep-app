@@ -14,6 +14,7 @@ export default function Home() {
   const { getMeals, getMealsLike } = useMeals();
   const[scheduledMeals, setScheduledMeals] = useState<ScheduledMeal[]>([]);
   const[meals, setMeals] = useState<Meal[]>([]);
+  const[likedMeals, setLikedMeals] = useState<Meal[]>([]);
 
   const scheduleMeal = async ({id, date, mealType,mealId, mealName, iconUrl, meal2Name, icon2Url }: ScheduledMeal) => {
     setScheduledMeals([...scheduledMeals, {id, date, mealType,mealId, mealName, iconUrl, meal2Name, icon2Url }])
@@ -28,8 +29,8 @@ export default function Home() {
     setMeals([...meals, meal])
   }
 
-  getMealsLike().then((data:any) => console.log(data))
-
+  getMealsLike().then((data:any) => setLikedMeals(data))
+  
   useEffect(() => {
     getMeals().then((data:any) => setMeals(data))
     getScheduledMeals().then((data:any) =>  setScheduledMeals(data));
@@ -45,7 +46,7 @@ export default function Home() {
       </Head>
       <a href="/api/auth/logout">Logout</a>
       <Calendar scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
-      <LikedMealsList meals={meals} addMeal={addMeal}/>
+      <LikedMealsList meals={likedMeals} addMeal={addMeal}/>
     </>
   )
 }
