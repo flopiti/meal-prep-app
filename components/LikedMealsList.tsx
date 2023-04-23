@@ -5,6 +5,7 @@ import AddMealForm from "./AddMealForm";
 import ModalX from "./ModalX";
 
 export type Meal = {
+    id: number,
     mealName: string,
     ingredients: string[],
     iconUrl: string,
