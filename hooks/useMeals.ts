@@ -51,7 +51,7 @@ export const useMeals = () => {
         };
         return await makeRequest(options);
         }
-    const likeMeal  = async (id:string) => {
+    const likeMeal  = async (id:number) => {
         const options = {
             config: {
             method: 'POST',
@@ -62,7 +62,7 @@ export const useMeals = () => {
         return await makeRequest(options);
         }
 
-    const unlikeMeal  = async (id:string) => {
+    const unlikeMeal  = async (id: number) => {
         const options = {
             config: {
             method: 'DELETE',
