@@ -13,7 +13,6 @@ const handlePostMethod = async (req: NextApiRequest, res: NextApiResponse) => {
             'Authorization': `Bearer ${accessToken}`
         }
     })
-    console.log('response', response)
     return res.status(200).json(response?.data);
 }
 
