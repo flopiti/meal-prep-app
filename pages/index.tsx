@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Calendar from '@/components/Calendar'
-import MealList from '@/components/MealList'
 import { useEffect, useState } from 'react'
 import { useScheduledMeals } from '@/hooks/useScheduledMeals'
 import { useMeals } from '@/hooks/useMeals'
@@ -8,10 +7,11 @@ import { Meal } from '@/components/ScheduledMeal'
 import { GetServerSidePropsContext } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { withPageAuthRequired } from '@auth0/nextjs-auth0'
+import LikedMealsList from '@/components/LikedMealsList'
 
 export default function Home() {
   const { getScheduledMeals } = useScheduledMeals();
-  const { getMeals } = useMeals();
+  const { getMeals, getMealsLike } = useMeals();
   const[scheduledMeals, setScheduledMeals] = useState<ScheduledMeal[]>([]);
   const[meals, setMeals] = useState<Meal[]>([]);
 
@@ -28,6 +28,8 @@ export default function Home() {
     setMeals([...meals, meal])
   }
 
+  getMealsLike().then((data:any) => console.log(data))
+
   useEffect(() => {
     getMeals().then((data:any) => setMeals(data))
     getScheduledMeals().then((data:any) =>  setScheduledMeals(data));
@@ -43,7 +45,7 @@ export default function Home() {
       </Head>
       <a href="/api/auth/logout">Logout</a>
       <Calendar scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
-      <MealList meals={meals} addMeal={addMeal}/>
+      <LikedMealsList meals={meals} addMeal={addMeal}/>
     </>
   )
 }
