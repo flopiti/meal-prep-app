@@ -12,7 +12,7 @@ import { Meals } from '@/components/Meals'
 
 export default function Home() {
   const { getScheduledMeals } = useScheduledMeals();
-  const { getMeals, getMealsLike } = useMeals();
+  const { getMeals, getMealsLike, likeMeal, unlikeMeal } = useMeals();
   const[scheduledMeals, setScheduledMeals] = useState<ScheduledMeal[]>([]);
   const[meals, setMeals] = useState<Meal[]>([]);
   const[likedMeals, setLikedMeals] = useState<Meal[]>([]);
@@ -50,7 +50,7 @@ export default function Home() {
         <Calendar scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
       </div>
       <div style={{width: '15%', display: 'inline-block'}} >
-        <Meals />
+        <Meals likedMeals={likedMeals} meals={meals} likeMeal={likeMeal} unlikeMeal={unlikeMeal} setLikedMeals={setLikedMeals}/>
       </div>
       <LikedMealsList meals={likedMeals} addMeal={addMeal}/>
     </>
