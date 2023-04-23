@@ -14,7 +14,7 @@ export const Meals = ({likedMeals,meals, likeMeal, unlikeMeal, setLikedMeals }:a
         unlikeMeal(id);
     }
     return (
-        <div>
+        <div style={{display: 'flex'}}>
             <ul>
                 {meals.map((meal:any) => {
                     const liked = isMealLiked(meal.id);

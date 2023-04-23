@@ -45,8 +45,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/memeals.png" />
       </Head>
-      <a href="/api/auth/logout">Logout</a>
       <div style={{width: '80%', display: 'inline-block'}}>
+        <a href="/api/auth/logout">Logout</a>
         <Calendar scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
       </div>
       <div style={{width: '15%', display: 'inline-block'}} >
