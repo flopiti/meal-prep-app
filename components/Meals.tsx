@@ -1,35 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import { useMeals } from '../hooks/useMeals';
-import { Meal } from './LikedMealsList';
+import React from 'react';
 
-export const Meals = () => {
-    const { getMeals, likeMeal, unlikeMeal, createMeal, getMealsLike} = useMeals();
 
-    const[meals, setMeals] = useState<Meal[]>([]);  
-    const[likedMeals, setLikedMeals] = useState<Meal[]>([]);
-
-    useEffect(() => {
-        getMeals().then((data:any) => setMeals(data));
-        getMealsLike().then((data:any) => setLikedMeals(data));
-    }, [])
+export const Meals = ({likedMeals,meals, likeMeal, unlikeMeal, setLikedMeals }:any) => {
     const isMealLiked = (id: number) => {
-        return likedMeals.some((likedMeal) => likedMeal.id === id);
+        return likedMeals.some((likedMeal: { id: number; }) => likedMeal.id === id);
+    }
+    const like = (id: number) => {
+        setLikedMeals([...likedMeals, meals.find((meal: { id: number; }) => meal.id === id)]);
+        likeMeal(id);
+    }
+    const unlike = (id: number) => {
+        setLikedMeals(likedMeals.filter((likedMeal: { id: number; }) => likedMeal.id !== id));
+        unlikeMeal(id);
     }
     return (
         <div>
-            <button onClick={createMeal}>Create Meal</button>
             <ul>
-                {meals.map((meal) => {
+                {meals.map((meal:any) => {
                     const liked = isMealLiked(meal.id);
                     return (
                         <li key={meal.id}>
                             <input
                                 type="checkbox"
                                 checked={liked}
-                                onChange={() => (liked ? unlikeMeal(meal.id) : likeMeal(meal.id))}
+                                onChange={() => (liked ? unlike(meal.id) : like(meal.id))}
                             />
                             {meal.mealName}
-                            {/* <button onClick={() => deleteMeal(meal.id)}>Delete</button> */}
                         </li>
                     );
                 })}
