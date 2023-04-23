@@ -18,8 +18,7 @@ export const useMeals = () => {
         }
         return error.message;
       }
-    };
-
+        };
     const getMeals = async () => {
         const options = {
             config: {
@@ -30,7 +29,6 @@ export const useMeals = () => {
         };
         return await makeRequest(options);
         }
-
     const getMeal = async (id:string) => {
         const options = { 
             config: {
@@ -53,9 +51,38 @@ export const useMeals = () => {
         };
         return await makeRequest(options);
         }
+    const likeMeal  = async (id:number) => {
+        const options = {
+            config: {
+            method: 'POST',
+            url: `/api/meals-like/${id}`,
+            },
+            authenticated: true,
+        };
+        return await makeRequest(options);
+        }
 
-        return { getMeals, getMeal, createMeal };
+    const unlikeMeal  = async (id: number) => {
+        const options = {
+            config: {
+            method: 'DELETE',
+            url: `/api/meals-like/${id}`,
+            },
+            authenticated: true,
+        };
+        return await makeRequest(options);
+        }
+        
+    const getMealsLike = async () => {
+        const options = {
+            config: {
+            method: 'GET',  
+            url: `/api/meals-like`,
+            },
+            authenticated: true,
+        };
+        return await makeRequest(options);
+        }
+
+    return { getMeals, getMeal, createMeal, likeMeal, unlikeMeal, getMealsLike };
     }
-  
-
-// Path: pages/meals/index.ts

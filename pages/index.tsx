@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Calendar from '@/components/Calendar'
-import MealList from '@/components/MealList'
 import { useEffect, useState } from 'react'
 import { useScheduledMeals } from '@/hooks/useScheduledMeals'
 import { useMeals } from '@/hooks/useMeals'
@@ -8,12 +7,15 @@ import { Meal } from '@/components/ScheduledMeal'
 import { GetServerSidePropsContext } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { withPageAuthRequired } from '@auth0/nextjs-auth0'
+import LikedMealsList from '@/components/LikedMealsList'
+import { Meals } from '@/components/Meals'
 
 export default function Home() {
   const { getScheduledMeals } = useScheduledMeals();
-  const { getMeals } = useMeals();
+  const { getMeals, getMealsLike, likeMeal, unlikeMeal } = useMeals();
   const[scheduledMeals, setScheduledMeals] = useState<ScheduledMeal[]>([]);
   const[meals, setMeals] = useState<Meal[]>([]);
+  const[likedMeals, setLikedMeals] = useState<Meal[]>([]);
 
   const scheduleMeal = async ({id, date, mealType,mealId, mealName, iconUrl, meal2Name, icon2Url }: ScheduledMeal) => {
     setScheduledMeals([...scheduledMeals, {id, date, mealType,mealId, mealName, iconUrl, meal2Name, icon2Url }])
@@ -28,7 +30,9 @@ export default function Home() {
     setMeals([...meals, meal])
   }
 
+  
   useEffect(() => {
+    getMealsLike().then((data:any) => setLikedMeals(data))
     getMeals().then((data:any) => setMeals(data))
     getScheduledMeals().then((data:any) =>  setScheduledMeals(data));
   }, [])  
@@ -41,9 +45,14 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/memeals.png" />
       </Head>
-      <a href="/api/auth/logout">Logout</a>
-      <Calendar scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
-      <MealList meals={meals} addMeal={addMeal}/>
+      <div style={{width: '80%', display: 'inline-block'}}>
+        <a href="/api/auth/logout">Logout</a>
+        <Calendar scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
+      </div>
+      <div style={{width: '15%', display: 'inline-block'}} >
+        <Meals likedMeals={likedMeals} meals={meals} likeMeal={likeMeal} unlikeMeal={unlikeMeal} setLikedMeals={setLikedMeals}/>
+      </div>
+      <LikedMealsList meals={likedMeals} addMeal={addMeal}/>
     </>
   )
 }

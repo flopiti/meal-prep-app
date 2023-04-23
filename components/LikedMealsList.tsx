@@ -1,19 +1,17 @@
-import { useMeals } from "@/hooks/useMeals";
-import { useEffect, useState } from "react";
 import styles from '@/styles/Home.module.css'
 import Image from 'next/image'
-import { Modal, Box, Button } from '@mui/material';
-import React from "react";
+import React, { useState } from "react";
 import AddMealForm from "./AddMealForm";
 import ModalX from "./ModalX";
 
 export type Meal = {
+    id: number,
     mealName: string,
     ingredients: string[],
     iconUrl: string,
   }
 
-const MealList = ({meals, addMeal}:any) => {
+const LikedMealsList = ({meals, addMeal}:any) => {
 
     const [isDragging, setIsDragging] = useState(false);
     const [open, setOpen] = useState(false);
@@ -49,7 +47,7 @@ const MealList = ({meals, addMeal}:any) => {
     return (
         <div className={styles.mealList}>
             {
-                meals.map((meal:Meal, index:number) => {
+                meals?.map((meal:Meal, index:number) => {
                     return (
                     <span 
                     key={index}
@@ -71,4 +69,4 @@ const MealList = ({meals, addMeal}:any) => {
         );
     };
 
-export default MealList;
+export default LikedMealsList;
