@@ -8,6 +8,7 @@ import { GetServerSidePropsContext } from 'next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { withPageAuthRequired } from '@auth0/nextjs-auth0'
 import LikedMealsList from '@/components/LikedMealsList'
+import { Meals } from '@/components/Meals'
 
 export default function Home() {
   const { getScheduledMeals } = useScheduledMeals();
@@ -45,7 +46,12 @@ export default function Home() {
         <link rel="icon" href="/memeals.png" />
       </Head>
       <a href="/api/auth/logout">Logout</a>
-      <Calendar scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
+      <div style={{width: '80%', display: 'inline-block'}}>
+        <Calendar scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
+      </div>
+      <div style={{width: '15%', display: 'inline-block'}} >
+        <Meals />
+      </div>
       <LikedMealsList meals={likedMeals} addMeal={addMeal}/>
     </>
   )
