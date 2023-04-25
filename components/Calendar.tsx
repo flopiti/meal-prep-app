@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from '@/styles/Home.module.css'
 import Day from '@/components/Day'
+import useSwipe from '@/hooks/useSwipe';
 
 const Calendar = ({scheduledMeals, scheduleMeal, removeMeal, addMealToScheduledMeal}:any) => {
 
@@ -25,6 +26,15 @@ const Calendar = ({scheduledMeals, scheduleMeal, removeMeal, addMealToScheduledM
     setDatesToCover(getDateStrings(new Date(newDate)));
   }
 
+  const handleSwipe = (direction: any) => {
+    if (direction === 'left') {
+        pushOneDateBack();
+    } else if (direction === 'right') {
+        pushOneDateForward();
+    }
+  };
+  useSwipe(handleSwipe);
+  
   return (
     <div>
       <div className={styles.dayArrows}>
