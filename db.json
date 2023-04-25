@@ -462,5 +462,82 @@
         "black pepper"
       ]
     }
+  ],
+  "meal-likes": [
+    {
+      "id": 1,
+      "mealName": "Spaghetti Bolognese",
+      "iconUrl": "https://i.ibb.co/8gYKXxF/spagetti.png",
+      "ingredients": [
+        "spaghetti",
+        "ground beef",
+        "canned tomatoes",
+        "onion",
+        "garlic",
+        "olive oil",
+        "salt",
+        "black pepper"
+      ]
+    },
+    {
+      "id": 2,
+      "mealName": "Chicken Curry",
+      "iconUrl": "https://i.ibb.co/yRp1DSV/chicken-curry.png",
+      "ingredients": [
+        "chicken breast",
+        "coconut milk",
+        "onion",
+        "garlic",
+        "ginger",
+        "curry powder",
+        "turmeric",
+        "cumin",
+        "coriander",
+        "salt",
+        "black pepper"
+      ]
+    },
+    {
+      "id": 3,
+      "mealName": "Grilled Salmon",
+      "ingredients": [
+        "salmon fillet",
+        "lemon",
+        "garlic",
+        "olive oil",
+        "salt",
+        "black pepper"
+      ]
+    },
+    {
+      "id": 4,
+      "mealName": "Margherita Pizza",
+      "ingredients": [
+        "pizza dough",
+        "mozzarella cheese",
+        "tomato sauce",
+        "fresh basil",
+        "olive oil",
+        "salt"
+      ]
+    },
+    {
+      "id": 5,
+      "mealName": "Beef Stir-Fry",
+      "ingredients": [
+        "beef sirloin",
+        "soy sauce",
+        "cornstarch",
+        "garlic",
+        "ginger",
+        "broccoli",
+        "red bell pepper",
+        "carrots",
+        "onion",
+        "olive oil",
+        "salt",
+        "black pepper"
+      ]
+    }
   ]
 }
