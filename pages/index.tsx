@@ -11,6 +11,14 @@ import LikedMealsList from '@/components/LikedMealsList'
 import { Meals } from '@/components/Meals'
 
 export default function Home() {
+
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      setIsMobile(true);
+    }
+  }, []);
+
   const { getScheduledMeals } = useScheduledMeals();
   const { getMeals, getMealsLike, likeMeal, unlikeMeal } = useMeals();
   const[scheduledMeals, setScheduledMeals] = useState<ScheduledMeal[]>([]);
@@ -45,13 +53,24 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/memeals.png" />
       </Head>
-      <div style={{width: '80%', display: 'inline-block'}}>
-        <a href="/api/auth/logout">Logout</a>
-        <Calendar scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
-      </div>
-      <div style={{width: '15%', display: 'inline-block'}} >
-        <Meals likedMeals={likedMeals} meals={meals} likeMeal={likeMeal} unlikeMeal={unlikeMeal} setLikedMeals={setLikedMeals}/>
-      </div>
+
+      {
+        isMobile ?
+        <div style={{width: '100%', display: 'inline-block'}}>
+          <a href="/api/auth/logout">Logout</a>
+          <Calendar scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
+        </div>
+        :
+        <>
+          <div style={{width: '80%', display: 'inline-block'}}>
+            <a href="/api/auth/logout">Logout</a>
+            <Calendar scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
+          </div>
+          <div style={{width: '15%', display: 'inline-block'}} >
+            <Meals likedMeals={likedMeals} meals={meals} likeMeal={likeMeal} unlikeMeal={unlikeMeal} setLikedMeals={setLikedMeals}/>
+          </div>
+        </>
+      }
       <LikedMealsList meals={likedMeals} addMeal={addMeal}/>
     </>
   )
