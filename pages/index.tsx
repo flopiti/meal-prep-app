@@ -67,11 +67,11 @@ export default function Home() {
             <Calendar scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
           </div>
           <div style={{width: '15%', display: 'inline-block'}} >
-            <Meals likedMeals={likedMeals} meals={meals} likeMeal={likeMeal} unlikeMeal={unlikeMeal} setLikedMeals={setLikedMeals}/>
+            <Meals likedMeals={likedMeals} meals={meals} likeMeal={likeMeal} unlikeMeal={unlikeMeal} setLikedMeals={setLikedMeals} addMeal={addMeal}/>
           </div>
         </>
       }
-      <LikedMealsList meals={likedMeals} addMeal={addMeal}/>
+      <LikedMealsList meals={likedMeals} />
     </>
   )
 }
