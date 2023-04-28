@@ -4,7 +4,10 @@ import styles from '../styles/AddMealForm.module.css';
 import { useIngredients } from '@/hooks/useIngredients';
 import { Autocomplete, TextField } from '@mui/material';
 import { MenuItem, FormControl, InputLabel, Select } from '@mui/material';
-
+export interface Ingredient {
+    id: number;
+    ingredientName: string;
+}
 const AddMealForm = ({closeForm, addMeal}:any) => {
     const [mealName, setMealName] = useState('');
     const [iconUrl, setIconUrl] = useState('');
@@ -14,17 +17,17 @@ const AddMealForm = ({closeForm, addMeal}:any) => {
     const [iconUrlError, setIconUrlError] = useState(false);
     const [ingredientError, setIngredientError] = useState(false);
     const {getIngredients,getIngredient, createIngredient } = useIngredients();
-    const [allIngredients, setAllIngredients] = useState<String[]>([]);
+    const [allIngredients, setAllIngredients] = useState<Ingredient[]>([]);
     const [selectedIngredient, setSelectedIngredient] = useState<any>(null);
     const [quantity, setQuantity] = useState(0);
     const [unitOfMeasurement, setUnitOfMeasurement] = useState('g');
 
     useEffect(() => {
-        getIngredients().then((data:any) =>  setAllIngredients(data));
+        getIngredients().then((data:Ingredient[]) =>  setAllIngredients(data));
       }, [])  
     
       const addIngredient = () => {
-        if (!selectedIngredient || mealIngredients.includes(selectedIngredient.name)) {
+        if (!selectedIngredient || mealIngredients.includes(selectedIngredient.ingredientName)) {
             setIngredientError(true);
             return;
         } else {
@@ -32,7 +35,7 @@ const AddMealForm = ({closeForm, addMeal}:any) => {
         }
         setIngredients([...mealIngredients, {
             ingredientId: selectedIngredient.id,
-            name: selectedIngredient.name,
+            ingredientName: selectedIngredient.ingredientName,
             quantity,
             unitOfMeasurement
         }]);
@@ -138,7 +141,7 @@ const AddMealForm = ({closeForm, addMeal}:any) => {
                             disablePortal
                             id="combo-box-demo"
                             options={allIngredients}
-                            getOptionLabel={(option:any) => option.name}
+                            getOptionLabel={(option:any) => option.ingredientName}
                             sx={{ width: 250 , display: 'inline-block'}}
                             renderInput={(params) => <TextField {...params} label="ingredient" />}
                             value={selectedIngredient}
@@ -153,7 +156,7 @@ const AddMealForm = ({closeForm, addMeal}:any) => {
                 <button type="button" onClick={addIngredient}>Add Ingredient</button>
                 <ul>
                     {mealIngredients.map((ingredient:any, index:any) => (
-                        <li key={index}>{ingredient.quantity} {ingredient.unitOfMeasurement} {ingredient.name}</li>
+                        <li key={index}>{ingredient.quantity} {ingredient.unitOfMeasurement} {ingredient.ingredientName}</li>
                     ))}
                 </ul>
                 <button type="submit">Submit</button>
