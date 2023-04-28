@@ -22,7 +22,7 @@ const AddIngredientForm = ({closeForm, addIngredient}:any) => {
             console.log(ingredientName)
             createIngredient({name:ingredientName}).then((res) => {
                 console.log(res)
-                addIngredient(res)
+                addIngredient({id: res.id, ingredientName:ingredientName})
                 closeForm();
             });
             resetForm();
