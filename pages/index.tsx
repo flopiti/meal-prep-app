@@ -42,6 +42,9 @@ export default function Home() {
     setMeals([...meals, meal])
   }
 
+  const addIngredient = async (ingredient:any) => {
+    setIngredients([...ingredients, ingredient])
+  }
   
   useEffect(() => {
     getMealsLike().then((data:any) => setLikedMeals(data))
@@ -78,7 +81,7 @@ export default function Home() {
       }
       <div>
         <LikedMealsList meals={likedMeals} />
-        <IngredientList ingredients={ingredients} />
+        <IngredientList ingredients={ingredients}  addIngredient={addIngredient}/>
       </div>
 
     </>
