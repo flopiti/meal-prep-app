@@ -13,7 +13,7 @@ const IngredientList = ({ ingredients, addIngredient }:any) => {
     return (
         <div className={styles.ingredientListBox}>
             <ul className="ingredient-list">
-                {ingredients.map((ingredient:any) => (
+                {ingredients?.map((ingredient:any) => (
                     <li key={ingredient.id}>{ingredient.name}</li>
                 ))}
             </ul>
