@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ModalX from "./ModalX";
 import AddIngredientForm from "./AddIngredientForm";
+import styles from '../styles/IngredientList.module.css';
 
 const IngredientList = ({ ingredients, addIngredient }:any) => {
     const[isOpen, setIsOpen] = useState<boolean>(false);
@@ -10,7 +11,7 @@ const IngredientList = ({ ingredients, addIngredient }:any) => {
       };
       
     return (
-        <div >
+        <div className={styles.ingredientListBox}>
             <ul className="ingredient-list">
                 {ingredients.map((ingredient:any) => (
                     <li key={ingredient.id}>{ingredient.name}</li>
