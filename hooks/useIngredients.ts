@@ -27,7 +27,8 @@ export const useIngredients = () => {
             },
             authenticated: true,
         };
-        return await makeRequest(options);
+        const ingredients = await makeRequest(options);
+        return ingredients.map((ingredient: { name: any; id: any; }) => ({ ingredientName: ingredient.name, id: ingredient.id }));
         }
     const getIngredient = async (id:string) => {
         const options = { 
