@@ -59,7 +59,7 @@ export const Meals = ({likedMeals,meals, likeMeal, unlikeMeal, setLikedMeals , a
                 <button  onClick={showModal}>+</button>
             </ul>
           <ModalX open={isOpen} setOpen={setIsOpen}> 
-              <AddMealForm closeForm={setIsOpen} addMeal={addMeal} />
+              <AddMealForm closeForm={()=>setIsOpen} addMeal={addMeal} />
           </ModalX>
         </div>
     );
