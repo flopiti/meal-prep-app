@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ModalX from './ModalX';
 import AddMealForm from './AddMealForm';
-
+import styles from '../styles/MealList.module.css';
 
 export const Meals = ({likedMeals,meals, likeMeal, unlikeMeal, setLikedMeals , addMeal}:any) => {
     const [open, setOpen] = useState(false);
@@ -41,7 +41,7 @@ export const Meals = ({likedMeals,meals, likeMeal, unlikeMeal, setLikedMeals , a
         unlikeMeal(id);
     }
     return (
-        <div style={{display: 'flex'}}>
+        <div style={{display: 'flex'}} className={styles.MealList}>
             <ul>
                 {meals.map((meal:any) => {
                     const liked = isMealLiked(meal.id);
@@ -56,8 +56,8 @@ export const Meals = ({likedMeals,meals, likeMeal, unlikeMeal, setLikedMeals , a
                         </li>
                     );
                 })}
-                <button  onClick={showModal}>+</button>
             </ul>
+            <button  onClick={showModal}>+</button>
           <ModalX open={isOpen} setOpen={setIsOpen}> 
               <AddMealForm closeForm={()=>setIsOpen} addMeal={addMeal} />
           </ModalX>
