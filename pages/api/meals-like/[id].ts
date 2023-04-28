@@ -4,7 +4,6 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 
 const handlePostMethod = async (req: NextApiRequest, res: NextApiResponse) => { 
     const {accessToken} = await getAccessToken(req, res)
-    console.log('w here')
     const response = await axios.post(`${process.env.BACKEND_URL}/meal-likes/${req.query.id}`, req.body, {
         headers: {
             'Content-Type': 'application/json',
