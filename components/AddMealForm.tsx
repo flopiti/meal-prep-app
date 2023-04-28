@@ -1,25 +1,42 @@
 import { useMeals } from '@/hooks/useMeals';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../styles/AddMealForm.module.css';
+import { useIngredients } from '@/hooks/useIngredients';
+import { Autocomplete, TextField } from '@mui/material';
+import { MenuItem, FormControl, InputLabel, Select } from '@mui/material';
+
 const AddMealForm = ({closeForm, addMeal}:any) => {
     const [mealName, setMealName] = useState('');
     const [iconUrl, setIconUrl] = useState('');
-    const [ingredient, setIngredient] = useState('');
-    const [ingredients, setIngredients] = useState<String[]>([]);
+    const [ingredient, setIngredient] = useState<any>('');
+    const [mealIngredients, setIngredients] = useState<any>([]);
     const [mealNameError, setMealNameError] = useState(false);
     const [iconUrlError, setIconUrlError] = useState(false);
     const [ingredientError, setIngredientError] = useState(false);
+    const {getIngredients,getIngredient, createIngredient } = useIngredients();
+    const [allIngredients, setAllIngredients] = useState<String[]>([]);
+    const [selectedIngredient, setSelectedIngredient] = useState<any>(null);
+    const [quantity, setQuantity] = useState(0);
+    const [unitOfMeasurement, setUnitOfMeasurement] = useState('g');
 
-    const addIngredient = () => {
-        if (!ingredient.trim() || ingredients.includes(ingredient)) {
+    useEffect(() => {
+        getIngredients().then((data:any) =>  setAllIngredients(data));
+      }, [])  
+    
+      const addIngredient = () => {
+        if (!selectedIngredient || mealIngredients.includes(selectedIngredient.name)) {
             setIngredientError(true);
             return;
-        } 
-        else {
+        } else {
             setIngredientError(false);
         }
-        setIngredients([...ingredients, ingredient]);
-        setIngredient('');
+        setIngredients([...mealIngredients, {
+            ingredientId: selectedIngredient.id,
+            name: selectedIngredient.name,
+            quantity,
+            unitOfMeasurement
+        }]);
+        setSelectedIngredient(null);
     };
 
     const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement> ) => {
@@ -68,9 +85,9 @@ const AddMealForm = ({closeForm, addMeal}:any) => {
         }
         
         if (formValid) {
-            createMeal({mealName, iconUrl, ingredients}).then((res) => {
+            createMeal({mealName, iconUrl, mealIngredients}).then((res) => {
                 const id = res.id
-                addMeal({id, mealName, iconUrl, ingredients})
+                addMeal({id, mealName, iconUrl, mealIngredients})
                 closeForm();
             });
             resetForm();
@@ -94,14 +111,40 @@ const AddMealForm = ({closeForm, addMeal}:any) => {
                 {iconUrlError && <span style={{color: 'red'}}>Please enter a valid URL for the icon</span>}
             </label>
             <label>
-                Ingredient:
-                <input type="text" id="ingredientInput" value={ingredient} onChange={(event)=>setIngredient(event.target.value)} onKeyDown={handleKeyPress}/>
+                Quantity:
+                <input type="text" id="quantity" value={quantity} onChange={(event)=>setQuantity(Number(event.target.value))}/>
+                <Autocomplete
+                    disablePortal
+                    id="combo-box-demo"
+                    options={allIngredients}
+                    getOptionLabel={(option:any) => option.name}
+                    sx={{ width: 300 }}
+                    renderInput={(params) => <TextField {...params} label="ingredient" />}
+                    value={selectedIngredient}
+                    onChange={(_, value:any) => setSelectedIngredient(value)}
+                    onKeyDown={handleKeyPress}
+                />
+
                 {ingredientError && <span style={{color: 'red'}}>Please enter an ingredient</span>}
             </label>
+            <FormControl fullWidth variant="standard" sx={{ marginBottom: 2 }}>
+                <InputLabel id="unitOfMeasurement-label">Unit of Measurement</InputLabel>
+                <Select
+                    labelId="unitOfMeasurement-label"
+                    id="unitOfMeasurement"
+                    value={unitOfMeasurement}
+                    label="Unit of Measurement"
+                    onChange={(event) => setUnitOfMeasurement(event.target.value)}
+                >
+                    <MenuItem value="g">g</MenuItem>
+                    <MenuItem value="ml">ml</MenuItem>
+                    <MenuItem value="unit">unit</MenuItem>
+                </Select>
+            </FormControl>
             <button type="button" onClick={addIngredient}>Add Ingredient</button>
             <ul>
-                {ingredients.map((ingredient, index) => (
-                    <li key={index}>{ingredient}</li>
+                {mealIngredients.map((ingredient:any, index:any) => (
+                    <li key={index}>{ingredient.quantity} {ingredient.unitOfMeasurement} {ingredient.name}</li>
                 ))}
             </ul>
             <button type="submit">Submit</button>
