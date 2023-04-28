@@ -33,7 +33,8 @@ const MealItem: React.FC<MealItemProps> = ({ meal, liked, onLikeChange }) => {
             {showIngredients && meal.mealIngredients.length > 0 && (
                 <div className={styles.ingredientsBox}>
                     <ul>
-                        {meal.mealIngredients?.map((ingredient: any, index: number) => <li key={index}>{ingredient.ingredientName}</li>)}
+                        {meal.mealIngredients?.map((ingredient: any, index: number) => 
+                        <li key={index}>{ingredient.quantity}{ingredient.unitOfMeasurement} {ingredient.ingredientName}</li>)}
                     </ul>
                 </div>
             )}
