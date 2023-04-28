@@ -97,58 +97,68 @@ const AddMealForm = ({closeForm, addMeal}:any) => {
     const {createMeal} = useMeals();
     
     return (
-        <form onSubmit={handleSubmit} className={styles.formBox}>
-            <div>
-                <label>
-                    Meal Name: 
-                </label>
-                <input type="text" value={mealName} onChange={(event)=>setMealName(event.target.value)} />
-                {mealNameError && <span style={{color: 'red'}}>Meal name is required</span>}
-            </div>
-            <label>
-                Icon Url:
-                <input type="text" value={iconUrl} onChange={(event)=>setIconUrl(event.target.value)} />
-                {iconUrlError && <span style={{color: 'red'}}>Please enter a valid URL for the icon</span>}
-            </label>
-            <label>
-                Quantity:
-                <input type="text" id="quantity" value={quantity} onChange={(event)=>setQuantity(Number(event.target.value))}/>
-                <Autocomplete
-                    disablePortal
-                    id="combo-box-demo"
-                    options={allIngredients}
-                    getOptionLabel={(option:any) => option.name}
-                    sx={{ width: 300 }}
-                    renderInput={(params) => <TextField {...params} label="ingredient" />}
-                    value={selectedIngredient}
-                    onChange={(_, value:any) => setSelectedIngredient(value)}
-                    onKeyDown={handleKeyPress}
-                />
+        <div className={styles.box}>
+            <form onSubmit={handleSubmit} className={styles.formBox}>
+                <div className={styles.colRow}>
+                    <label>
+                        Meal Name: 
+                    </label>
+                    <input type="text" value={mealName} onChange={(event)=>setMealName(event.target.value)} />
+                    {mealNameError && <span style={{color: 'red'}}>Meal name is required</span>}
+                </div>
+                <div className={styles.colRow}>
+                    <label>
+                        Icon Url:
+                    </label>
+                    <input type="text" value={iconUrl} onChange={(event)=>setIconUrl(event.target.value)} />
+                    {iconUrlError && <span style={{color: 'red'}}>Please enter a valid URL for the icon</span>}
+                </div>
+                <div className={styles.rowVert}>
+                    <label>
+                        Ingredients
+                    </label>
+                    <div className={styles.ingredientForm}>
+                        <input className={styles.qtyStyle} type="text" id="quantity" value={quantity} onChange={(event)=>setQuantity(Number(event.target.value))}/>
+                        <FormControl fullWidth variant="standard" sx={{ marginBottom: 2, width: 50 , display: 'inline-block' }}>
+                            <InputLabel id="unitOfMeasurement-label">Unit of Measurement</InputLabel>
+                            <Select
+                                sx={{ width: 50 , display: 'inline-block'}}
+                                labelId="unitOfMeasurement-label"
+                                id="unitOfMeasurement"
+                                value={unitOfMeasurement}
+                                label="Unit of Measurement"
+                                onChange={(event) => setUnitOfMeasurement(event.target.value)}
+                            >
+                                <MenuItem value="g">g</MenuItem>
+                                <MenuItem value="ml">ml</MenuItem>
+                                <MenuItem value="unit">unit</MenuItem>
+                            </Select>
+                        </FormControl>  
+                        <Autocomplete
+                            disablePortal
+                            id="combo-box-demo"
+                            options={allIngredients}
+                            getOptionLabel={(option:any) => option.name}
+                            sx={{ width: 250 , display: 'inline-block'}}
+                            renderInput={(params) => <TextField {...params} label="ingredient" />}
+                            value={selectedIngredient}
+                            onChange={(_, value:any) => setSelectedIngredient(value)}
+                            onKeyDown={handleKeyPress}
+                        />
+                    </div>
 
+                </div>
                 {ingredientError && <span style={{color: 'red'}}>Please enter an ingredient</span>}
-            </label>
-            <FormControl fullWidth variant="standard" sx={{ marginBottom: 2 }}>
-                <InputLabel id="unitOfMeasurement-label">Unit of Measurement</InputLabel>
-                <Select
-                    labelId="unitOfMeasurement-label"
-                    id="unitOfMeasurement"
-                    value={unitOfMeasurement}
-                    label="Unit of Measurement"
-                    onChange={(event) => setUnitOfMeasurement(event.target.value)}
-                >
-                    <MenuItem value="g">g</MenuItem>
-                    <MenuItem value="ml">ml</MenuItem>
-                    <MenuItem value="unit">unit</MenuItem>
-                </Select>
-            </FormControl>
-            <button type="button" onClick={addIngredient}>Add Ingredient</button>
-            <ul>
-                {mealIngredients.map((ingredient:any, index:any) => (
-                    <li key={index}>{ingredient.quantity} {ingredient.unitOfMeasurement} {ingredient.name}</li>
-                ))}
-            </ul>
-            <button type="submit">Submit</button>
-        </form>
+
+                <button type="button" onClick={addIngredient}>Add Ingredient</button>
+                <ul>
+                    {mealIngredients.map((ingredient:any, index:any) => (
+                        <li key={index}>{ingredient.quantity} {ingredient.unitOfMeasurement} {ingredient.name}</li>
+                    ))}
+                </ul>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
     );
 };
 
