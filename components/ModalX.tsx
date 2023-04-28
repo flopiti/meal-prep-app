@@ -8,18 +8,20 @@ const ModalX = ({ open , setOpen, children}:any) => {
   };
 
 return (
-  <>
-    {open && <div className={styles.backdrop}></div>}
-    <dialog id="dialog" className={styles.dialog} open={open}>
-      {
-          children
-      }
-      <button onClick={onClose} aria-label="close" className={styles.x}>
-        ❌
-      </button>
-    </dialog>
-  </>
-);
+    <>
+      {open && (
+        <div className={styles.container}>
+          <div className={styles.backdrop}></div>
+          <dialog id="dialog" className={styles.dialog} open={open}>
+            {children}
+            <button onClick={onClose} aria-label="close" className={styles.x}>
+              ❌
+            </button>
+          </dialog>
+        </div>
+      )}
+    </>
+    );
 };
 
 
