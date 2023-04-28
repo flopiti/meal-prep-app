@@ -9,6 +9,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { withPageAuthRequired } from '@auth0/nextjs-auth0'
 import LikedMealsList from '@/components/LikedMealsList'
 import { Meals } from '@/components/Meals'
+import IngredientList from '@/components/IngredientList'
+import { useIngredients } from '@/hooks/useIngredients'
 
 export default function Home() {
 
@@ -21,9 +23,11 @@ export default function Home() {
 
   const { getScheduledMeals } = useScheduledMeals();
   const { getMeals, getMealsLike, likeMeal, unlikeMeal } = useMeals();
+  const {getIngredients,getIngredient, createIngredient } = useIngredients();
   const[scheduledMeals, setScheduledMeals] = useState<ScheduledMeal[]>([]);
   const[meals, setMeals] = useState<Meal[]>([]);
   const[likedMeals, setLikedMeals] = useState<Meal[]>([]);
+  const[ingredients, setIngredients] = useState<Meal[]>([]);
 
   const scheduleMeal = async ({id, date, mealType,mealId, mealName, iconUrl, meal2Name, icon2Url }: ScheduledMeal) => {
     setScheduledMeals([...scheduledMeals, {id, date, mealType,mealId, mealName, iconUrl, meal2Name, icon2Url }])
@@ -43,6 +47,7 @@ export default function Home() {
     getMealsLike().then((data:any) => setLikedMeals(data))
     getMeals().then((data:any) => setMeals(data))
     getScheduledMeals().then((data:any) =>  setScheduledMeals(data));
+    getIngredients().then((data:any) =>  setIngredients(data));
   }, [])  
 
   return (
@@ -71,7 +76,11 @@ export default function Home() {
           </div>
         </>
       }
-      <LikedMealsList meals={likedMeals} />
+      <div>
+        <LikedMealsList meals={likedMeals} />
+        <IngredientList ingredients={ingredients} />
+      </div>
+
     </>
   )
 }
