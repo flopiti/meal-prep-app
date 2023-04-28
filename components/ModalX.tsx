@@ -3,26 +3,26 @@ import styles from '../styles/Modal.module.css';
 
 const ModalX = ({ open , setOpen, children}:any) => {
 
-    const onClose = () => {
-      if ('dialog' in window) {
-        (window as any).dialog.close();
-    }        setOpen(false)
-    };
+  const onClose = () => {
+      setOpen(false);
+  };
 
-    
-  return (
+return (
     <>
-      {open && <div className={styles.backdrop}></div>}
-      <dialog id="dialog" className={styles.dialog} open={open}>
-        {
-            children
-        }
-        <button onClick={onClose} aria-label="close" className={styles.x}>
-          ❌
-        </button>
-      </dialog>
+      {open && (
+        <div className={styles.container}>
+          <div className={styles.backdrop}></div>
+          <dialog id="dialog" className={styles.dialog} open={open}>
+            {children}
+            <button onClick={onClose} aria-label="close" className={styles.x}>
+              ❌
+            </button>
+          </dialog>
+        </div>
+      )}
     </>
-  );
+    );
 };
+
 
 export default ModalX;

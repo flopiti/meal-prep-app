@@ -8,7 +8,7 @@ const nextConfig = {
   reactStrictMode: true,
   assetPrefix: process.env.NEXT_PUBLIC_URL,
   images: {
-    domains: ['ibb.co', 'i.ibb.co'],
+    domains: ['ibb.co', 'i.ibb.co', 'example.com'],
   },
   serverRuntimeConfig: {
     auth0Domain: process.env.AUTH0_DOMAIN,

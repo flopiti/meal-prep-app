@@ -4,7 +4,12 @@
   margin-left: auto;
   max-height: 100%;
 }
-
+.flexMain{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
 .title{
   font-size: 2.5rem;
   font-weight: 700;

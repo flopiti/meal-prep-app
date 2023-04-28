@@ -9,7 +9,9 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { withPageAuthRequired } from '@auth0/nextjs-auth0'
 import LikedMealsList from '@/components/LikedMealsList'
 import { Meals } from '@/components/Meals'
-
+import IngredientList from '@/components/IngredientList'
+import { useIngredients } from '@/hooks/useIngredients'
+import styles from '@/styles/Home.module.css'
 export default function Home() {
 
   const [isMobile, setIsMobile] = useState(false);
@@ -21,9 +23,11 @@ export default function Home() {
 
   const { getScheduledMeals } = useScheduledMeals();
   const { getMeals, getMealsLike, likeMeal, unlikeMeal } = useMeals();
+  const {getIngredients,getIngredient, createIngredient } = useIngredients();
   const[scheduledMeals, setScheduledMeals] = useState<ScheduledMeal[]>([]);
   const[meals, setMeals] = useState<Meal[]>([]);
   const[likedMeals, setLikedMeals] = useState<Meal[]>([]);
+  const[ingredients, setIngredients] = useState<Meal[]>([]);
 
   const scheduleMeal = async ({id, date, mealType,mealId, mealName, iconUrl, meal2Name, icon2Url }: ScheduledMeal) => {
     setScheduledMeals([...scheduledMeals, {id, date, mealType,mealId, mealName, iconUrl, meal2Name, icon2Url }])
@@ -38,11 +42,15 @@ export default function Home() {
     setMeals([...meals, meal])
   }
 
+  const addIngredient = async (ingredient:any) => {
+    setIngredients([...ingredients, ingredient])
+  }
   
   useEffect(() => {
     getMealsLike().then((data:any) => setLikedMeals(data))
     getMeals().then((data:any) => setMeals(data))
     getScheduledMeals().then((data:any) =>  setScheduledMeals(data));
+    getIngredients().then((data:any) =>  setIngredients(data));
   }, [])  
 
   return (
@@ -53,25 +61,31 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/memeals.png" />
       </Head>
-
-      {
-        isMobile ?
-        <div style={{width: '100%', display: 'inline-block'}}>
-          <a href="/api/auth/logout">Logout</a>
-          <Calendar scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
-        </div>
-        :
-        <>
-          <div style={{width: '80%', display: 'inline-block'}}>
+      <div>
+        {
+          isMobile ?
+          <div style={{width: '100%', display: 'inline-block'}}>
             <a href="/api/auth/logout">Logout</a>
             <Calendar scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
           </div>
-          <div style={{width: '15%', display: 'inline-block'}} >
-            <Meals likedMeals={likedMeals} meals={meals} likeMeal={likeMeal} unlikeMeal={unlikeMeal} setLikedMeals={setLikedMeals} addMeal={addMeal}/>
+          :
+          <div className={styles.flexMain}>
+            <div style={{width: '80%', display: 'inline-block'}}>
+              <a href="/api/auth/logout">Logout</a>
+              <Calendar scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
+            </div>
+            <div style={{width: '15%', display: 'inline-block'}} >
+              <Meals likedMeals={likedMeals} meals={meals} likeMeal={likeMeal} unlikeMeal={unlikeMeal} setLikedMeals={setLikedMeals} addMeal={addMeal}/>
+              <IngredientList ingredients={ingredients}  addIngredient={addIngredient}/>
+            </div>
           </div>
-        </>
-      }
-      <LikedMealsList meals={likedMeals} />
+        }
+      </div>
+
+      <div>
+        <LikedMealsList meals={likedMeals} />
+      </div>
+
     </>
   )
 }

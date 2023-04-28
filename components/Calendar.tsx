@@ -28,9 +28,9 @@ const Calendar = ({scheduledMeals, scheduleMeal, removeMeal, addMealToScheduledM
 
   const handleSwipe = (direction: any) => {
     if (direction === 'left') {
-        pushOneDateBack();
+      pushOneDateForward();
     } else if (direction === 'right') {
-        pushOneDateForward();
+      pushOneDateBack();
     }
   };
   useSwipe(handleSwipe);
