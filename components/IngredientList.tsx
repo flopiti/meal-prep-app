@@ -14,7 +14,7 @@ const IngredientList = ({ ingredients, addIngredient }:any) => {
         <div className={styles.ingredientListBox}>
             <ul className="ingredient-list">
                 {ingredients?.map((ingredient:any) => (
-                    <li key={ingredient.id}>{ingredient.name}</li>
+                    <li key={ingredient.id}>{ingredient.ingredientName}</li>
                 ))}
             </ul>
             <button  onClick={showModal}>+</button>
