@@ -2,29 +2,11 @@ import React, { useState } from 'react';
 import ModalX from './ModalX';
 import AddMealForm from './AddMealForm';
 import styles from '../styles/MealList.module.css';
+import MealItem from './MealItem';
 
 export const Meals = ({likedMeals,meals, likeMeal, unlikeMeal, setLikedMeals , addMeal}:any) => {
-    const [open, setOpen] = useState(false);
 
-    const handleOpen = () => {
-        setOpen(true);
-      };
-      const handleClose = () => {
-        setOpen(false);
-      };
-      const style = {
-        position: 'absolute' as 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 400,
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
-        pt: 2,
-        px: 4,
-        pb: 3,
-      };
+
   const[isOpen, setIsOpen] = useState<boolean>(false);
   const showModal = () => {
     setIsOpen(true);
@@ -40,28 +22,25 @@ export const Meals = ({likedMeals,meals, likeMeal, unlikeMeal, setLikedMeals , a
         setLikedMeals(likedMeals.filter((likedMeal: { id: number; }) => likedMeal.id !== id));
         unlikeMeal(id);
     }
+
     return (
         <div style={{display: 'flex'}} className={styles.MealList}>
-            <ul>
                 {meals.map((meal:any) => {
                     const liked = isMealLiked(meal.id);
                     return (
-                        <li key={meal.id}>
-                            <input
-                                type="checkbox"
-                                checked={liked}
-                                onChange={() => (liked ? unlike(meal.id) : like(meal.id))}
-                            />
-                            {meal.mealName}
-                        </li>
+                        <MealItem
+                            key={meal.id}
+                            meal={meal}
+                            liked={liked}
+                            onLikeChange={() => (liked ? unlike(meal.id) : like(meal.id))}
+                        />
                     );
                 })}
-            </ul>
+            
             <button  onClick={showModal}>+</button>
           <ModalX open={isOpen} setOpen={setIsOpen}> 
               <AddMealForm closeForm={()=>setIsOpen} addMeal={addMeal} />
           </ModalX>
         </div>
     );
-
 }
