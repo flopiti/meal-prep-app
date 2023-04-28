@@ -18,7 +18,7 @@ const IngredientList = ({ ingredients, addIngredient }:any) => {
             </ul>
             <button  onClick={showModal}>+</button>
             <ModalX open={isOpen} setOpen={setIsOpen}> 
-            <AddIngredientForm closeForm={setIsOpen} addIngredient={addIngredient} />
+            <AddIngredientForm closeForm={()=>setIsOpen} addIngredient={addIngredient} />
           </ModalX>
         </div>
         );
