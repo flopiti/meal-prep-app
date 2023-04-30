@@ -23,7 +23,7 @@ export default function Home() {
 
   const { getScheduledMeals } = useScheduledMeals();
   const { getMeals, getMealsLike, likeMeal, unlikeMeal , deleteMeal} = useMeals();
-  const {getIngredients,getIngredient, createIngredient, removeIngredient } = useIngredients();
+  const {getIngredients, removeIngredient } = useIngredients();
   const[scheduledMeals, setScheduledMeals] = useState<ScheduledMeal[]>([]);
   const[meals, setMeals] = useState<Meal[]>([]);
   const[likedMeals, setLikedMeals] = useState<Meal[]>([]);
