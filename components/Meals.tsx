@@ -4,7 +4,7 @@ import AddMealForm from './AddMealForm';
 import styles from '../styles/MealList.module.css';
 import MealItem from './MealItem';
 
-export const Meals = ({likedMeals,meals, likeMeal, unlikeMeal, setLikedMeals , addMeal}:any) => {
+export const Meals = ({likedMeals,meals, likeMeal, unlikeMeal, setLikedMeals , addMeal, removeMealFromList}:any) => {
 
 
   const[isOpen, setIsOpen] = useState<boolean>(false);
@@ -32,6 +32,7 @@ export const Meals = ({likedMeals,meals, likeMeal, unlikeMeal, setLikedMeals , a
                     const liked = isMealLiked(meal.id);
                     return (
                         <MealItem
+                        removeMealFromList={removeMealFromList}
                             key={meal.id}
                             meal={meal}
                             liked={liked}
