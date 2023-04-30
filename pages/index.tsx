@@ -23,7 +23,7 @@ export default function Home() {
 
   const { getScheduledMeals } = useScheduledMeals();
   const { getMeals, getMealsLike, likeMeal, unlikeMeal } = useMeals();
-  const {getIngredients,getIngredient, createIngredient } = useIngredients();
+  const {getIngredients,getIngredient, createIngredient, removeIngredient } = useIngredients();
   const[scheduledMeals, setScheduledMeals] = useState<ScheduledMeal[]>([]);
   const[meals, setMeals] = useState<Meal[]>([]);
   const[likedMeals, setLikedMeals] = useState<Meal[]>([]);
@@ -44,6 +44,13 @@ export default function Home() {
 
   const addIngredient = async (ingredient:any) => {
     setIngredients([...ingredients, ingredient])
+  }
+
+  const deleteIngredient = async (id:number) => {
+    console.log(ingredients)
+    console.log(id)
+    removeIngredient(id.toString())
+    setIngredients(ingredients.filter((ingredient:any) => ingredient.id !== id))
   }
   
   useEffect(() => {
@@ -76,7 +83,7 @@ export default function Home() {
             </div>
             <div style={{width: '15%', display: 'inline-block'}} >
               <Meals likedMeals={likedMeals} meals={meals} likeMeal={likeMeal} unlikeMeal={unlikeMeal} setLikedMeals={setLikedMeals} addMeal={addMeal}/>
-              <IngredientList ingredients={ingredients}  addIngredient={addIngredient}/>
+              <IngredientList ingredients={ingredients}  addIngredient={addIngredient} removeIngredient={deleteIngredient}/>
             </div>
           </div>
         }
