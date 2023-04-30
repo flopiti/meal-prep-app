@@ -4,9 +4,10 @@ interface MealItemProps {
     meal: any;
     liked: boolean;
     onLikeChange: () => void;
+    removeMealFromList:any;
 }
 
-const MealItem: React.FC<MealItemProps> = ({ meal, liked, onLikeChange }) => {
+const MealItem: React.FC<MealItemProps> = ({ meal, liked, onLikeChange , removeMealFromList}) => {
     const [showIngredients, setShowIngredients] = useState(false);
 
     const handleMouseEnter = () => {
@@ -38,6 +39,7 @@ const MealItem: React.FC<MealItemProps> = ({ meal, liked, onLikeChange }) => {
                     </ul>
                 </div>
             )}
+            <button onClick={()=>removeMealFromList(meal.id)}>X</button>
         </li>
     );
 };

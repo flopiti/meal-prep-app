@@ -52,7 +52,15 @@ export const useIngredients = () => {
         };
         return await makeRequest(options);
         }
-
-
-    return { getIngredients, getIngredient, createIngredient };
+    const removeIngredient = async (id:string) => {
+        const options = { 
+            config: {
+            method: 'DELETE',
+            url: `/api/ingredients/${id}`,
+            },
+            authenticated: true,
+        };
+        return await makeRequest(options);
+        }
+    return { getIngredients, getIngredient, createIngredient, removeIngredient };
     }
