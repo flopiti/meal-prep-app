@@ -25,6 +25,9 @@ export const Meals = ({likedMeals,meals, likeMeal, unlikeMeal, setLikedMeals , a
 
     return (
         <div style={{display: 'flex'}} className={styles.MealList}>
+            <h3 className={styles.subheader}>
+                Meals
+            </h3>
                 {meals.map((meal:any) => {
                     const liked = isMealLiked(meal.id);
                     return (
