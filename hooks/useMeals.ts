@@ -84,5 +84,16 @@ export const useMeals = () => {
         return await makeRequest(options);
         }
 
-    return { getMeals, getMeal, createMeal, likeMeal, unlikeMeal, getMealsLike };
+    const deleteMeal = async (id: string) => {
+        const options = {
+            config: {
+            method: 'DELETE',
+            url: `/api/meals/${id}`,
+            },
+            authenticated: true,
+        };
+        return await makeRequest(options);
+        }   
+
+    return { getMeals, getMeal, createMeal, likeMeal, unlikeMeal, getMealsLike, deleteMeal };
     }
