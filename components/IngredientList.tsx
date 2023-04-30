@@ -12,6 +12,9 @@ const IngredientList = ({ ingredients, addIngredient }:any) => {
       
     return (
         <div className={styles.ingredientListBox}>
+            <h3 className={styles.subheader}>
+                Ingredients
+            </h3>
             <ul className="ingredient-list">
                 {ingredients?.map((ingredient:any) => (
                     <li key={ingredient.id}>{ingredient.ingredientName}</li>
