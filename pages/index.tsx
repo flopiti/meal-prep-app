@@ -12,6 +12,8 @@ import { Meals } from '@/components/Meals'
 import IngredientList from '@/components/IngredientList'
 import { useIngredients } from '@/hooks/useIngredients'
 import styles from '@/styles/Home.module.css'
+import MobileApp from '@/components/MobileApp'
+import WebApp from '@/components/WebApp'
 export default function Home() {
 
   const [isMobile, setIsMobile] = useState(false);
@@ -67,28 +69,11 @@ export default function Home() {
       <div>
         {
           isMobile ?
-          <div style={{width: '100%', display: 'inline-block'}}>
-            <a href="/api/auth/logout">Logout</a>
-            <Calendar scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
-          </div>
+          <MobileApp scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal} />
           :
-          <div className={styles.flexMain}>
-            <div style={{width: '80%', display: 'inline-block'}}>
-              <a href="/api/auth/logout">Logout</a>
-              <Calendar scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
-            </div>
-            <div style={{width: '15%', display: 'inline-block'}} >
-              <Meals likedMeals={likedMeals} meals={meals} likeMeal={likeMeal} unlikeMeal={unlikeMeal} setLikedMeals={setLikedMeals} addMeal={addMeal} removeMealFromList={removeMealFromList}/>
-              <IngredientList ingredients={ingredients}  addIngredient={addIngredient} removeIngredient={deleteIngredient}/>
-            </div>
-          </div>
+          <WebApp scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal} likedMeals={likedMeals} meals={meals} likeMeal={likeMeal} unlikeMeal={unlikeMeal} setLikedMeals={setLikedMeals} addMeal={addMeal} removeMealFromList={removeMealFromList} ingredients={ingredients} addIngredient={addIngredient} deleteIngredient={deleteIngredient}/>
         }
       </div>
-
-      <div>
-        <LikedMealsList meals={likedMeals} />
-      </div>
-
     </>
   )
 }
