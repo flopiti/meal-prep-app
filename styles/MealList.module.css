@@ -1,7 +1,14 @@
-.MealList{
+.mealList{
+    margin-top: 100px;
     padding: 20px;
     display: flex;
     flex-direction: column;
+    height: 40%;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin: 10px;
+    margin-top: 60px;
+    justify-content: space-between;
 }
 
 .mealItem {
@@ -9,6 +16,11 @@
     display: inline-block;
 }
 
+.list{
+    display: flex;
+    flex-direction: column;
+    max-height: 80%;
+}
 .ingredientsBox {
     display: none;
     position: absolute;
@@ -24,6 +36,7 @@
 
 .subheader{
     margin-bottom: 5px;
+    margin-top: 5px;
     text-decoration: underline;
 }
 

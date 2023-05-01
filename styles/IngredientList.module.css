@@ -2,9 +2,15 @@
     padding: 10px;
     display: flex;
     flex-direction: column;
+    height: 35%;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin: 10px;
+    justify-content: space-between;
+    list-style-type: none;
 }
-
 .subheader{
-    margin-bottom: 5px;
+    margin-bottom: 2px;
+    margin-top: 2px;
     text-decoration: underline;
 }
