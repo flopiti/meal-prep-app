@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   nextjs:
-    container_name: next-13-docker-pages-auth0-prod
+    container_name: meal-prep-app-local-backend
     build: .
     ports:
       - 3006:3006
