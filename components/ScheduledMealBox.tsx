@@ -1,9 +1,14 @@
 import { motion } from 'framer-motion';
 import styles from '../styles/ScheduledMealBox.module.css';
 import Image from 'next/image'
+import XButton from './Xbutton';
 
-const ScheduledMealBox = ({mealName, iconUrl}: any) => {
+const ScheduledMealBox = ({mealId, mealName, iconUrl, deleteMeal}: any) => {
     return(
+        <div className={styles.containerMeal}>                       
+        <div className={styles.buttonContainer}>
+                <XButton onClick={()=>deleteMeal(mealId)}>X</XButton>
+        </div>  
         <motion.div 
         className={styles.mealChoice}
         animate={{ backgroundColor: "#28afb0", scale: [0.25, 1] }}
@@ -22,6 +27,7 @@ const ScheduledMealBox = ({mealName, iconUrl}: any) => {
                 {iconUrl ?  <Image src={iconUrl} alt="food" width={64} height={64} /> : <span></span>}
             </motion.div>
         </motion.div>
+        </div>
     )
 }
 
