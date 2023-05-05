@@ -1,4 +1,5 @@
-import styles from '../styles/XButton.module.css';
+import { motion } from 'framer-motion';
+import styles from '../styles/Xbutton.module.css';
 
 export interface XButtonProps {
     children: React.ReactNode;
@@ -7,7 +8,23 @@ export interface XButtonProps {
 
 const XButton = (props: XButtonProps) => {
     const { children, ...rest } = props;
-    return <button className={styles.button}{...rest}>{children}</button>;
+
+    const buttonVariants = {
+        initial: { opacity: 0.3 },
+        hover: { opacity: 1, rotate: 360 }
+    };
+
+    return (
+        <motion.button
+            className={styles.button}
+            initial="initial"
+            whileHover="hover"
+            variants={buttonVariants}
+            {...rest}
+        >
+            {children}
+        </motion.button>
+    );
 }
 
 export default XButton;
