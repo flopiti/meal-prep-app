@@ -1,12 +1,33 @@
-Things to do when using this skeleton to start a new project: 
-1. If you copied locally, make sure to delete the .git and create a new one.
-2. Change the package name
-3. Create a .env.local file by copying the .env.template
-4. Fill the values in the file and run the following for the AUTH0_SECRET:
+
+## Set variables
+
+What's up, to get started you only need to set auth0 variables. 
+
+First copy the the `.env.template` file and call it `.env.local`, you'll see you have two values missing:
+
+- AUTH0_SECRET: to get that value, use the following command to generate the string randomly: 
 ```
 openssl rand -hex 32
 ```
-Base URL : http:localhost:3000
-Issuer Base URL : https://{yourDomain}
+- AUTH0_CLIENT_SECRET: That one is available in your Auth0 Dashboard.
 
-5. Make sure that in the Auth0 application, you add the callback URL. (ex:http://localhost:3001/api/auth/callback)
+
+## Run
+
+Then you have two options to get started to run it locally:
+
+1. Mock Data: 
+
+If you are developing locally using only the front-end app, you can use our mock-data json server. To get it all started at once, just run the following command:
+
+```
+docker compose -f docker-compose.dev.yml up --build
+```
+
+
+2. Local Backend:
+
+If you want to run the front-end connected a back-end also running locally, you can do so by running the following command:
+```
+docker compose -f docker-compose.dev.yml -f docker-compose.local-backend.yml up --build
+```
