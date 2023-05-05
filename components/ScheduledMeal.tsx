@@ -80,7 +80,7 @@ const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal, addMeal
             {
                 meal ? (                        
                 <DropZone onDrop={handleDrop}>
-                    <ScheduledMealBox mealName={mealName} iconUrl={iconUrl} />
+                    <ScheduledMealBox mealName={mealName} iconUrl={iconUrl} deleteMeal={deleteMeal} mealId={meal.id}/>
                 </DropZone>
                 ) : (
                         <DropZone onDrop={handleDrop}>
