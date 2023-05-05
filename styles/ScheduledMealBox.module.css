@@ -1,0 +1,23 @@
+.mealIcon{
+    margin-top: .25rem;
+    margin-bottom: .25rem;
+    margin-right: .5rem;
+    margin-left: .5rem;
+  
+  }
+
+.mealChoice{
+    overflow: hidden;
+    padding: 1rem;
+    width: 90%;
+    height: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+  }  
