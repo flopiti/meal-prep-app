@@ -70,9 +70,6 @@ const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal, addMeal
             <div className={styles.mealType}   
             >
                 <span>{t(mealType)}</span>
-                <button className={styles.xbutton} onClick={deleteMeal}>
-                    X
-                </button>
             </div>
             <motion.div 
                 className={styles.scheduledSpot}
