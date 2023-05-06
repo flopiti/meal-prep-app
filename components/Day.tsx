@@ -12,8 +12,8 @@ const Day = ({ day, meals , scheduleMeal, removeMeal, addMealToScheduledMeal} :a
         className={styles.day}>
             <div>
                 <h1 className={styles.dayTitle}>{dateString===day ? 'Today' : dateStringTomorrow===day ? 'Tomorrow' : '' }</h1>
+                {day}
             </div>
-            {day}
             <ScheduledMeal meal={meals.find((meal:any) => meal.mealType === mealTypes[0]) ? meals.find((meal:any) => meal.mealType === mealTypes[0]) : null} mealType={mealTypes[0]} scheduleMeal={scheduleMeal} day={day} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
             <ScheduledMeal meal={meals.find((meal:any) => meal.mealType === mealTypes[1]) ? meals.find((meal:any) => meal.mealType === mealTypes[1]) : null} mealType={mealTypes[1]} scheduleMeal={scheduleMeal} day={day} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
             <ScheduledMeal meal={meals.find((meal:any) => meal.mealType === mealTypes[2]) ? meals.find((meal:any) => meal.mealType === mealTypes[2]) : null} mealType={mealTypes[2]} scheduleMeal={scheduleMeal} day={day} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
