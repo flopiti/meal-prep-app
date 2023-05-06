@@ -1,7 +1,7 @@
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
 import { UserProvider } from '@auth0/nextjs-auth0/client';
-import BaseLayout from '@/components/BaseLayout';
+import BaseLayout from '@/components/_layouts/BaseLayout';
 import { appWithTranslation } from 'next-i18next'
 import Head from 'next/head';
 
