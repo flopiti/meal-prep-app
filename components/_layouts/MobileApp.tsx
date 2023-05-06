@@ -1,4 +1,4 @@
-import Calendar from "./Calendar";
+import Calendar from "../Calendar";
 
 interface MobileAppProps {
     scheduledMeals: any;

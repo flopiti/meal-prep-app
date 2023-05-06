@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import styles from '../styles/Xbutton.module.css';
+import styles from './Xbutton.module.css';
 
 export interface XButtonProps {
     children: React.ReactNode;
