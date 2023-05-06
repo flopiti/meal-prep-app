@@ -12,8 +12,8 @@ import { Meals } from '@/components/Meals'
 import IngredientList from '@/components/IngredientList'
 import { useIngredients } from '@/hooks/useIngredients'
 import styles from '@/styles/Home.module.css'
-import MobileApp from '@/components/MobileApp'
-import WebApp from '@/components/WebApp'
+import MobileApp from '@/components/_layouts/MobileApp'
+import WebApp from '@/components/_layouts/WebApp'
 export default function Home() {
 
   const [isMobile, setIsMobile] = useState(false);
