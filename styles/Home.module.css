@@ -42,7 +42,7 @@
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   border: 1px solid #000;
   border-radius: 10px;
   overflow: hidden;
@@ -51,6 +51,8 @@
 .calendar{
   display: flex;
   width: 100%;
+  align-items: flex-start;
+  flex-direction: row;
 }
 
 .dayArrows{
@@ -58,9 +60,17 @@
   justify-content: space-between;
 }
 
+.dropzone{
+  min-height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
 .meal{
   margin-top: .5rem;
-  height: 18vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -68,11 +78,13 @@
 }
 
 .scheduledSpot{
-  height: 70%;
   width: 100%;  
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 100px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .mealBox{
@@ -80,13 +92,7 @@
   border : 1px solid #000;
 }
 
-.dropzone{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 
 .mealType{
   height: 20%;
@@ -94,24 +100,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-
-
-.twoMealChoice{
-  overflow: hidden;
-  padding: 1rem;
-  height: 75%;
-  width: 90%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 15px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  position: relative;
-  z-index: 2;
 }
 
 .mealItem{
