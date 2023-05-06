@@ -2,7 +2,7 @@ import Calendar from "../Calendar";
 import IngredientList from "../IngredientList";
 import LikedMealsList from "../LikedMealsList";
 import { Meals } from "../Meals";
-import styles from "../styles/WebApp.module.css";
+import styles from "../../styles/WebApp.module.css";
 
 interface WebAppProps {
     scheduledMeals: any;
