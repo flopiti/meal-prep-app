@@ -2,10 +2,25 @@ import { motion } from 'framer-motion';
 import styles from '../styles/ScheduledMealBox.module.css';
 import Image from 'next/image'
 import XButton from './Xbutton/Xbutton';
+import { useState } from 'react';
 
-const ScheduledMealBox = ({mealId, mealName, iconUrl, deleteMeal}: any) => {
+const ScheduledMealBox = ({mealId, mealName, iconUrl, deleteMeal,scheduledMealId}: any) => {
+    
+    const [isDragging, setIsDragging] = useState(false);
+
+    const handleDragStart = (event:any, index:number) => {
+        setIsDragging(true);
+        event.dataTransfer.setData('1', mealId);
+        event.dataTransfer.setData('2', iconUrl);
+        event.dataTransfer.setData('3', scheduledMealId);
+      };
+
     return(
-        <div className={styles.containerMeal}>                       
+        <div className={styles.containerMeal} 
+        key={mealId}
+        draggable
+        onDragStart={()=>handleDragStart(event, mealId)}
+        >                       
         <div className={styles.buttonContainer}>
                 <XButton onClick={()=>deleteMeal(mealId)}>X</XButton>
         </div>  
