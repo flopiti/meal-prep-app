@@ -14,7 +14,7 @@ export type Meal = {
     mealId: number;
 };
 
-const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal, addMealToScheduledMeal} :any) => {
+const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal, addMealToScheduledMeal, changeMeal } :any) => {
 
     const { t } = useTranslation('common')
     const { deleteScheduledMeal, putScheduledMeal } = useScheduledMeals();
@@ -38,8 +38,26 @@ const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal, addMeal
 
     const { postScheduledMeal } = useScheduledMeals();
 
-    const handleDrop = (mealId:any, iconUrl:any) => {
-        if(meal){
+    const handleDrop = (mealId:any, iconUrl:any, scheduledMealId:any) => {
+        if(scheduledMealId){
+            putScheduledMeal(scheduledMealId,  mealName!, day, mealType, iconUrl, mealId,  iconUrl).then((res:any) => { 
+                getMeal(res.mealId).then((meal:any) => {
+                    changeMeal(
+                        {
+                            id: res.id, 
+                            date: res.date,
+                            mealType: res.mealType,
+                            mealId: res.mealId,
+                            mealName: meal.mealName, 
+                            iconUrl: meal.iconUrl, 
+                            meal2Name: res.mealName,
+                            icon2Url: res.icon2Url
+                        }
+                    )
+                })
+              });
+        }
+        else if(meal){
             putScheduledMeal(meal.id,  mealName!, day, mealType, iconUrl, mealId,  iconUrl).then((res:any) => {
                 addMealToScheduledMeal({
                     mealName: mealName,
@@ -77,7 +95,9 @@ const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal, addMeal
             {
                 meal ? (                        
                 <DropZone onDrop={handleDrop}>
-                    <ScheduledMealBox mealName={mealName} iconUrl={iconUrl} deleteMeal={deleteMeal} mealId={meal.id}/>
+                    <ScheduledMealBox mealName={mealName} iconUrl={iconUrl} deleteMeal={deleteMeal} mealId={meal.id} 
+                    scheduledMealId={meal.id}
+                    />
                 </DropZone>
                 ) : (
                         <DropZone onDrop={handleDrop}>
