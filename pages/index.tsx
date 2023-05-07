@@ -40,6 +40,11 @@ export default function Home() {
   const addMealToScheduledMeal = async ({id, date, mealType, mealId, mealName, iconUrl, meal2Name, icon2Url}: ScheduledMeal) => {
     setScheduledMeals([...scheduledMeals.filter((meal:any) => meal.date !== date || meal.mealType !== mealType || meal.mealName !== mealName), {id, date, mealType, mealId, mealName, iconUrl, meal2Name, icon2Url } ])
   }
+
+  const changeMeal = async ({id, date, mealType,mealId, mealName, iconUrl , meal2Name, icon2Url}:any) => {
+    setScheduledMeals([...scheduledMeals.filter((meal:any)  => meal.id !== id), {id, date, mealType,mealId, mealName, iconUrl , meal2Name, icon2Url  } ])
+  }
+
   const addMeal = async (meal:Meal) => {
     setMeals([...meals, meal])
   }
@@ -71,7 +76,7 @@ export default function Home() {
           isMobile ?
           <MobileApp scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal} />
           :
-          <WebApp scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal} likedMeals={likedMeals} meals={meals} likeMeal={likeMeal} unlikeMeal={unlikeMeal} setLikedMeals={setLikedMeals} addMeal={addMeal} removeMealFromList={removeMealFromList} ingredients={ingredients} addIngredient={addIngredient} deleteIngredient={deleteIngredient}/>
+          <WebApp scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} changeMeal={changeMeal} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal} likedMeals={likedMeals} meals={meals} likeMeal={likeMeal} unlikeMeal={unlikeMeal} setLikedMeals={setLikedMeals} addMeal={addMeal} removeMealFromList={removeMealFromList} ingredients={ingredients} addIngredient={addIngredient} deleteIngredient={deleteIngredient}/>
         }
       </div>
     </>

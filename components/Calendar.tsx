@@ -4,7 +4,7 @@ import styles from '@/styles/Home.module.css'
 import Day from '@/components/Day'
 import useSwipe from '@/hooks/useSwipe';
 
-const Calendar = ({scheduledMeals, scheduleMeal, removeMeal, addMealToScheduledMeal}:any) => {
+const Calendar = ({scheduledMeals, scheduleMeal, removeMeal,changeMeal,  addMealToScheduledMeal}:any) => {
 
   const [isMobile, setIsMobile] = useState(false);
   const [datesToCover, setDatesToCover ]= useState(getDateStrings(new Date));
@@ -56,7 +56,7 @@ const Calendar = ({scheduledMeals, scheduleMeal, removeMeal, addMealToScheduledM
         addMealToScheduledMeal={addMealToScheduledMeal}
       /> : 
         datesToCover.map((day, index) => {
-          return <Day key={index} scheduleMeal={scheduleMeal} day={day} meals={scheduledMeals.filter((meal:any) => meal.date === day)} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
+          return <Day key={index} scheduleMeal={scheduleMeal} day={day} meals={scheduledMeals.filter((meal:any) => meal.date === day)} changeMeal={changeMeal} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
         })
       }
       </div>

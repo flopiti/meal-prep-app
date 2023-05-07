@@ -19,9 +19,7 @@ const AddIngredientForm = ({closeForm, addIngredient}:any) => {
             setIngredientNameError(false);
         }
         if (formValid) {
-            console.log(ingredientName)
             createIngredient({name:ingredientName}).then((res) => {
-                console.log(res)
                 addIngredient({id: res.id, ingredientName:ingredientName})
                 closeForm();
             });
