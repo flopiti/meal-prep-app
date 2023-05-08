@@ -7,18 +7,6 @@ import Image from "next/image";
 const BaseLayout = ({ children } : any) => {
     return (
             <div className={styles.main}>
-                <div className={styles.title}>
-                        <span>
-                            MeMeals 7
-                        </span>
-                        <Image         
-                            className={styles.mainLogo} 
-                            src="/memeals.png"
-                            alt="Picture of the author"
-                            width={50}
-                            height={50}
-                        />          
-                </div>
                 {children}
             </div>
             );
