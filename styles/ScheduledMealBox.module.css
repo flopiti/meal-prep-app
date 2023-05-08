@@ -18,7 +18,7 @@
     flex-direction: column;
     justify-content: space-between;
     position: relative;
-    z-index: 2;
+    z-index: 1;
   }  
 
   .containerMeal {
@@ -34,6 +34,6 @@
     position: absolute;
     top: 4px; 
     right: 4px; 
-    z-index:3;
+    z-index:2;
     margin: 2px;
 }
