@@ -9,6 +9,9 @@
     height: 50px;
     width: 50px;
     border-radius: 100%;
-    border: tomato 2px solid;
-    overflow: hidden;
+    border: tomato 2px solid;   
+}
+
+.profileImage{
+    border-radius: 100%;
 }
