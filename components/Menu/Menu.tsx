@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import styles from "./Menu.module.css";
+import Link from "next/link";
 const Menu = () => {
     return (
       <motion.div
@@ -10,9 +11,7 @@ const Menu = () => {
         className={styles.menu}
       >
         <ul>
-          <li>Profile</li>
-          <li>Settings</li>
-          <li>Logout</li>
+          <li><Link href={"/api/auth/logout"}>Logout</Link></li>
         </ul>
       </motion.div>
     );
