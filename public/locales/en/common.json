@@ -9,5 +9,7 @@
     },
     "addIngredient": "Add ingredient",
     "submit": "Submit",
-    "mealName": "Meal Name"
+    "mealName": "Meal Name",
+    "admin": "Admin",
+    "logout": "Logout"
 }
