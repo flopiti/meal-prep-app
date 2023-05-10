@@ -3,11 +3,17 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useMeals } from "@/hooks/useMeals";
 import Image from 'next/image'
+import ModalX from "@/components/ModalX";
+import AddMealForm from "@/components/Modals/AddMealForm";
 
 const MealListAdmin = () => {
 
-
-    const { getMeals, getMealsLike, likeMeal, unlikeMeal , deleteMeal} = useMeals();
+    const { getMeals, getMealsLike, likeMeal, unlikeMeal , deleteMeal, editMeal} = useMeals();
+    const [isOpen, setIsOpen] = useState<boolean>(false);
+  
+    const showModal = () => {
+      setIsOpen(true);
+    };
 
     const [meals, setMeals] = useState<any[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
@@ -39,6 +45,10 @@ const MealListAdmin = () => {
                 {
                     meal.iconUrl ?  <Image src={meal.iconUrl} alt={""} width={100} height={100}/> : <span></span>
                 }
+                <button onClick={() => showModal()}>Edit</button>
+                <ModalX open={isOpen} setOpen={setIsOpen}> 
+                    <AddMealForm closeForm={()=>setIsOpen}  />
+                </ModalX>
             </li>
             ))}
         </ul>
