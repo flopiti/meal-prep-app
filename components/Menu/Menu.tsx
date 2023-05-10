@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
 import styles from "./Menu.module.css";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 const Menu = () => {
+
+  const {t} = useTranslation('common')
+
     return (
       <motion.div
         initial={{ opacity: 0 }}
@@ -11,7 +15,8 @@ const Menu = () => {
         className={styles.menu}
       >
         <ul>
-          <li><Link href={"/api/auth/logout"}>Logout</Link></li>
+          <li><Link href={"/api/auth/logout"}>{t('logout')}</Link></li>
+          <li><Link href={"/admin"}>{t('admin')}</Link></li>
         </ul>
       </motion.div>
     );
