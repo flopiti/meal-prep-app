@@ -1,6 +1,6 @@
 import { useScheduledMeals } from '@/hooks/useScheduledMeals';
 import styles from '../styles/Home.module.css';
-import { DropZone } from './Dropzone';
+import { DropZone } from './Utils/Dropzone';
 import {motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next'
 import { useMeals } from '@/hooks/useMeals';

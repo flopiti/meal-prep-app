@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import styles from '../styles/ScheduledMealBox.module.css';
 import Image from 'next/image'
-import XButton from './Xbutton/Xbutton';
+import XButton from './Utils/Xbutton/Xbutton';
 import { useState } from 'react';
 
 const ScheduledMealBox = ({mealId, mealName, iconUrl, deleteMeal,scheduledMealId}: any) => {
