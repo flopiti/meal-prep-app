@@ -1,8 +1,6 @@
 import styles from '@/styles/Home.module.css'
 import Image from 'next/image'
 import React, { useState } from "react";
-import AddMealForm from "./AddMealForm";
-import ModalX from "./ModalX";
 
 export type Meal = {
     id: number,
