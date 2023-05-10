@@ -9,5 +9,7 @@
     },
     "addIngredient": "Ajouter un ingrédient",
     "submit": "Soumettre",
-    "mealName": "Nom du repas"
+    "mealName": "Nom du repas",
+    "admin": "Admin",
+    "logout": "Se déconnecter"
 }
