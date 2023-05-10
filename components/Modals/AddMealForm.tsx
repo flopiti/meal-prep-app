@@ -1,6 +1,6 @@
 import { useMeals } from '@/hooks/useMeals';
 import React, { useEffect, useState } from 'react';
-import styles from '../styles/AddMealForm.module.css';
+import styles from '@/styles/AddMealForm.module.css';
 import { useIngredients } from '@/hooks/useIngredients';
 import { Autocomplete, TextField } from '@mui/material';
 import { MenuItem, FormControl, InputLabel, Select } from '@mui/material';

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ModalX from "./ModalX";
-import AddIngredientForm from "./Utils/Xbutton/Modals/AddIngredientForm";
+import AddIngredientForm from "./Modals/AddIngredientForm";
 import styles from '../styles/IngredientList.module.css';
 
 const IngredientList = ({ ingredients, addIngredient, removeIngredient }:any) => {

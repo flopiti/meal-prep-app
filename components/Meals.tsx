@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ModalX from './ModalX';
-import AddMealForm from './AddMealForm';
+import AddMealForm from './Modals/AddMealForm';
 import styles from '../styles/MealList.module.css';
 import MealItem from './MealItem';
 

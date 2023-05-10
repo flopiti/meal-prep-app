@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from '../styles/AddMealForm.module.css';
+import styles from '@/styles/AddMealForm.module.css';
 import { useIngredients } from '@/hooks/useIngredients';
 
 const AddIngredientForm = ({closeForm, addIngredient}:any) => {
