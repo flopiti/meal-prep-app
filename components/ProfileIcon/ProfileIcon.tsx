@@ -41,9 +41,6 @@ const ProfileIcon = ({ name, picture }: ProfileIconProps) => {
         >
             <Image src={'/cool_cat.png'} alt={''} width={70} height={50} className={styles.profileImage}/>
         </motion.div>
-        {/* <AnimatePresence>
-            
-        </AnimatePresence> */}
       {
         isHovered && <div         
         onMouseEnter={handleMouseEnter}
