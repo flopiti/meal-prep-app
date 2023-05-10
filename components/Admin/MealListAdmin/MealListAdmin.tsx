@@ -5,6 +5,7 @@ import { useMeals } from "@/hooks/useMeals";
 import Image from 'next/image'
 import ModalX from "@/components/ModalX";
 import AddMealForm from "@/components/Modals/MealForm";
+import EditMealForm from "@/components/Modals/EditMealForm";
 
 const MealListAdmin = () => {
 
@@ -47,7 +48,7 @@ const MealListAdmin = () => {
                 }
                 <button onClick={() => showModal()}>Edit</button>
                 <ModalX open={isOpen} setOpen={setIsOpen}> 
-                    <AddMealForm closeForm={()=>setIsOpen}  />
+                    <EditMealForm closeForm={()=>setIsOpen} meal={meal} editMeal={editMeal} />
                 </ModalX>
             </li>
             ))}
