@@ -25,7 +25,6 @@ interface WebAppProps {
 const WebApp = ({scheduleMeal, scheduledMeals, removeMeal,changeMeal, addMealToScheduledMeal, likedMeals, likeMeal, meals, addIngredient, unlikeMeal, setLikedMeals, addMeal, removeMealFromList, deleteIngredient, ingredients}:WebAppProps) => (
     <div className={styles.flexMain}>
         <div style={{ width: '80%', display: 'inline-block' }}>
-            <a href="/api/auth/logout">Logout</a>
             <Calendar scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal} changeMeal={changeMeal} addMealToScheduledMeal={addMealToScheduledMeal} />
             <LikedMealsList meals={likedMeals} />
         </div>
