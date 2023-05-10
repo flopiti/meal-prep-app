@@ -95,5 +95,17 @@ export const useMeals = () => {
         return await makeRequest(options);
         }   
 
-    return { getMeals, getMeal, createMeal, likeMeal, unlikeMeal, getMealsLike, deleteMeal };
+    const editMeal = async (id: string, meal: any) => {
+        const options = {
+            config: {
+            method: 'PUT',
+            url: `/api/meals/${id}`,
+            data: meal,
+            },
+            authenticated: true,
+        };
+        return await makeRequest(options);
+        }
+        
+    return { getMeals, getMeal, createMeal, likeMeal, unlikeMeal, getMealsLike, deleteMeal, editMeal};
     }
