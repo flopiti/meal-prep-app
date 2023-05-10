@@ -87,12 +87,7 @@ const EditMealForm = ({meal, editMeal, closeForm}:any) => {
         }
         
         if (formValid) {
-            editMeal(meal.id, {mealName, iconUrl, mealIngredients}).then((res:any) => {
-                console.log(res)
-                const id = res.id
-                editMeal({id, mealName, iconUrl, mealIngredients})
-                closeForm();
-            });
+            editMeal(meal.id, {mealName, iconUrl, mealIngredients})
             resetForm();
         }
     }
