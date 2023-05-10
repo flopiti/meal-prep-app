@@ -4,7 +4,7 @@ import axios from "axios";
 import { useMeals } from "@/hooks/useMeals";
 import Image from 'next/image'
 import ModalX from "@/components/ModalX";
-import AddMealForm from "@/components/Modals/AddMealForm";
+import AddMealForm from "@/components/Modals/MealForm";
 
 const MealListAdmin = () => {
 
