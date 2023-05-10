@@ -1,7 +1,7 @@
 import Calendar from "../Calendar";
 import IngredientList from "../IngredientList";
 import LikedMealsList from "../LikedMealsList";
-import { Meals } from "../Meals";
+import { Meals } from "../MealsListSide";
 import styles from "../../styles/WebApp.module.css";
 
 interface WebAppProps {

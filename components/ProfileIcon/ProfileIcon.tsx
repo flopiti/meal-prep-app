@@ -12,7 +12,7 @@ interface ProfileIconProps {
 
 const ProfileIcon = ({ name, picture }: ProfileIconProps) => {
     const [isHovered, setIsHovered] = useState(false);
-    const [timeoutId, setTimeoutId] = useState<number | null>(null);
+    const [timeoutId, setTimeoutId] = useState<any>(null);
 
     const handleMouseEnter = () => {
         if (timeoutId) {
