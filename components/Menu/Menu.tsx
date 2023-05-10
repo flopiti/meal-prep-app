@@ -16,7 +16,7 @@ const Menu = () => {
       >
         <ul>
           <li><Link href={"/api/auth/logout"}>{t('logout')}</Link></li>
-          <li><Link href={"/admin"}>{t('admin')}HE</Link></li>
+          <li><Link href={"/admin"}>{t('admin')}</Link></li>
         </ul>
       </motion.div>
     );
