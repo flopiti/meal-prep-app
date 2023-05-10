@@ -1,0 +1,17 @@
+.profileBox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: blue;
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    border: tomato 2px solid;   
+}
+
+.profileImage{
+    border-radius: 100%;
+}
