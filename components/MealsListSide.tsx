@@ -3,12 +3,10 @@ import ModalX from './ModalX';
 import AddMealForm from './Modals/MealForm';
 import styles from '../styles/MealList.module.css';
 import MealItem from './MealItem';
-
 export const Meals = ({likedMeals,meals, likeMeal, unlikeMeal, setLikedMeals , addMeal, removeMealFromList}:any) => {
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [startIndex, setStartIndex] = useState<number>(0);
-
   const showModal = () => {
     setIsOpen(true);
   };
@@ -47,13 +45,15 @@ export const Meals = ({likedMeals,meals, likeMeal, unlikeMeal, setLikedMeals , a
       {meals.slice(startIndex, startIndex + 10).map((meal:any) => {
         const liked = isMealLiked(meal.id);
         return (
-          <MealItem
+          <div>
+       <MealItem
             removeMealFromList={removeMealFromList}
             key={meal.id}
             meal={meal}
             liked={liked}
             onLikeChange={() => (liked ? unlike(meal.id) : like(meal.id))}
           />
+            </div>
         );
       })}
       <button onClick={scrollUp}>Scroll Up</button>
