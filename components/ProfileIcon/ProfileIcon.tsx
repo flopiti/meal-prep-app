@@ -19,7 +19,6 @@ const ProfileIcon = ({ name, picture }: ProfileIconProps) => {
           clearTimeout(timeoutId);
           setTimeoutId(null);
         }
-        console.log('yup')
         setIsHovered(true);
       };
     
