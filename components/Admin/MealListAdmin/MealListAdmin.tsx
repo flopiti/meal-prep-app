@@ -5,6 +5,7 @@ import Image from 'next/image'
 import ModalX from "@/components/ModalX";
 import EditMealForm from "@/components/Modals/EditMealForm";
 import MealCard from "@/components/MealCard/MealCard";
+import styles from "./MealListAdmin.module.css";
 
 const MealListAdmin = () => {
 
@@ -47,12 +48,14 @@ const MealListAdmin = () => {
         <div>
         {loading && <span>loading...</span>}
         {error && <p>{error}</p>}
-        {
-        
-        meals.map((meal:any)=>(
-            <MealCard meal={meal}/>
-        ))
-        }
+        <div className={styles.adminMealContainer}>
+            {
+            meals.map((meal:any)=>(
+                <MealCard meal={meal}/>
+            ))
+            }   
+        </div>
+
             {/* meals?.map((meal) => (
             <li key={meal.id}>
                 <h3>{meal.mealName}</h3>

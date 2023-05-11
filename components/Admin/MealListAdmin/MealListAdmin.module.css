@@ -1,0 +1,7 @@
+
+.adminMealContainer{
+    border: 1px solid #aa2727;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
