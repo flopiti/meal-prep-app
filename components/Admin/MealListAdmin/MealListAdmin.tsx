@@ -4,6 +4,7 @@ import { useMeals } from "@/hooks/useMeals";
 import Image from 'next/image'
 import ModalX from "@/components/ModalX";
 import EditMealForm from "@/components/Modals/EditMealForm";
+import MealCard from "@/components/MealCard/MealCard";
 
 const MealListAdmin = () => {
 
@@ -40,12 +41,19 @@ const MealListAdmin = () => {
         )
     }, []);
 
+    console.log(meals)
+
     return (
         <div>
         {loading && <span>loading...</span>}
         {error && <p>{error}</p>}
-        <ul>
-            {meals?.map((meal) => (
+        {
+        
+        meals.map((meal:any)=>(
+            <MealCard meal={meal}/>
+        ))
+        }
+            {/* meals?.map((meal) => (
             <li key={meal.id}>
                 <h3>{meal.mealName}</h3>
                 <p>{meal.description}</p>
@@ -62,8 +70,7 @@ const MealListAdmin = () => {
                     <EditMealForm closeForm={()=>setIsOpen} meal={chosenMeal} editMeal={editMealState} />
                 </ModalX>
             </li>
-            ))}
-        </ul>
+            ))} */}
         </div>
     );
     };
