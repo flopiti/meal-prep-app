@@ -10,6 +10,7 @@
     "mock": "json-server --watch db.json --port 3000 --host 0.0.0.0"
   },
   "dependencies": {
+    "@rive-app/react-canvas": "^3.0.46",
     "@auth0/nextjs-auth0": "^2.2.1",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
