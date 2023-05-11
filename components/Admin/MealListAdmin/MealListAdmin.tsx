@@ -30,6 +30,17 @@ const MealListAdmin = () => {
         }
         )
     }
+
+    // write the removemeal function call it deleteMeal and change the state like the editMealState
+    const deleteMealState = async (id:string) => {
+        deleteMeal(id).then((deletedMeal:any) => {
+            setMeals(meals.filter((m) => m.id !== id))
+            setIsOpen(false)
+        }).catch((err:any) => {
+            console.log(err)
+        }
+        )
+    }
     
     useEffect(() => {
         getMeals().then((data:any) => {
@@ -51,29 +62,14 @@ const MealListAdmin = () => {
         <div className={styles.adminMealContainer}>
             {
             meals.map((meal:any)=>(
-                <MealCard meal={meal}/>
+                <MealCard 
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                chosenMeal={chosenMeal}
+                meal={meal} deleteMeal={deleteMealState} editMealState={editMealState} showModal={showModal} setChosenMeal={setChosenMeal}/>
             ))
             }   
         </div>
-
-            {/* meals?.map((meal) => (
-            <li key={meal.id}>
-                <h3>{meal.mealName}</h3>
-                <p>{meal.description}</p>
-                <p>{meal.price}</p>
-                <button onClick={() => deleteMeal(meal.id)}>Delete</button>
-                {
-                    meal.iconUrl ?  <Image src={meal.iconUrl} alt={""} width={100} height={100}/> : <span></span>
-                }
-                <button onClick={() => {
-                    setChosenMeal(meal)
-                    showModal()
-                }}>Edit</button>
-                <ModalX open={isOpen} setOpen={setIsOpen}> 
-                    <EditMealForm closeForm={()=>setIsOpen} meal={chosenMeal} editMeal={editMealState} />
-                </ModalX>
-            </li>
-            ))} */}
         </div>
     );
     };
