@@ -30,13 +30,8 @@ const MealListAdmin = () => {
 
 
     const addMeal = async (meal:any) => {
-        createMeal(meal).then((newMeal:any) => {
             setMeals([...meals, meal])
             setIsAddModalOpen(false)
-        }).catch((err:any) => {
-            console.log(err)
-        }
-        )
     }
 
     const editMealState = async (id:string, meal:any) => {
