@@ -4,14 +4,22 @@ import { useMeals } from "@/hooks/useMeals";
 import Image from 'next/image'
 import ModalX from "@/components/ModalX";
 import EditMealForm from "@/components/Modals/EditMealForm";
+import MealCard from "@/components/MealCard/MealCard";
+import styles from "./MealListAdmin.module.css";
+import AddMealForm from "@/components/Modals/MealForm";
 
 const MealListAdmin = () => {
 
-    const { getMeals, deleteMeal, editMeal} = useMeals();
-    const [isOpen, setIsOpen] = useState<boolean>(false);
-  
-    const showModal = () => {
-      setIsOpen(true);
+    const { getMeals, deleteMeal, editMeal, createMeal} = useMeals();
+    
+    const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
+    const showEditModal = () => {
+        setIsEditModalOpen(true);
+    };
+
+    const [isAddModalOpen, setIsAddModalOpen] = useState<boolean>(false);
+    const showAddModal = () => {
+        setIsAddModalOpen(true);
     };
 
     const [meals, setMeals] = useState<any[]>([]);
@@ -19,10 +27,31 @@ const MealListAdmin = () => {
     const [error, setError] = useState<string | null>(null);
     const [chosenMeal, setChosenMeal] = useState<any>(null);
 
+
+
+    const addMeal = async (meal:any) => {
+        createMeal(meal).then((newMeal:any) => {
+            setMeals([...meals, meal])
+            setIsAddModalOpen(false)
+        }).catch((err:any) => {
+            console.log(err)
+        }
+        )
+    }
+
     const editMealState = async (id:string, meal:any) => {
         editMeal(id, meal).then((editedMeal:any) => {
             setMeals(meals.map((m) => m.id === id ? editedMeal : m))
-            setIsOpen(false)
+            setIsEditModalOpen(false)
+        }).catch((err:any) => {
+            console.log(err)
+        }
+        )
+    }
+
+    const deleteMealState = async (id:string) => {
+        deleteMeal(id).then(() => {
+            setMeals(meals.filter((m) => m.id !== id))
         }).catch((err:any) => {
             console.log(err)
         }
@@ -40,30 +69,27 @@ const MealListAdmin = () => {
         )
     }, []);
 
+    console.log(meals)
+
     return (
         <div>
         {loading && <span>loading...</span>}
         {error && <p>{error}</p>}
-        <ul>
-            {meals?.map((meal) => (
-            <li key={meal.id}>
-                <h3>{meal.mealName}</h3>
-                <p>{meal.description}</p>
-                <p>{meal.price}</p>
-                <button onClick={() => deleteMeal(meal.id)}>Delete</button>
-                {
-                    meal.iconUrl ?  <Image src={meal.iconUrl} alt={""} width={100} height={100}/> : <span></span>
-                }
-                <button onClick={() => {
-                    setChosenMeal(meal)
-                    showModal()
-                }}>Edit</button>
-                <ModalX open={isOpen} setOpen={setIsOpen}> 
-                    <EditMealForm closeForm={()=>setIsOpen} meal={chosenMeal} editMeal={editMealState} />
-                </ModalX>
-            </li>
-            ))}
-        </ul>
+        <div className={styles.adminMealContainer}>
+            {
+            meals.map((meal:any)=>(
+                <MealCard 
+                isOpen={isEditModalOpen}
+                setIsOpen={setIsEditModalOpen}
+                chosenMeal={chosenMeal}
+                meal={meal} deleteMeal={deleteMealState} editMealState={editMealState} showModal={showEditModal} setChosenMeal={setChosenMeal}/>
+            ))
+            }   
+        </div>
+        <button onClick={showAddModal}>+</button>
+        <ModalX open={isAddModalOpen} setOpen={setIsAddModalOpen}> 
+            <AddMealForm closeForm={()=>setIsAddModalOpen} addMeal={addMeal} />
+        </ModalX>
         </div>
     );
     };
