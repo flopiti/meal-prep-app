@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react'
 import styles from '@/styles/Home.module.css'
 import Day from '@/components/Day'
 import useSwipe from '@/hooks/useSwipe';
+import Arrow from '@/public/arrow.svg'
+import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 const Calendar = ({scheduledMeals, scheduleMeal, removeMeal,changeMeal,  addMealToScheduledMeal}:any) => {
 
@@ -38,12 +41,21 @@ const Calendar = ({scheduledMeals, scheduleMeal, removeMeal,changeMeal,  addMeal
   return (
     <div>
       <div className={styles.dayArrows}>
-          <button className={styles.xbutton} onClick={pushOneDateBack}>
-                    BACK
-          </button>
-          <button className={styles.xbutton} onClick={pushOneDateForward}>
-                    NEXT
-          </button>
+          <motion.button
+            whileTap={{ x: -5 }}
+            className={styles.xbutton} 
+            onClick={pushOneDateBack}>
+            <Image src={'arrow.svg'} alt={''} width={40} height={20}/>
+          </motion.button>
+          <motion.button 
+            className={styles.xbutton} 
+            onClick={pushOneDateForward}
+            whileTap={{ x: 5 }}
+            >
+            <Image src={'arrow.svg'} alt={''} width={40} height={20} 
+            style={{transform: 'rotate(180deg)'}}
+            />
+          </motion.button>
       </div>
       <div className={styles.calendar}>
       {
