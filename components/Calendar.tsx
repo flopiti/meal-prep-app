@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
 import styles from '@/styles/Home.module.css'
 import Day from '@/components/Day'
 import useSwipe from '@/hooks/useSwipe';
-import Arrow from '@/public/arrow.svg'
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
