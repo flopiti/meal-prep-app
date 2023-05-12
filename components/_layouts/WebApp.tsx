@@ -24,11 +24,11 @@ interface WebAppProps {
 
 const WebApp = ({scheduleMeal, scheduledMeals, removeMeal,changeMeal, addMealToScheduledMeal, likedMeals, likeMeal, meals, addIngredient, unlikeMeal, setLikedMeals, addMeal, removeMealFromList, deleteIngredient, ingredients}:WebAppProps) => (
     <div className={styles.flexMain}>
-        <div style={{ width: '80%', display: 'inline-block' }}>
+        <div style={{ width: '80%', display: 'inline-block'}}>
             <Calendar scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal} changeMeal={changeMeal} addMealToScheduledMeal={addMealToScheduledMeal} />
             <LikedMealsList meals={likedMeals} />
         </div>
-        <div style={{ width: '20%', display: 'inline-block', height: '96vh'}}>
+        <div style={{ width: '20%', display: 'inline-block', height:'100vh'}}>
             <Meals likedMeals={likedMeals} meals={meals} likeMeal={likeMeal} unlikeMeal={unlikeMeal} setLikedMeals={setLikedMeals} addMeal={addMeal} removeMealFromList={removeMealFromList} />
             <IngredientList ingredients={ingredients} addIngredient={addIngredient} removeIngredient={deleteIngredient} />
         </div>
