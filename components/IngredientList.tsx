@@ -18,7 +18,7 @@ const IngredientList = ({ ingredients, addIngredient, removeIngredient }:any) =>
   }
 
   const scrollDown = () => {
-    if (startIndex + 8 < ingredients.length) {
+    if (startIndex + 7 < ingredients.length) {
       setStartIndex(startIndex + 1);
     }
   }
@@ -29,13 +29,15 @@ const IngredientList = ({ ingredients, addIngredient, removeIngredient }:any) =>
         Ingredients
       </h3>
       <div className="ingredient-list">
-        {ingredients?.slice(startIndex, startIndex + 8).map((ingredient:any) => (
+        {ingredients?.slice(startIndex, startIndex + 7).map((ingredient:any) => (
           <li key={ingredient.id}>{ingredient.ingredientName}<button onClick={()=>removeIngredient(ingredient.id)}>X</button></li>
         ))}
       </div>
-      <button onClick={scrollUp}>Scroll Up</button>
-      <button onClick={scrollDown}>Scroll Down</button>
-      <button onClick={showModal}>+</button>
+      <div className={styles.buttons}>
+        <button onClick={scrollUp}>Scroll Up</button>
+        <button onClick={scrollDown}>Scroll Down</button>
+        <button onClick={showModal}>+</button>
+      </div>
       <ModalX open={isOpen} setOpen={setIsOpen}> 
         <AddIngredientForm closeForm={()=>setIsOpen} addIngredient={addIngredient} />
       </ModalX>
