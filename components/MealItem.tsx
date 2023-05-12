@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../styles/MealList.module.css';
+import LikeAnimation from './LikeAnimation';
 interface MealItemProps {
     meal: any;
     liked: boolean;
@@ -19,18 +20,13 @@ const MealItem: React.FC<MealItemProps> = ({ meal, liked, onLikeChange , removeM
     };
 
     return (
-        <li
+        <div>
+            <li
             className={styles.mealItem}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
             {meal.mealName}
-            <input
-                type="checkbox"
-                className={styles.mealCheckbox}
-                checked={liked}
-                onChange={onLikeChange}
-            />
             {showIngredients && meal.mealIngredients.length > 0 && (
                 <div className={styles.ingredientsBox}>
                     <ul>
@@ -39,8 +35,9 @@ const MealItem: React.FC<MealItemProps> = ({ meal, liked, onLikeChange , removeM
                     </ul>
                 </div>
             )}
-            <button onClick={()=>removeMealFromList(meal.id)}>X</button>
-        </li>
+            </li>
+            <LikeAnimation liked={liked} onLikeChange={onLikeChange}/>
+        </div>
     );
 };
 
