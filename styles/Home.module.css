@@ -25,6 +25,10 @@
 .xbutton{
   height: 3vh;
   float: right;
+  border: none;
+  background-color: transparent;
+  margin: 5px;
+  cursor: pointer;
 }
 
 .dayTitle{
