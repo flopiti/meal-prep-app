@@ -32,7 +32,7 @@ export const Meals = ({likedMeals,meals, likeMeal, unlikeMeal, setLikedMeals , a
   }
 
   const scrollDown = () => {
-    if (startIndex + 10 < meals.length) {
+    if (startIndex + 7 < meals.length) {
       setStartIndex(startIndex + 1);
     }
   }
@@ -42,7 +42,7 @@ export const Meals = ({likedMeals,meals, likeMeal, unlikeMeal, setLikedMeals , a
       <h3 className={styles.subheader}>
         Meals
       </h3>
-      {meals.slice(startIndex, startIndex + 10).map((meal:any) => {
+      {meals.slice(startIndex, startIndex + 7).map((meal:any) => {
         const liked = isMealLiked(meal.id);
         return (
           <div>
@@ -56,9 +56,11 @@ export const Meals = ({likedMeals,meals, likeMeal, unlikeMeal, setLikedMeals , a
             </div>
         );
       })}
-      <button onClick={scrollUp}>Scroll Up</button>
-      <button onClick={scrollDown}>Scroll Down</button>
-      <button onClick={showModal}>+</button>
+      <div className={styles.buttons}>
+        <button onClick={scrollUp}>Scroll Up</button>
+        <button onClick={scrollDown}>Scroll Down</button>
+        <button onClick={showModal}>+</button>
+      </div>
       <ModalX open={isOpen} setOpen={setIsOpen}> 
         <AddMealForm closeForm={()=>setIsOpen} addMeal={addMeal} />
       </ModalX>
