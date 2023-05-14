@@ -28,7 +28,7 @@ const LikedMealsList = ({meals, unlikeMeal, setLikedMeals}:any) => {
                 meals?.map((meal:Meal, index:number) => {
                     return (
                     <span 
-                    key={index}
+                    key={meal.id}
                     draggable
                     onDragStart={()=>handleDragStart(event, index)}
                     className={styles.mealItem}>
