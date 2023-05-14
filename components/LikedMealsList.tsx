@@ -12,10 +12,7 @@ export type Meal = {
 
 const LikedMealsList = ({meals, unlikeMeal, setLikedMeals}:any) => {
 
-    const [isDragging, setIsDragging] = useState(false);
-
     const handleDragStart = (event:any, index:number) => {
-        setIsDragging(true);
         event.dataTransfer.setData('1', meals[index].id);
       };
 
