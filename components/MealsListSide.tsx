@@ -40,7 +40,7 @@ export const Meals = ({likedMeals,meals, likeMeal, unlikeMeal, setLikedMeals , a
   return (
     <div className={styles.mealList}>
       <h3 className={styles.subheader}>
-        Meals
+        Browse new meals
       </h3>
       {meals.slice(startIndex, startIndex + 7).map((meal:any) => {
         const liked = isMealLiked(meal.id);
