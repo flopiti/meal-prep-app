@@ -42,7 +42,7 @@ const MealItem: React.FC<MealItemProps> = ({ meal, liked, onLikeChange , removeM
         >
             <span className={styles.nameAndImage}>
                 {meal.mealName}
-                <Image src={meal.iconUrl} alt={meal.mealName} className={styles.iconSmall} width={40} height={40} />
+                <Image src={meal.iconUrl} alt={''} className={styles.iconSmall} width={40} height={40} />
             </span>
             {showIngredients && meal.mealIngredients.length > 0 && (
                 <div className={styles.ingredientsBox}>
