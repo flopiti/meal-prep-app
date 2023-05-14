@@ -30,7 +30,6 @@ const WebApp = ({scheduleMeal, scheduledMeals, removeMeal,changeMeal, addMealToS
         </div>
         <div style={{ width: '20%', display: 'inline-block', height:'100vh'}}>
             <Meals likedMeals={likedMeals} meals={meals} likeMeal={likeMeal} unlikeMeal={unlikeMeal} setLikedMeals={setLikedMeals} addMeal={addMeal} removeMealFromList={removeMealFromList} />
-            <IngredientList ingredients={ingredients} addIngredient={addIngredient} removeIngredient={deleteIngredient} />
         </div>
     </div>
 );
