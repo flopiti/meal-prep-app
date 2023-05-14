@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styles from '../styles/MealList.module.css';
 import LikeAnimation from './LikeAnimation';
 import Image from 'next/image';
+import XButton from './Utils/Xbutton/Xbutton';
+import { motion } from 'framer-motion';
 interface MealItemProps {
     meal: any;
     liked: boolean;
@@ -20,8 +22,19 @@ const MealItem: React.FC<MealItemProps> = ({ meal, liked, onLikeChange , removeM
         setShowIngredients(false);
     };
 
+    const fadeIn = {
+        initial: { opacity: 0 },
+        animate: { opacity: 1 },
+      };
     return (
         <div className={styles.fullBox}>
+            <motion.div className={styles.buttonContainer}
+                initial={fadeIn.initial}
+                animate={fadeIn.animate}
+                transition={{ duration: 2 }}
+        >
+                <XButton onClick={()=>removeMealFromList(meal.id)}>X</XButton>
+        </motion.div>  
             <li
             className={styles.mealItem}
             onMouseEnter={handleMouseEnter}
