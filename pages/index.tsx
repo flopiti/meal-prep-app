@@ -49,7 +49,6 @@ export default function Home() {
 
   const removeMealFromList = async (id:number) => {
     setMeals(meals.filter((meal:any) => meal.id !== id))
-    deleteMeal(id.toString())
   }
   const deleteIngredient = async (id:number) => {
     removeIngredient(id.toString())
