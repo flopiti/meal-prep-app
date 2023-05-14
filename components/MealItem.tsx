@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from '../styles/MealList.module.css';
 import LikeAnimation from './LikeAnimation';
+import Image from 'next/image';
 interface MealItemProps {
     meal: any;
     liked: boolean;
@@ -20,18 +21,24 @@ const MealItem: React.FC<MealItemProps> = ({ meal, liked, onLikeChange , removeM
     };
 
     return (
-        <div>
+        <div className={styles.fullBox}>
             <li
             className={styles.mealItem}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
-            {meal.mealName}
+            <span className={styles.nameAndImage}>
+                {meal.mealName}
+                <Image src={meal.iconUrl} alt={meal.mealName} className={styles.iconSmall} width={40} height={40} />
+            </span>
             {showIngredients && meal.mealIngredients.length > 0 && (
                 <div className={styles.ingredientsBox}>
                     <ul>
                         {meal.mealIngredients?.map((ingredient: any, index: number) => 
-                        <li key={index}>{ingredient.quantity}{ingredient.unitOfMeasurement} {ingredient.ingredientName}</li>)}
+                        <li key={index}>
+                            {ingredient.quantity}{ingredient.unitOfMeasurement} {ingredient.ingredientName}
+                        </li>)
+                        }
                     </ul>
                 </div>
             )}
