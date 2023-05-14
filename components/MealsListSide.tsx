@@ -25,18 +25,6 @@ export const Meals = ({likedMeals,meals, likeMeal, unlikeMeal, setLikedMeals , a
     unlikeMeal(id);
   }
 
-  const scrollUp = () => {
-    if (startIndex > 0) {
-      setStartIndex(startIndex - 1);
-    }
-  }
-
-  const scrollDown = () => {
-    if (startIndex + 7 < meals.length) {
-      setStartIndex(startIndex + 1);
-    }
-  }
-
   return (
     <div className={styles.mealList}>
       <h3 className={styles.subheader}>
