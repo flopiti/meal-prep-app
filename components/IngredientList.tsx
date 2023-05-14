@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ModalX from "./ModalX";
 import AddIngredientForm from "./Modals/AddIngredientForm";
 import styles from '../styles/IngredientList.module.css';
+import { useIngredients } from "@/hooks/useIngredients";
 
-const IngredientList = ({ ingredients, addIngredient, removeIngredient }:any) => {
+const IngredientList = () => {
+  const {getIngredients, createIngredient, removeIngredient } = useIngredients();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [startIndex, setStartIndex] = useState<number>(0);
+  const [ingredients, setIngredients] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   const showModal = () => {
     setIsOpen(true);
@@ -22,6 +27,21 @@ const IngredientList = ({ ingredients, addIngredient, removeIngredient }:any) =>
       setStartIndex(startIndex + 1);
     }
   }
+
+  const addIngredient = async (ingredient:any) => {
+        setIngredients([...ingredients, ingredient])
+        setIsOpen(false)  
+}
+  useEffect(() => {
+    getIngredients().then((data:any) => {
+        setLoading(false)
+        setIngredients(data)
+    }).catch((err:any) => {
+        setError(err)
+        console.log(err)
+    }
+    )
+}, []);
 
   return (
     <div className={styles.ingredientListBox}>

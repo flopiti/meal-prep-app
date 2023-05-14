@@ -64,8 +64,6 @@ const MealListAdmin = () => {
         )
     }, []);
 
-    console.log(meals)
-
     return (
         <div>
         {loading && <span>loading...</span>}

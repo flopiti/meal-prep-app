@@ -1,6 +1,7 @@
 import styles from '@/styles/Home.module.css'
 import Image from 'next/image'
 import React, { useState } from "react";
+import LikeAnimation from './LikeAnimation';
 
 export type Meal = {
     id: number,
@@ -9,15 +10,18 @@ export type Meal = {
     iconUrl: string,
   }
 
-const LikedMealsList = ({meals}:any) => {
-
-    const [isDragging, setIsDragging] = useState(false);
+const LikedMealsList = ({meals, unlikeMeal, setLikedMeals}:any) => {
 
     const handleDragStart = (event:any, index:number) => {
-        setIsDragging(true);
         event.dataTransfer.setData('1', meals[index].id);
       };
 
+    const unlikeAndRemoveMeal = (id:number) => {
+        unlikeMeal(id).then(() => {
+            setLikedMeals(meals.filter((likedMeal: { id: number; }) => likedMeal.id !== id));
+        }
+        )
+    }
     return (
         <div className={styles.mealList}>
             {
@@ -28,6 +32,9 @@ const LikedMealsList = ({meals}:any) => {
                     draggable
                     onDragStart={()=>handleDragStart(event, index)}
                     className={styles.mealItem}>
+                        <LikeAnimation 
+                            liked={true} 
+                            onLikeChange={()=>unlikeAndRemoveMeal(meal.id)}/>
                         <span>{meal.mealName}</span>
                         {
                             meal.iconUrl ?  <Image className={styles.mealIconSmall}  src={meal.iconUrl} alt="food" width={25} height={25} /> : <span></span>

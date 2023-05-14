@@ -25,30 +25,27 @@ export const Meals = ({likedMeals,meals, likeMeal, unlikeMeal, setLikedMeals , a
     unlikeMeal(id);
   }
 
-  const scrollUp = () => {
-    if (startIndex > 0) {
-      setStartIndex(startIndex - 1);
-    }
-  }
-
-  const scrollDown = () => {
-    if (startIndex + 7 < meals.length) {
-      setStartIndex(startIndex + 1);
-    }
-  }
+  const handleDragStart = (event:any, id:number) => {
+    event.dataTransfer.setData('1', id);
+  };
 
   return (
     <div className={styles.mealList}>
       <h3 className={styles.subheader}>
-        Meals
+        Browse new meals
       </h3>
-      {meals.slice(startIndex, startIndex + 7).map((meal:any) => {
+      {meals
+      .filter((meal:any) => !isMealLiked(meal.id))
+      .slice(startIndex, startIndex + 7).map((meal:any) => {
         const liked = isMealLiked(meal.id);
         return (
-          <div>
-       <MealItem
+          <div
+          key={meal.id} 
+          draggable
+          onDragStart={()=>handleDragStart(event, meal.id)}
+          >
+            <MealItem
             removeMealFromList={removeMealFromList}
-            key={meal.id}
             meal={meal}
             liked={liked}
             onLikeChange={() => (liked ? unlike(meal.id) : like(meal.id))}
@@ -56,14 +53,6 @@ export const Meals = ({likedMeals,meals, likeMeal, unlikeMeal, setLikedMeals , a
             </div>
         );
       })}
-      <div className={styles.buttons}>
-        <button onClick={scrollUp}>Scroll Up</button>
-        <button onClick={scrollDown}>Scroll Down</button>
-        <button onClick={showModal}>+</button>
-      </div>
-      <ModalX open={isOpen} setOpen={setIsOpen}> 
-        <AddMealForm closeForm={()=>setIsOpen} addMeal={addMeal} />
-      </ModalX>
     </div>
   );
 }
