@@ -25,6 +25,10 @@ export const Meals = ({likedMeals,meals, likeMeal, unlikeMeal, setLikedMeals , a
     unlikeMeal(id);
   }
 
+  const handleDragStart = (event:any, id:number) => {
+    event.dataTransfer.setData('1', id);
+  };
+
   return (
     <div className={styles.mealList}>
       <h3 className={styles.subheader}>
@@ -37,6 +41,8 @@ export const Meals = ({likedMeals,meals, likeMeal, unlikeMeal, setLikedMeals , a
         return (
           <div
           key={meal.id} 
+          draggable
+          onDragStart={()=>handleDragStart(event, meal.id)}
           >
             <MealItem
             removeMealFromList={removeMealFromList}
