@@ -35,10 +35,11 @@ export const Meals = ({likedMeals,meals, likeMeal, unlikeMeal, setLikedMeals , a
       .slice(startIndex, startIndex + 7).map((meal:any) => {
         const liked = isMealLiked(meal.id);
         return (
-          <div>
-       <MealItem
+          <div
+          key={meal.id} 
+          >
+            <MealItem
             removeMealFromList={removeMealFromList}
-            key={meal.id}
             meal={meal}
             liked={liked}
             onLikeChange={() => (liked ? unlike(meal.id) : like(meal.id))}
