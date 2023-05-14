@@ -56,14 +56,6 @@ export const Meals = ({likedMeals,meals, likeMeal, unlikeMeal, setLikedMeals , a
             </div>
         );
       })}
-      <div className={styles.buttons}>
-        <button onClick={scrollUp}>Scroll Up</button>
-        <button onClick={scrollDown}>Scroll Down</button>
-        <button onClick={showModal}>+</button>
-      </div>
-      <ModalX open={isOpen} setOpen={setIsOpen}> 
-        <AddMealForm closeForm={()=>setIsOpen} addMeal={addMeal} />
-      </ModalX>
     </div>
   );
 }
