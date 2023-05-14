@@ -30,7 +30,9 @@ export const Meals = ({likedMeals,meals, likeMeal, unlikeMeal, setLikedMeals , a
       <h3 className={styles.subheader}>
         Browse new meals
       </h3>
-      {meals.slice(startIndex, startIndex + 7).map((meal:any) => {
+      {meals
+      .filter((meal:any) => !isMealLiked(meal.id))
+      .slice(startIndex, startIndex + 7).map((meal:any) => {
         const liked = isMealLiked(meal.id);
         return (
           <div>
