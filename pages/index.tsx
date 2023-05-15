@@ -64,7 +64,7 @@ export default function Home() {
 
   return (
     <>
-      <div>
+      <div style={{height: '96vh'  }}>
         {
           isMobile ?
           <MobileApp scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal} />
