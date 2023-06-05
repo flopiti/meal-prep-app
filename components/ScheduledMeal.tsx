@@ -70,10 +70,6 @@ const ScheduledMeal = ({ meal, mealType, day} :any) => {
       };
     return (
         <div className={styles.meal}>
-            <div className={styles.mealType}   
-            >
-                <span>{t(mealType)}</span>
-            </div>
             <motion.div 
                 className={styles.scheduledSpot}
             >
