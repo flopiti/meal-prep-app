@@ -13,22 +13,21 @@ const Day = ({ day, meals , scheduleMeal, removeMeal, addMealToScheduledMeal, ch
         }
     }
     day = new Date(day);
+    day.setMinutes(day.getMinutes() + day.getTimezoneOffset());
     const dayOfWeek = day.toLocaleDateString('en-US', { weekday: 'long' });
-    console.log(dayOfWeek);
     const dayOfMonth = day.getDate();
     const ordinalSuffix = getOrdinalSuffix(dayOfMonth);
     const formattedDate = `${dayOfWeek} ${dayOfMonth}${ordinalSuffix}`;
 
-    return (<div>
-        <div className={styles.date}>
-            {formattedDate}
-        </div>
-        <div
-        className={styles.day}>
-            <ScheduledMeal meal={meals.find((meal:any) => meal.mealType === mealTypes[0]) ? meals.find((meal:any) => meal.mealType === mealTypes[0]) : null} mealType={mealTypes[0]} scheduleMeal={scheduleMeal} day={day} removeMeal={removeMeal} changeMeal={changeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
-            <ScheduledMeal meal={meals.find((meal:any) => meal.mealType === mealTypes[1]) ? meals.find((meal:any) => meal.mealType === mealTypes[1]) : null} mealType={mealTypes[1]} scheduleMeal={scheduleMeal} day={day} removeMeal={removeMeal} changeMeal={changeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
-            <ScheduledMeal meal={meals.find((meal:any) => meal.mealType === mealTypes[2]) ? meals.find((meal:any) => meal.mealType === mealTypes[2]) : null} mealType={mealTypes[2]} scheduleMeal={scheduleMeal} day={day} removeMeal={removeMeal} changeMeal={changeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
-        </div>
+return (<div>
+            <div className={styles.date}>
+                {formattedDate}
+            </div>
+            <div className={styles.day}>
+                <ScheduledMeal meal={meals.find((meal:any) => meal.mealType === mealTypes[0]) ? meals.find((meal:any) => meal.mealType === mealTypes[0]) : null} mealType={mealTypes[0]} scheduleMeal={scheduleMeal} day={day} removeMeal={removeMeal} changeMeal={changeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
+                <ScheduledMeal meal={meals.find((meal:any) => meal.mealType === mealTypes[1]) ? meals.find((meal:any) => meal.mealType === mealTypes[1]) : null} mealType={mealTypes[1]} scheduleMeal={scheduleMeal} day={day} removeMeal={removeMeal} changeMeal={changeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
+                <ScheduledMeal meal={meals.find((meal:any) => meal.mealType === mealTypes[2]) ? meals.find((meal:any) => meal.mealType === mealTypes[2]) : null} mealType={mealTypes[2]} scheduleMeal={scheduleMeal} day={day} removeMeal={removeMeal} changeMeal={changeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
+            </div>
         </div>
     );
     };
