@@ -18,9 +18,9 @@ const Day = ({ day } :any) => {
                 <h1 className={styles.dayTitle}>{dateString===day ? 'Today' : dateStringTomorrow===day ? 'Tomorrow' : '' }</h1>
                 {day}
             </div>
-            <ScheduledMeal meal={mealsOfTheDay.find((meal:any) => meal.mealType === mealTypes[0]) ? scheduledMeals.find((meal:any) => meal.mealType === mealTypes[0]) : null} mealType={mealTypes[0]} day={day} />
-            <ScheduledMeal meal={mealsOfTheDay.find((meal:any) => meal.mealType === mealTypes[1]) ? scheduledMeals.find((meal:any) => meal.mealType === mealTypes[1]) : null} mealType={mealTypes[1]} day={day} />
-            <ScheduledMeal meal={mealsOfTheDay.find((meal:any) => meal.mealType === mealTypes[2]) ? scheduledMeals.find((meal:any) => meal.mealType === mealTypes[2]) : null} mealType={mealTypes[2]} day={day}/>
+            <ScheduledMeal meal={mealsOfTheDay.find((meal:any) => meal.mealType === mealTypes[0]) ? mealsOfTheDay.find((meal:any) => meal.mealType === mealTypes[0]) : null} day={day} mealType={mealTypes[0]}/>
+            <ScheduledMeal meal={mealsOfTheDay.find((meal:any) => meal.mealType === mealTypes[1]) ? mealsOfTheDay.find((meal:any) => meal.mealType === mealTypes[1]) : null} mealType={mealTypes[1]} day={day} />
+            <ScheduledMeal meal={mealsOfTheDay.find((meal:any) => meal.mealType === mealTypes[2]) ? mealsOfTheDay.find((meal:any) => meal.mealType === mealTypes[2]) : null} mealType={mealTypes[2]} day={day}/>
         </div>
     );
     };
