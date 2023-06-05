@@ -20,7 +20,7 @@ const Day = ({ day, meals , scheduleMeal, removeMeal, addMealToScheduledMeal, ch
     const formattedDate = `${dayOfWeek} ${dayOfMonth}${ordinalSuffix}`;
 
     return (<div>
-        <div>
+        <div className={styles.date}>
             {formattedDate}
         </div>
         <div
