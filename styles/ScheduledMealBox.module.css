@@ -14,7 +14,8 @@
 }
 
 .mealChoice{
-    font-family: 'FugazOne', sans-serif;;
+    font-family: 'FugazOne', sans-serif;
+    font-size: 1.5rem;
     overflow: hidden;
     padding: 15px;
     width: 100%;
@@ -29,6 +30,12 @@
     z-index: 1;
     color: white;
   }  
+
+  .mealName{
+    position: relative;
+    z-index: -1;
+    top: -25px;
+  }
 
   .containerMeal {
     display: flex;
