@@ -34,7 +34,7 @@ const ScheduledMealBox = ({mealId, mealName, iconUrl, deleteMeal,scheduledMealId
         </motion.div>  
         <motion.div 
         className={styles.mealChoice}
-        animate={{ backgroundColor: "#28afb0", scale: [0.25, 1] }}
+        animate={{  scale: [0.25, 1] }}
         transition={{ duration: .5, type : "spring", stiffness: 200}}
         >
             <div>
