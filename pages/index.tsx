@@ -8,6 +8,7 @@ import { withPageAuthRequired } from '@auth0/nextjs-auth0'
 import { useIngredients } from '@/hooks/useIngredients'
 import MobileApp from '@/components/_layouts/MobileApp'
 import WebApp from '@/components/_layouts/WebApp'
+import { ScheduledMealProvider } from '@/providers/ScheduledMealContext'
 export default function Home() {
 
   const [isMobile, setIsMobile] = useState(false);
@@ -20,24 +21,9 @@ export default function Home() {
   const { getScheduledMeals } = useScheduledMeals();
   const { getMeals, getMealsLike, likeMeal, unlikeMeal , deleteMeal} = useMeals();
   const {getIngredients, removeIngredient } = useIngredients();
-  const[scheduledMeals, setScheduledMeals] = useState<ScheduledMeal[]>([]);
   const[meals, setMeals] = useState<Meal[]>([]);
   const[likedMeals, setLikedMeals] = useState<Meal[]>([]);
   const[ingredients, setIngredients] = useState<Meal[]>([]);
-
-  const scheduleMeal = async ({id, date, mealType,mealId, mealName, iconUrl, meal2Name, icon2Url }: ScheduledMeal) => {
-    setScheduledMeals([...scheduledMeals, {id, date, mealType,mealId, mealName, iconUrl, meal2Name, icon2Url }])
-  }
-  const removeMeal = async (id:number) => {
-    setScheduledMeals(scheduledMeals.filter((meal:any) => meal.id !== id))
-  }
-  const addMealToScheduledMeal = async ({id, date, mealType, mealId, mealName, iconUrl, meal2Name, icon2Url}: ScheduledMeal) => {
-    setScheduledMeals([...scheduledMeals.filter((meal:any) => meal.date !== date || meal.mealType !== mealType || meal.mealName !== mealName), {id, date, mealType, mealId, mealName, iconUrl, meal2Name, icon2Url } ])
-  }
-
-  const changeMeal = async ({id, date, mealType,mealId, mealName, iconUrl , meal2Name, icon2Url}:any) => {
-    setScheduledMeals([...scheduledMeals.filter((meal:any)  => meal.id !== id), {id, date, mealType,mealId, mealName, iconUrl , meal2Name, icon2Url  } ])
-  }
 
   const addMeal = async (meal:Meal) => {
     setMeals([...meals, meal])
@@ -58,33 +44,21 @@ export default function Home() {
   useEffect(() => {
     getMealsLike().then((data:any) => setLikedMeals(data))
     getMeals().then((data:any) => setMeals(data))
-    getScheduledMeals().then((data:any) =>  setScheduledMeals(data));
     getIngredients().then((data:any) =>  setIngredients(data));
   }, [])  
 
   return (
-    <>
+    <ScheduledMealProvider>
       <div style={{height: '96vh'  }}>
         {
           isMobile ?
-          <MobileApp scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal} />
+          <MobileApp/>
           :
-          <WebApp scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} changeMeal={changeMeal} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal} likedMeals={likedMeals} meals={meals} likeMeal={likeMeal} unlikeMeal={unlikeMeal} setLikedMeals={setLikedMeals} addMeal={addMeal} removeMealFromList={removeMealFromList} ingredients={ingredients} addIngredient={addIngredient} deleteIngredient={deleteIngredient}/>
+          <WebApp likedMeals={likedMeals} meals={meals} likeMeal={likeMeal} unlikeMeal={unlikeMeal} setLikedMeals={setLikedMeals} addMeal={addMeal} removeMealFromList={removeMealFromList} ingredients={ingredients} addIngredient={addIngredient} deleteIngredient={deleteIngredient}/>
         }
       </div>
-    </>
+    </ScheduledMealProvider>
   )
-}
-
-export type ScheduledMeal = {
-  id: number;
-  date: string;
-  mealType: string;
-  mealId: number;
-  mealName: string;
-  iconUrl: string;
-  meal2Name: string;
-  icon2Url: string;
 }
 
 export const getServerSideProps = withPageAuthRequired({

@@ -5,10 +5,6 @@ import { Meals } from "../MealsListSide";
 import styles from "../../styles/WebApp.module.css";
 
 interface WebAppProps {
-    scheduledMeals: any;
-    scheduleMeal: any;
-    removeMeal: any;
-    addMealToScheduledMeal: any;
     likedMeals: any;
     meals: any;
     likeMeal: any;
@@ -19,13 +15,12 @@ interface WebAppProps {
     ingredients: any;
     addIngredient: any;
     deleteIngredient: any;
-    changeMeal: any;
 }
 
-const WebApp = ({scheduleMeal, scheduledMeals, removeMeal,changeMeal, addMealToScheduledMeal, likedMeals, likeMeal, meals, addIngredient, unlikeMeal, setLikedMeals, addMeal, removeMealFromList, deleteIngredient, ingredients}:WebAppProps) => (
+const WebApp = ({likedMeals, likeMeal, meals, unlikeMeal, setLikedMeals, addMeal, removeMealFromList}:WebAppProps) => (
     <div className={styles.flexMain}>
         <div style={{ width: '80%', display: 'inline-block'}}>
-            <Calendar scheduledMeals={scheduledMeals} scheduleMeal={scheduleMeal} removeMeal={removeMeal} changeMeal={changeMeal} addMealToScheduledMeal={addMealToScheduledMeal} />
+            <Calendar/>
             <LikedMealsList meals={likedMeals} unlikeMeal={unlikeMeal} setLikedMeals={setLikedMeals}/>
         </div>
         <div style={{ width: '20%', display: 'inline-block', height:'100vh'}}>
