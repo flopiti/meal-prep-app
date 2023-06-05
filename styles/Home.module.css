@@ -18,6 +18,13 @@
   text-decoration: underline;
 }
 
+@font-face {
+  font-family: 'Galada';
+  src: url('/fonts/Galada-Regular.ttf') format('truetype'); 
+  font-weight: normal;
+  font-style: normal;
+}
+
 .mainLogo{
   margin-left: 10px;
 }
@@ -80,6 +87,12 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+}
+
+.date{
+  display: flex;
+  justify-content: center;
+  font-family: 'Galada', cursive;
 }
 
 .scheduledSpot{
