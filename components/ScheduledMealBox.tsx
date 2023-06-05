@@ -45,7 +45,7 @@ const ScheduledMealBox = ({mealId, mealName, iconUrl, deleteMeal,scheduledMealId
                 }
             }   transition={{delay:.25, duration: .5, stiffness: 100}}
             >
-                {iconUrl ?  <Image src={iconUrl} alt="food" width={64} height={64} /> : <span></span>}
+                {iconUrl ?  <Image src={iconUrl} alt="food" width={84} height={84} /> : <span></span>}
             </motion.div>
             <div className={styles.mealName}>
                 {mealName }
