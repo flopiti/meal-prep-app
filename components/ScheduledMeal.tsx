@@ -8,13 +8,6 @@ import { useState } from 'react';
 import ScheduledMealBox from './ScheduledMealBox';
 import { useScheduledMealContext } from '@/providers/ScheduledMealContext';
 
-export type Meal = {
-    id: number;
-    ingredients: string[];
-    mealName: string;
-    mealId: number;
-};
-
 const ScheduledMeal = ({ meal, mealType, day} :any) => {
 
     const { t } = useTranslation('common')
