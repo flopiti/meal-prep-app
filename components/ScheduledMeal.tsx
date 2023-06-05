@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { useMeals } from '@/hooks/useMeals';
 import { useState } from 'react';
 import ScheduledMealBox from './ScheduledMealBox';
+import { useScheduledMealContext } from '@/providers/ScheduledMealContext';
 
 export type Meal = {
     id: number;
@@ -14,15 +15,14 @@ export type Meal = {
     mealId: number;
 };
 
-const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal, addMealToScheduledMeal, changeMeal } :any) => {
+const ScheduledMeal = ({ meal, mealType, day} :any) => {
 
     const { t } = useTranslation('common')
     const { deleteScheduledMeal, putScheduledMeal } = useScheduledMeals();
     const { getMeal } = useMeals();
-
+    const { removeMeal, changeMeal, scheduleMeal } = useScheduledMealContext();
     const[iconUrl, setIconUrl] = useState<string|null>(null)
     const[mealName, setMealName] = useState<string|null>(null)
-
     if (meal){
         getMeal(meal.mealId).then((res:any) => {
             setIconUrl(res.iconUrl)
@@ -49,26 +49,11 @@ const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal, addMeal
                             mealType: res.mealType,
                             mealId: res.mealId,
                             mealName: meal.mealName, 
-                            iconUrl: meal.iconUrl, 
-                            meal2Name: res.mealName,
-                            icon2Url: res.icon2Url
+                            iconUrl: meal.iconUrl
                         }
                     )
                 })
               });
-        }
-        else if(meal){
-            putScheduledMeal(meal.id,  mealName!, day, mealType, iconUrl, mealId,  iconUrl).then((res:any) => {
-                addMealToScheduledMeal({
-                    mealName: mealName,
-                    date: meal.date,
-                    mealType: meal.mealType,
-                    id: meal.id,
-                    iconUrl: iconUrl,
-                    meal2Name: res.mealName,
-                    icon2Url: res.icon2Url
-                });
-            });
         }
         else{
             postScheduledMeal( day, mealType, mealId).then((res:any) => {

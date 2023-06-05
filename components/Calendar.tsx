@@ -5,13 +5,19 @@ import Day from '@/components/Day'
 import useSwipe from '@/hooks/useSwipe';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { useScheduledMeals } from '@/hooks/useScheduledMeals';
+import { useScheduledMealContext } from '@/providers/ScheduledMealContext';
 
-const Calendar = ({scheduledMeals, scheduleMeal, removeMeal,changeMeal,  addMealToScheduledMeal}:any) => {
+const Calendar = ({}:any) => {
 
   const [isMobile, setIsMobile] = useState(false);
   const [datesToCover, setDatesToCover ]= useState(getDateStrings(new Date));
 
+  const { getScheduledMeals } = useScheduledMeals();
+  const { setScheduledMeals } = useScheduledMealContext();
+
   useEffect(() => {
+    getScheduledMeals().then((data:any) => setScheduledMeals(data))
     if (window.innerWidth < 768) {
       setIsMobile(true);
     }
@@ -60,14 +66,10 @@ const Calendar = ({scheduledMeals, scheduleMeal, removeMeal,changeMeal,  addMeal
       {
         isMobile ? <Day
         key={datesToCover[0]}
-        scheduleMeal={scheduleMeal}
         day={datesToCover[0]}
-        meals={scheduledMeals.filter((meal: any) => meal.date === datesToCover[0])}
-        removeMeal={removeMeal}
-        addMealToScheduledMeal={addMealToScheduledMeal}
       /> : 
         datesToCover.map((day, index) => {
-          return <Day key={index} scheduleMeal={scheduleMeal} day={day} meals={scheduledMeals.filter((meal:any) => meal.date === day)} changeMeal={changeMeal} removeMeal={removeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
+          return <Day key={index} day={day}/>
         })
       }
       </div>
