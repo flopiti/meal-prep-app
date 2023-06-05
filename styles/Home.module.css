@@ -67,6 +67,7 @@
   width: 100%;
   align-items: flex-start;
   flex-direction: row;
+  margin-bottom: 20px;
 }
 
 .dayArrows{
