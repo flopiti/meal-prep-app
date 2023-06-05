@@ -42,7 +42,7 @@
 }
 
 .day{
-  width: 400px;
+  width: 250px;
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -76,7 +76,6 @@
 }
 
 .meal{
-  margin-top: .5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -88,8 +87,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
   min-height: 120px;
 }
 
