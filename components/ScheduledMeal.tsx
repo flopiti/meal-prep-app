@@ -21,11 +21,8 @@ const ScheduledMeal = ({ meal, mealType, day} :any) => {
     const { deleteScheduledMeal, putScheduledMeal } = useScheduledMeals();
     const { getMeal } = useMeals();
     const { removeMeal, changeMeal, scheduleMeal } = useScheduledMealContext();
-
-
     const[iconUrl, setIconUrl] = useState<string|null>(null)
     const[mealName, setMealName] = useState<string|null>(null)
-
     if (meal){
         getMeal(meal.mealId).then((res:any) => {
             setIconUrl(res.iconUrl)
