@@ -21,10 +21,6 @@ const WebApp = ({likedMeals, likeMeal, meals, unlikeMeal, setLikedMeals, addMeal
     <div className={styles.flexMain}>
         <div style={{ width: '80%', display: 'inline-block'}}>
             <Calendar/>
-            <LikedMealsList meals={likedMeals} unlikeMeal={unlikeMeal} setLikedMeals={setLikedMeals}/>
-        </div>
-        <div style={{ width: '20%', display: 'inline-block', height:'100vh'}}>
-            <Meals likedMeals={likedMeals} meals={meals} likeMeal={likeMeal} unlikeMeal={unlikeMeal} setLikedMeals={setLikedMeals} addMeal={addMeal} removeMealFromList={removeMealFromList} />
         </div>
     </div>
 );
