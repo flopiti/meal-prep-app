@@ -17,7 +17,7 @@ interface WebAppProps {
     deleteIngredient: any;
 }
 
-const WebApp = ({likedMeals, likeMeal, meals, addIngredient, unlikeMeal, setLikedMeals, addMeal, removeMealFromList, deleteIngredient, ingredients}:WebAppProps) => (
+const WebApp = ({likedMeals, likeMeal, meals, unlikeMeal, setLikedMeals, addMeal, removeMealFromList}:WebAppProps) => (
     <div className={styles.flexMain}>
         <div style={{ width: '80%', display: 'inline-block'}}>
             <Calendar/>
