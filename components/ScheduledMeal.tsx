@@ -14,7 +14,7 @@ export type Meal = {
     mealId: number;
 };
 
-const ScheduledMeal = ({ meal, mealType , scheduleMeal, day, removeMeal, addMealToScheduledMeal, changeMeal } :any) => {
+const ScheduledMeal = ({ meal, mealType, day} :any) => {
 
     const { t } = useTranslation('common')
     const { deleteScheduledMeal, putScheduledMeal } = useScheduledMeals();
