@@ -7,18 +7,15 @@ const Day = ({ day, meals , scheduleMeal, removeMeal, addMealToScheduledMeal, ch
     const today = new Date();
     const dateString = today.toISOString().slice(0, 10);
     const tomorrow = new Date(today);
-    const mealsShown = 0;
+    const [counter, setCounter] = useState(0);
     tomorrow.setDate(today.getDate() + 1);
     const dateStringTomorrow = tomorrow.toISOString().slice(0, 10);
-    const [elements, setElements] =useState<React.ReactNode[]>([]);
     
-    const addMeal = () => {
-        if (elements.length < 3) {
-          const newElement = <ScheduledMeal meal={meals.find((meal:any) => meal.mealType === mealTypes[elements.length]) ? meals.find((meal:any) => meal.mealType === mealTypes[elements.length]) : null} mealType={mealTypes[elements.length]} scheduleMeal={scheduleMeal} day={day} removeMeal={removeMeal} changeMeal={changeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
-          setElements(prevElements => [...prevElements, newElement]);
+    function addMeal() {
+        if (counter < 3) {
+            setCounter(prevCounter => prevCounter + 1);
         }
-        
-    };
+    }
     return (
         <div
         className={styles.day}>
@@ -27,17 +24,23 @@ const Day = ({ day, meals , scheduleMeal, removeMeal, addMealToScheduledMeal, ch
                 {day}
             </div>
             <div>
-                {elements.map((element, index) => (
-                    <div key={index} className="element">{element}</div>
-                ))}
-                {elements.length < 3 && (
-                    <button onClick={addMeal} disabled={elements.length === 3} >+</button>
+                {counter > 0 && (
+                    <ScheduledMeal meal={meals.find((meal:any) => meal.mealType === mealTypes[0]) ? meals.find((meal:any) => meal.mealType === mealTypes[0]) : null} mealType={mealTypes[0]} scheduleMeal={scheduleMeal} day={day} removeMeal={removeMeal} changeMeal={changeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
+                )}
+                {counter > 1 && (
+                    <ScheduledMeal meal={meals.find((meal:any) => meal.mealType === mealTypes[1]) ? meals.find((meal:any) => meal.mealType === mealTypes[1]) : null} mealType={mealTypes[1]} scheduleMeal={scheduleMeal} day={day} removeMeal={removeMeal} changeMeal={changeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
+                )}
+                {counter > 2 && (
+                    <ScheduledMeal meal={meals.find((meal:any) => meal.mealType === mealTypes[2]) ? meals.find((meal:any) => meal.mealType === mealTypes[2]) : null} mealType={mealTypes[2]} scheduleMeal={scheduleMeal} day={day} removeMeal={removeMeal} changeMeal={changeMeal} addMealToScheduledMeal={addMealToScheduledMeal}/>
+                )}
+                {counter < 3 && (
+                    <button onClick={addMeal} >+</button>
                 )}
                
             </div>
            
             </div>
-    );
+        );
     };
 
 export default Day;
