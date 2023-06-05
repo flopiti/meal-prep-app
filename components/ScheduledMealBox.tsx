@@ -37,9 +37,7 @@ const ScheduledMealBox = ({mealId, mealName, iconUrl, deleteMeal,scheduledMealId
         animate={{  scale: [0.25, 1] }}
         transition={{ duration: .5, type : "spring", stiffness: 200}}
         >
-            <div>
-                {mealName }
-            </div>
+
             <motion.div
                 className={styles.mealIcon}
                 initial={{ y: 150 }}
@@ -49,6 +47,9 @@ const ScheduledMealBox = ({mealId, mealName, iconUrl, deleteMeal,scheduledMealId
             >
                 {iconUrl ?  <Image src={iconUrl} alt="food" width={64} height={64} /> : <span></span>}
             </motion.div>
+            <div className={styles.mealName}>
+                {mealName }
+            </div>
         </motion.div>
         </div>
     )
