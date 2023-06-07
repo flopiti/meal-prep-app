@@ -1,8 +1,13 @@
 import { useMealContext } from "@/providers/MealContext";
+import { useScheduledMealContext } from "@/providers/ScheduledMealContext";
 import styles from '@/styles/ScheduleMealModal.module.css';
 import Image from 'next/image';
 const ScheduleMealModal = ({closeForm} :any) => {
-const {meals} = useMealContext();  
+    const {meals} = useMealContext();  
+    const {scheduleMeal} = useScheduledMealContext();
+
+    
+
     return <div className={styles.box}>
         <div className={styles.meals}>
         {
