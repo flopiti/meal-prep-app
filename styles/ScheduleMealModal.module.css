@@ -15,7 +15,6 @@
     border: none;
     background-color: transparent;
     cursor: pointer;
-    margin-left: 10px;
     margin-right: 10px;
 }
 .hoverArea {
@@ -23,7 +22,6 @@
     top: 0;
     bottom: 0;
     width: 50px;
-    z-index: 1;
 }
 
 .hoverArea.left {
