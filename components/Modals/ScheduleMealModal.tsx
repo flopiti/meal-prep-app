@@ -1,9 +1,23 @@
-const ScheduleMealModal = ({closeForm} :any) => 
-{
-    return <div>
-        hello
+import { useMealContext } from "@/providers/MealContext";
+import styles from '@/styles/ScheduleMealModal.module.css';
+import Image from 'next/image';
+const ScheduleMealModal = ({closeForm} :any) => {
+const {meals} = useMealContext();  
+    return <div className={styles.box}>
+        <div className={styles.meals}>
+        {
+            meals.map((meal:any) => {
+                return <div className={styles.meal}>
+                    <div className={styles.mealName}>{meal.name}</div>
+                    <Image src={meal.iconUrl} alt={''} width={100} height={100}/>
+                
+                </div>
+            }
+            )
+        }
+        </div>
 
-</div>
+    </div>
 }
 
 export default ScheduleMealModal;
