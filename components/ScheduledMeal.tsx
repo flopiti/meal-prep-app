@@ -7,6 +7,8 @@ import { useMeals } from '@/hooks/useMeals';
 import { useState } from 'react';
 import ScheduledMealBox from './ScheduledMealBox';
 import { useScheduledMealContext } from '@/providers/ScheduledMealContext';
+import ModalX from './ModalX';
+import ScheduleMealModal from './Modals/ScheduleMealModal';
 
 const ScheduledMeal = ({ meal, mealType, day} :any) => {
 
@@ -28,7 +30,10 @@ const ScheduledMeal = ({ meal, mealType, day} :any) => {
             removeMeal(meal.id)
         });
     };
-
+    const [isScheduleModalOpen, setIsScheduleModalOpen] = useState<boolean>(false);
+    const showScheduleModal = () => {
+        setIsScheduleModalOpen(true);
+    };
     const { postScheduledMeal } = useScheduledMeals();
 
     const handleDrop = (mealId:any, iconUrl:any, scheduledMealId:any) => {
@@ -63,6 +68,11 @@ const ScheduledMeal = ({ meal, mealType, day} :any) => {
       };
     return (
         <div className={styles.meal}>
+            <button onClick={() => {
+                    showScheduleModal()
+                }}
+                className={styles.mealButton}
+                >
             <motion.div 
                 className={styles.scheduledSpot}
             >
@@ -80,6 +90,12 @@ const ScheduledMeal = ({ meal, mealType, day} :any) => {
                 )
             }
             </motion.div>
+            </button>
+                <ModalX open={isScheduleModalOpen} setOpen={setIsScheduleModalOpen}> 
+                    <ScheduleMealModal closeForm={()=>setIsScheduleModalOpen} meal={meal} editMeal={putScheduledMeal} />
+
+                </ModalX>
+
         </div>
     );
 };
