@@ -92,7 +92,7 @@ const ScheduledMeal = ({ meal, mealType, day} :any) => {
             </motion.div>
             </button>
                 <ModalX open={isScheduleModalOpen} setOpen={setIsScheduleModalOpen}> 
-                    <ScheduleMealModal closeForm={()=>setIsScheduleModalOpen} meal={meal} editMeal={putScheduledMeal} />
+                    <ScheduleMealModal day={day} mealType={mealType} closeForm={()=>setIsScheduleModalOpen(false)} meal={meal} editMeal={putScheduledMeal} />
 
                 </ModalX>
 
