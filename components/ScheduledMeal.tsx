@@ -72,13 +72,15 @@ const ScheduledMeal = ({ meal, mealType, day} :any) => {
       };
     return (
         <div className={styles.meal}>
-            <motion.div className={styles.buttonContainer}
-                initial={fadeIn.initial}
-                animate={fadeIn.animate}
-                transition={{ duration: 2 }}
-            >
-                <XButton onClick={()=>deleteMeal()}>X</XButton>
-        </motion.div>  
+            {
+                meal ? (            <motion.div className={styles.buttonContainer}
+                    initial={fadeIn.initial}
+                    animate={fadeIn.animate}
+                    transition={{ duration: 2 }}
+                >
+                    <XButton onClick={()=>deleteMeal()}>X</XButton>
+                </motion.div> ) : null
+            }
             <button onClick={() => {
                     showScheduleModal()
                 }}
