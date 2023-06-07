@@ -1,0 +1,9 @@
+.box {
+    width: 400px;
+}
+
+.meals{
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
