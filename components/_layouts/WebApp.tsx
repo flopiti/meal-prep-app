@@ -9,7 +9,7 @@ interface WebAppProps {
 
 const WebApp = ({}:WebAppProps) => (
     <div className={styles.flexMain}>
-        <div style={{ width: '80%', display: 'inline-block'}}>
+        <div style={{display: 'inline-block'}}>
             <Calendar/>
         </div>
     </div>
