@@ -1,6 +1,4 @@
-import { ScheduledMeal } from "@/types/ScheduledMealType";
-import { createContext, useState } from "react";
-import { ScheduledMealContext } from "./ScheduledMealContext";
+import { createContext, useContext, useState } from "react";
 import { Meal } from "@/types/Meal";
 import { useIngredients } from "@/hooks/useIngredients";
 import { Ingredient } from "@/components/Modals/MealForm";
@@ -14,6 +12,7 @@ interface MealContextType {
     ingredients: Ingredient[];
     addIngredient: (ingredient:Ingredient) => void;
     deleteIngredient: (id:number) => void; 
+    setMeals: (meals: Meal[]) => void;
 }
 
 export const MealContext = createContext<MealContextType | undefined>(undefined);
@@ -42,10 +41,17 @@ export const MealProvider = ({ children }: any) => {
     }    
   
     return (
-      <MealContext.Provider value={{ likedMeals,  setLikedMeals, meals, addMeal, removeMealFromList, ingredients, addIngredient, deleteIngredient
+      <MealContext.Provider value={{ likedMeals,  setLikedMeals, meals, addMeal, removeMealFromList, ingredients, addIngredient, deleteIngredient, setMeals
       }}>
         {children}
       </MealContext.Provider>
     );
   }
   
+  export const useMealContext = () => {
+    const context = useContext(MealContext);
+    if (context === undefined) {
+      throw new Error('useMealContext must be used within a MealProvider');
+    }
+    return context;
+  }
