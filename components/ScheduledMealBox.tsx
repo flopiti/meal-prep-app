@@ -15,23 +15,13 @@ const ScheduledMealBox = ({mealId, mealName, iconUrl, deleteMeal,scheduledMealId
         event.dataTransfer.setData('3', scheduledMealId);
       };
 
-      const fadeIn = {
-        initial: { opacity: 0 },
-        animate: { opacity: 1 },
-      };
+
     return(
         <div className={styles.containerMeal} 
         key={mealId}
         draggable
         onDragStart={()=>handleDragStart(event, mealId)}
         >                       
-        <motion.div className={styles.buttonContainer}
-        initial={fadeIn.initial}
-        animate={fadeIn.animate}
-        transition={{ duration: 2 }}
-        >
-                <XButton onClick={()=>deleteMeal(mealId)}>X</XButton>
-        </motion.div>  
         <motion.div 
         className={styles.mealChoice}
         animate={{  scale: [0.25, 1] }}
