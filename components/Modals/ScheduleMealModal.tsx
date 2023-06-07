@@ -4,10 +4,12 @@ import { useScheduledMealContext } from "@/providers/ScheduledMealContext";
 import styles from '@/styles/ScheduleMealModal.module.css';
 import Image from 'next/image';
 import { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 const ScheduleMealModal = ({closeForm, day, mealType} :any) => {
     const {meals} = useMealContext();  
     const {scheduleMeal} = useScheduledMealContext();
     const { postScheduledMeal } = useScheduledMeals();
+    const {t} = useTranslation('common');
     const stopScrolling = () => {
         clearInterval(scrollInterval);
     }
@@ -33,11 +35,13 @@ const ScheduleMealModal = ({closeForm, day, mealType} :any) => {
         onMouseOver={() => startScrolling('right')}
         onMouseOut={stopScrolling}
     />
+    <div className={styles.header}>
+        <h2>{t('hungry')}</h2>
+    </div>
     <div ref={mealsRef} className={styles.meals}>
     {
         meals.map((meal:any) => {
             return <div className={styles.meal}>
-                <div className={styles.mealName}>{meal.name}</div>
                 <button onClick={() => {
                     postScheduledMeal(day, mealType, meal.id).then((res:any) => {
                         scheduleMeal({
@@ -54,7 +58,7 @@ const ScheduleMealModal = ({closeForm, day, mealType} :any) => {
                 }
                 className={styles.mealButton}
                 >
-                <Image src={meal.iconUrl} alt={''} width={100} height={100}/>
+                <Image src={meal.iconUrl} alt={''} width={125} height={125}/>
                 </button>
             </div>
         }
