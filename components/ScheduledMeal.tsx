@@ -7,6 +7,9 @@ import { useMeals } from '@/hooks/useMeals';
 import { useState } from 'react';
 import ScheduledMealBox from './ScheduledMealBox';
 import { useScheduledMealContext } from '@/providers/ScheduledMealContext';
+import ModalX from './ModalX';
+import ScheduleMealModal from './Modals/ScheduleMealModal';
+import XButton from './Utils/Xbutton/Xbutton';
 
 const ScheduledMeal = ({ meal, mealType, day} :any) => {
 
@@ -28,9 +31,15 @@ const ScheduledMeal = ({ meal, mealType, day} :any) => {
             removeMeal(meal.id)
         });
     };
-
+    const [isScheduleModalOpen, setIsScheduleModalOpen] = useState<boolean>(false);
+    const showScheduleModal = () => {
+        setIsScheduleModalOpen(true);
+    };
     const { postScheduledMeal } = useScheduledMeals();
-
+    const fadeIn = {
+        initial: { opacity: 0 },
+        animate: { opacity: 1 },
+      };
     const handleDrop = (mealId:any, iconUrl:any, scheduledMealId:any) => {
         if(scheduledMealId){
             putScheduledMeal(scheduledMealId,  mealName!, day, mealType, iconUrl, mealId,  iconUrl).then((res:any) => { 
@@ -63,6 +72,20 @@ const ScheduledMeal = ({ meal, mealType, day} :any) => {
       };
     return (
         <div className={styles.meal}>
+            {
+                meal ? (            <motion.div className={styles.buttonContainer}
+                    initial={fadeIn.initial}
+                    animate={fadeIn.animate}
+                    transition={{ duration: 2 }}
+                >
+                    <XButton onClick={()=>deleteMeal()}>X</XButton>
+                </motion.div> ) : null
+            }
+            <button onClick={() => {
+                    showScheduleModal()
+                }}
+                className={styles.mealButton}
+                >
             <motion.div 
                 className={styles.scheduledSpot}
             >
@@ -80,6 +103,11 @@ const ScheduledMeal = ({ meal, mealType, day} :any) => {
                 )
             }
             </motion.div>
+            </button>
+                <ModalX open={isScheduleModalOpen} setOpen={setIsScheduleModalOpen}> 
+                    <ScheduleMealModal day={day} mealType={mealType} closeForm={()=>setIsScheduleModalOpen(false)} meal={meal} editMeal={putScheduledMeal} />
+                </ModalX>
+
         </div>
     );
 };

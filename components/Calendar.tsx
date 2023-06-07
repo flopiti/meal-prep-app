@@ -7,6 +7,8 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useScheduledMeals } from '@/hooks/useScheduledMeals';
 import { useScheduledMealContext } from '@/providers/ScheduledMealContext';
+import { useMealContext } from '@/providers/MealContext';
+import { useMeals } from '@/hooks/useMeals';
 
 const Calendar = ({}:any) => {
 
@@ -15,12 +17,15 @@ const Calendar = ({}:any) => {
 
   const { getScheduledMeals } = useScheduledMeals();
   const { setScheduledMeals } = useScheduledMealContext();
+  const { getMeals } = useMeals();
+  const { setMeals } = useMealContext();
 
   useEffect(() => {
     getScheduledMeals().then((data:any) => setScheduledMeals(data))
     if (window.innerWidth < 768) {
       setIsMobile(true);
     }
+    getMeals().then((data:any) => setMeals(data))
   }, []);
 
   const pushOneDateForward = () => {

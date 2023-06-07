@@ -1,0 +1,33 @@
+.box {
+    width: 400px;
+}
+
+.meals{
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.mealButton{
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.hoverArea {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+}
+
+.hoverArea.left {
+    left: 0;
+}
+
+.hoverArea.right {
+    right: 0;
+}
