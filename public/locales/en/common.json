@@ -11,5 +11,6 @@
     "submit": "Submit",
     "mealName": "Meal Name",
     "admin": "Admin",
-    "logout": "Logout"
+    "logout": "Logout",
+    "hungry": "What are you hungry for?"
 }

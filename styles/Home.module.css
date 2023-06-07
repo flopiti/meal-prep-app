@@ -17,6 +17,12 @@
   font-weight: 900;
   text-decoration: underline;
 }
+@font-face {
+  font-family: 'FugazOne';
+  src: url('/fonts/FugazOne-Regular.ttf') format('truetype'); 
+  font-weight: normal;
+  font-style: normal;
+}
 
 @font-face {
   font-family: 'Galada';

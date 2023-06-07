@@ -1,5 +1,6 @@
 .box {
-    width: 400px;
+    width: 600px;
+    font-size:20px;
 }
 
 .meals{
@@ -7,6 +8,7 @@
     flex-direction: row;
     overflow: hidden;
     padding: 10px;
+    margin-bottom: 80px;
 }
 
 .mealButton{
