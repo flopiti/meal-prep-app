@@ -70,8 +70,9 @@ const MealListAdmin = () => {
         {error && <p>{error}</p>}
         <div className={styles.adminMealContainer}>
             {
-            meals.map((meal:any)=>(
+            meals.map((meal:any, index:number)=>(
                 <MealCard 
+                key={index}
                 isOpen={isEditModalOpen}
                 setIsOpen={setIsEditModalOpen}
                 chosenMeal={chosenMeal}
