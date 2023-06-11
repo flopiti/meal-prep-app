@@ -95,11 +95,11 @@ export const useMeals = () => {
         return await makeRequest(options);
         }   
 
-    const editMeal = async (id: string, meal: any) => {
+    const editMeal = async (meal: any) => {
         const options = {
             config: {
             method: 'PUT',
-            url: `/api/meals/${id}`,
+            url: `/api/meals/${meal.id}`,
             data: meal,
             },
             authenticated: true,
