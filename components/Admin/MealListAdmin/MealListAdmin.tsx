@@ -1,9 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useMeals } from "@/hooks/useMeals";
-import Image from 'next/image'
 import ModalX from "@/components/ModalX";
-import EditMealForm from "@/components/Modals/EditMealForm";
 import MealCard from "@/components/MealCard/MealCard";
 import styles from "./MealListAdmin.module.css";
 import AddMealForm from "@/components/Modals/MealForm";
@@ -34,9 +32,9 @@ const MealListAdmin = () => {
             setIsAddModalOpen(false)
     }
 
-    const editMealState = async (id:string, meal:any) => {
-        editMeal(id, meal).then((editedMeal:any) => {
-            setMeals(meals.map((m) => m.id === id ? editedMeal : m))
+    const editMealState = async (meal:any) => {
+        editMeal(meal).then((editedMeal:any) => {
+            setMeals(meals.map((m) => m.id === m.id ? editedMeal : m))
             setIsEditModalOpen(false)
         }).catch((err:any) => {
             console.log(err)
