@@ -34,7 +34,7 @@ const MealListAdmin = () => {
 
     const editMealState = async (meal:any) => {
         editMeal(meal).then((editedMeal:any) => {
-            setMeals(meals.map((m) => m.id === m.id ? editedMeal : m))
+            setMeals(meals.map((m) => m.id === editedMeal.id ? editedMeal : m))
             setIsEditModalOpen(false)
         }).catch((err:any) => {
             console.log(err)
