@@ -1,4 +1,3 @@
-import { useMeals } from '@/hooks/useMeals';
 import React, { useEffect, useState } from 'react';
 import styles from '@/styles/AddMealForm.module.css';
 import { useIngredients } from '@/hooks/useIngredients';
@@ -9,7 +8,7 @@ import { Ingredient } from './MealForm';
 const EditMealForm = ({meal, editMeal, closeForm}:any) => {
     const [mealName, setMealName] = useState(meal.mealName);
     const [iconUrl, setIconUrl] = useState(meal.iconUrl);
-    const [mealIngredients, setIngredients] = useState<any>(meal.mealIngredients);
+    const [mealIngredients, setMealIngredients] = useState<any>([]);
     
     const [mealNameError, setMealNameError] = useState(false);
     const [iconUrlError, setIconUrlError] = useState(false);
@@ -31,7 +30,7 @@ const EditMealForm = ({meal, editMeal, closeForm}:any) => {
         } else {
             setIngredientError(false);
         }
-        setIngredients([...mealIngredients, {
+        setMealIngredients([...mealIngredients, {
             ingredientId: selectedIngredient.id,
             ingredientName: selectedIngredient.ingredientName,
             quantity,
@@ -61,7 +60,7 @@ const EditMealForm = ({meal, editMeal, closeForm}:any) => {
     const resetForm = () => {
         setMealName('');
         setIconUrl('');
-        setIngredients([]);
+        setMealIngredients([]);
         setMealNameError(false);
         setIconUrlError(false);
         setIngredientError(false);
@@ -87,12 +86,12 @@ const EditMealForm = ({meal, editMeal, closeForm}:any) => {
         }
         
         if (formValid) {
-            editMeal(meal.id, {mealName, iconUrl, mealIngredients})
+            const ingredients = [...mealIngredients, ...meal.mealIngredients];
+            editMeal( {id: meal.id ,mealName, iconUrl,mealIngredients:ingredients })
             resetForm();
+            closeForm();
         }
     }
-
-    
     return (
         <div className={styles.box}>
             <form onSubmit={handleSubmit} className={styles.formBox}>
@@ -149,7 +148,7 @@ const EditMealForm = ({meal, editMeal, closeForm}:any) => {
 
                 <button type="button" onClick={addIngredient}>Add Ingredient</button>
                 <ul>
-                    {mealIngredients.map((ingredient:any, index:any) => (
+                    {[...mealIngredients, ...meal.mealIngredients].map((ingredient:any, index:any) => (
                         <li key={index}>{ingredient.quantity} {ingredient.unitOfMeasurement} {ingredient.ingredientName}</li>
                     ))}
                 </ul>
