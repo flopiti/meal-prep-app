@@ -8,7 +8,7 @@ import { Ingredient } from '@/types/Ingredient';
 const EditMealForm = ({meal, editMeal, closeForm}:any) => {
     const [mealName, setMealName] = useState(meal.mealName);
     const [iconUrl, setIconUrl] = useState(meal.iconUrl);
-    const [mealIngredients, setMealIngredients] = useState<any>([]);
+    const [mealIngredients, setMealIngredients] = useState<any>(meal.mealIngredients);
     
     const [mealNameError, setMealNameError] = useState(false);
     const [iconUrlError, setIconUrlError] = useState(false);
@@ -86,7 +86,7 @@ const EditMealForm = ({meal, editMeal, closeForm}:any) => {
         }
         
         if (formValid) {
-            const ingredients = [...mealIngredients, ...meal.mealIngredients];
+            const ingredients = [...mealIngredients];
             editMeal( {id: meal.id ,mealName, iconUrl,mealIngredients:ingredients })
             resetForm();
             closeForm();
@@ -152,7 +152,7 @@ const EditMealForm = ({meal, editMeal, closeForm}:any) => {
 
                 <button type="button" onClick={addIngredient}>Add Ingredient</button>
                 <ul>
-                    {[...mealIngredients, ...meal.mealIngredients].map((ingredient:any, index:any) => (
+                    {[...mealIngredients].map((ingredient:any, index:any) => (
                         <li key={index}>{ingredient.quantity} {ingredient.unitOfMeasurement} {ingredient.ingredientName}</li>
                     ))}
                 </ul>
