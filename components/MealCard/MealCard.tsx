@@ -1,5 +1,5 @@
 import ModalX from '../ModalX';
-import EditMealForm from '../Modals/EditMealForm';
+import MealForm from '../Modals/MealForm';
 import styles from './MealCard.module.css';
 import Image from 'next/image'
 
@@ -14,7 +14,7 @@ const MealCard = ({meal, setChosenMeal, showModal, editMealState, deleteMeal, is
                     showModal()
                 }}>Edit</button>
                 <ModalX open={isOpen} setOpen={setIsOpen}> 
-                    <EditMealForm closeForm={()=>setIsOpen} meal={chosenMeal} editMeal={editMealState} />
+                    <MealForm closeForm={() => setIsOpen} meal={chosenMeal} editMeal={editMealState} addMeal={undefined} />
                 </ModalX>
         </div>
     );
