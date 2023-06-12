@@ -3,7 +3,7 @@ import styles from '@/styles/AddMealForm.module.css';
 import { useIngredients } from '@/hooks/useIngredients';
 import { Autocomplete, TextField } from '@mui/material';
 import { MenuItem, FormControl, InputLabel, Select } from '@mui/material';
-import { Ingredient } from './AddMealForm';
+import { Ingredient } from '@/types/Ingredient';
 
 const EditMealForm = ({meal, editMeal, closeForm}:any) => {
     const [mealName, setMealName] = useState(meal.mealName);

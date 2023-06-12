@@ -4,10 +4,8 @@ import styles from '@/styles/AddMealForm.module.css';
 import { useIngredients } from '@/hooks/useIngredients';
 import { Autocomplete, TextField } from '@mui/material';
 import { MenuItem, FormControl, InputLabel, Select } from '@mui/material';
-export interface Ingredient {
-    id: number;
-    ingredientName: string;
-}
+import { Ingredient } from '@/types/Ingredient';
+
 const AddMealForm = ({closeForm, addMeal}:any) => {
     const [mealName, setMealName] = useState('');
     const [iconUrl, setIconUrl] = useState('');
@@ -16,7 +14,7 @@ const AddMealForm = ({closeForm, addMeal}:any) => {
     const [mealNameError, setMealNameError] = useState(false);
     const [iconUrlError, setIconUrlError] = useState(false);
     const [ingredientError, setIngredientError] = useState(false);
-    const {getIngredients,getIngredient, createIngredient } = useIngredients();
+    const {getIngredients} = useIngredients();
     const [allIngredients, setAllIngredients] = useState<Ingredient[]>([]);
     const [selectedIngredient, setSelectedIngredient] = useState<any>(null);
     const [quantity, setQuantity] = useState(0);
