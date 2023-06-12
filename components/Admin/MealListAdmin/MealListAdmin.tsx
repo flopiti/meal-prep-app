@@ -4,7 +4,7 @@ import { useMeals } from "@/hooks/useMeals";
 import ModalX from "@/components/ModalX";
 import MealCard from "@/components/MealCard/MealCard";
 import styles from "./MealListAdmin.module.css";
-import AddMealForm from "@/components/Modals/MealForm";
+import AddMealForm from "@/components/Modals/AddMealForm";
 
 const MealListAdmin = () => {
 
