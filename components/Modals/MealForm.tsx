@@ -8,9 +8,9 @@ import { Autocomplete, FormControl, InputLabel, MenuItem, Select, TextField } fr
 
 interface MealFormProps {
     meal: Meal | null;
-    addMeal : any;
-    editMeal : any;
-    closeForm: any;
+    addMeal: ((meal: Meal) => Promise<void>) | null;
+    editMeal: ((meal: Meal) => Promise<void>)| null;
+    closeForm: () => void;
 }
 
 const MealForm = ({meal, addMeal, editMeal, closeForm}:MealFormProps) => {
@@ -78,12 +78,11 @@ const MealForm = ({meal, addMeal, editMeal, closeForm}:MealFormProps) => {
         }
         
         if (formValid) {
-            if(meal){
+            if(meal && editMeal){
                 editMeal( {id: meal.id ,mealName, iconUrl,mealIngredients })
             }
-            else{
-                addMeal({mealName, iconUrl, mealIngredients})
-
+            else if(addMeal){
+                addMeal({id: null, mealName, iconUrl, mealIngredients})
             }
             closeForm();
             resetForm();
@@ -171,7 +170,12 @@ const MealForm = ({meal, addMeal, editMeal, closeForm}:MealFormProps) => {
                 <button type="button" onClick={addIngredient}>Add Ingredient</button>
                 <ul>
                     {mealIngredients.map((ingredient:any, index:any) => (
-                        <li key={index}>{ingredient.quantity} {ingredient.unitOfMeasurement} {ingredient.ingredientName}</li>
+                        <li key={index} className={styles.ingredientItem}>
+                            <span>
+                                {ingredient.quantity} {ingredient.unitOfMeasurement} {ingredient.ingredientName}
+                            </span>
+                            <button type="button" className={styles.removeIngredientButton} onClick={() => setMealIngredients(mealIngredients.filter((_, i) => i !== index))}>X</button>
+                        </li>
                     ))}
                 </ul>
                 <button type="submit">Submit</button>
