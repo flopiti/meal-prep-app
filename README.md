@@ -31,3 +31,9 @@ If you want to run the front-end connected a back-end also running locally, you 
 ```
 docker compose -f docker-compose.dev.yml -f docker-compose.local-backend.yml up --build
 ```
+
+## Screen mock ups
+
+<img width="867" alt="Screenshot 2023-06-12 at 2 40 31 PM" src="https://github.com/flopiti/meal-prep-app/assets/72895761/226c79cb-ffbc-4191-9ca8-7c5d07bbf1bb">
+<img width="864" alt="Screenshot 2023-06-12 at 2 41 06 PM" src="https://github.com/flopiti/meal-prep-app/assets/72895761/3d637b5a-90b9-4c33-815a-aa4bb6bd7179">
+<img width="878" alt="Screenshot 2023-06-12 at 2 41 24 PM" src="https://github.com/flopiti/meal-prep-app/assets/72895761/14a2c36e-e996-4839-a711-c1a075d9c8b1">
