@@ -5,6 +5,7 @@ import ModalX from "@/components/ModalX";
 import MealCard from "@/components/MealCard/MealCard";
 import styles from "./MealListAdmin.module.css";
 import MealForm from "@/components/Modals/MealForm";
+import { Meal } from "@/types/Meal";
 
 const MealListAdmin = () => {
 
@@ -81,7 +82,7 @@ const MealListAdmin = () => {
         </div>
         <button onClick={showAddModal}>+</button>
         <ModalX open={isAddModalOpen} setOpen={setIsAddModalOpen}> 
-            <MealForm closeForm={() => setIsAddModalOpen} addMeal={createMealState} meal={null} editMeal={null} />
+            <MealForm closeForm={() => setIsAddModalOpen} addMeal={createMealState} meal={null} editMeal={null}/>
         </ModalX>
         </div>
     );
