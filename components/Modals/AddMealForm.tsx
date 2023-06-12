@@ -9,16 +9,18 @@ import { Ingredient } from '@/types/Ingredient';
 const AddMealForm = ({closeForm, addMeal}:any) => {
     const [mealName, setMealName] = useState('');
     const [iconUrl, setIconUrl] = useState('');
-    const [ingredient, setIngredient] = useState<any>('');
     const [mealIngredients, setIngredients] = useState<any>([]);
-    const [mealNameError, setMealNameError] = useState(false);
-    const [iconUrlError, setIconUrlError] = useState(false);
-    const [ingredientError, setIngredientError] = useState(false);
-    const {getIngredients} = useIngredients();
+
     const [allIngredients, setAllIngredients] = useState<Ingredient[]>([]);
     const [selectedIngredient, setSelectedIngredient] = useState<any>(null);
     const [quantity, setQuantity] = useState(0);
     const [unitOfMeasurement, setUnitOfMeasurement] = useState('g');
+
+    const [mealNameError, setMealNameError] = useState(false);
+    const [iconUrlError, setIconUrlError] = useState(false);
+    const [ingredientError, setIngredientError] = useState(false);
+
+    const {getIngredients} = useIngredients();
 
     useEffect(() => {
         getIngredients().then((data:Ingredient[]) =>  setAllIngredients(data));
@@ -61,7 +63,6 @@ const AddMealForm = ({closeForm, addMeal}:any) => {
     const resetForm = () => {
         setMealName('');
         setIconUrl('');
-        setIngredient('');
         setIngredients([]);
         setMealNameError(false);
         setIconUrlError(false);
@@ -86,11 +87,8 @@ const AddMealForm = ({closeForm, addMeal}:any) => {
         }
         
         if (formValid) {
-            createMeal({mealName, iconUrl, mealIngredients}).then((res) => {
-                const id = res.id
-                addMeal({id, mealName, iconUrl, mealIngredients})
-                closeForm();
-            });
+            addMeal({mealName, iconUrl, mealIngredients})
+            closeForm();
             resetForm();
         }
     }
