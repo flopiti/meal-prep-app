@@ -136,6 +136,7 @@ const AddMealForm = ({closeForm, addMeal}:any) => {
                                 <MenuItem value="ml">ml</MenuItem>
                                 <MenuItem value="unit">unit</MenuItem>
                                 <MenuItem value="tsp">tsp</MenuItem>
+                                <MenuItem value="tbsp">tsp</MenuItem>
                             </Select>
                         </FormControl>  
                         <Autocomplete
