@@ -14,7 +14,7 @@ const MealCard = ({meal, setChosenMeal, showModal, editMealState, deleteMeal, is
                     showModal()
                 }}>Edit</button>
                 <ModalX open={isOpen} setOpen={setIsOpen}> 
-                    <MealForm closeForm={() => setIsOpen} meal={chosenMeal} editMeal={editMealState} addMeal={undefined} />
+                    <MealForm closeForm={() => setIsOpen} meal={chosenMeal} editMeal={editMealState} addMeal={null} />
                 </ModalX>
         </div>
     );

@@ -1,9 +1,8 @@
 import { MealIngredient } from "./MealIngredient";
 
 export type Meal = {
-    id: number;
+    id: number | null;
     mealName: string;
-    mealId: number;
     iconUrl: string;
     mealIngredients: MealIngredient[];
 };
