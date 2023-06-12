@@ -4,7 +4,7 @@ import { useMeals } from "@/hooks/useMeals";
 import ModalX from "@/components/ModalX";
 import MealCard from "@/components/MealCard/MealCard";
 import styles from "./MealListAdmin.module.css";
-import AddMealForm from "@/components/Modals/MealForm";
+import MealForm from "@/components/Modals/MealForm";
 
 const MealListAdmin = () => {
 
@@ -26,10 +26,11 @@ const MealListAdmin = () => {
     const [chosenMeal, setChosenMeal] = useState<any>(null);
 
 
-
-    const addMeal = async (meal:any) => {
+    const createMealState = async (meal:any) => {
+        createMeal(meal).then((meal)=>{
             setMeals([...meals, meal])
             setIsAddModalOpen(false)
+        })
     }
 
     const editMealState = async (meal:any) => {
@@ -80,7 +81,7 @@ const MealListAdmin = () => {
         </div>
         <button onClick={showAddModal}>+</button>
         <ModalX open={isAddModalOpen} setOpen={setIsAddModalOpen}> 
-            <AddMealForm closeForm={()=>setIsAddModalOpen} addMeal={addMeal} />
+            <MealForm closeForm={() => setIsAddModalOpen} addMeal={createMealState} meal={null} editMeal={null} />
         </ModalX>
         </div>
     );

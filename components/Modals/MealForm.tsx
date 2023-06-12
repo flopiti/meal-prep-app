@@ -1,47 +1,38 @@
-import { useMeals } from '@/hooks/useMeals';
-import React, { useEffect, useState } from 'react';
-import styles from '@/styles/AddMealForm.module.css';
-import { useIngredients } from '@/hooks/useIngredients';
-import { Autocomplete, TextField } from '@mui/material';
-import { MenuItem, FormControl, InputLabel, Select } from '@mui/material';
-export interface Ingredient {
-    id: number;
-    ingredientName: string;
+import { useIngredients } from "@/hooks/useIngredients";
+import { Ingredient } from "@/types/Ingredient";
+import { Meal } from "@/types/Meal";
+import { MealIngredient } from "@/types/MealIngredient";
+import { useEffect, useState } from "react";
+import styles from '@/styles/MealForm.module.css';
+import { Autocomplete, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+
+interface MealFormProps {
+    meal: Meal | null;
+    addMeal : any;
+    editMeal : any;
+    closeForm: any;
 }
-const AddMealForm = ({closeForm, addMeal}:any) => {
-    const [mealName, setMealName] = useState('');
-    const [iconUrl, setIconUrl] = useState('');
-    const [ingredient, setIngredient] = useState<any>('');
-    const [mealIngredients, setIngredients] = useState<any>([]);
+
+const MealForm = ({meal, addMeal, editMeal, closeForm}:MealFormProps) => {
+    const {getIngredients} = useIngredients();
+
+    const [mealName, setMealName] = useState<string>(meal ? meal.mealName : '');
+    const [iconUrl, setIconUrl] = useState<string>(meal ? meal.iconUrl : '');
+    const [mealIngredients, setMealIngredients] = useState<MealIngredient[]>(meal ? meal.mealIngredients : []);
+    const [allIngredients, setAllIngredients] = useState<Ingredient[]>([]);
+
+    const [selectedIngredient, setSelectedIngredient] = useState<Ingredient|null>(null);
+    const [selectedQuantity, setSelectedQuantity] = useState(0);
+    const [selectedUnitOfMeasurement, setSelectedUnitOfMeasurement] = useState('g');
+    
     const [mealNameError, setMealNameError] = useState(false);
     const [iconUrlError, setIconUrlError] = useState(false);
     const [ingredientError, setIngredientError] = useState(false);
-    const {getIngredients,getIngredient, createIngredient } = useIngredients();
-    const [allIngredients, setAllIngredients] = useState<Ingredient[]>([]);
-    const [selectedIngredient, setSelectedIngredient] = useState<any>(null);
-    const [quantity, setQuantity] = useState(0);
-    const [unitOfMeasurement, setUnitOfMeasurement] = useState('g');
 
     useEffect(() => {
         getIngredients().then((data:Ingredient[]) =>  setAllIngredients(data));
-      }, [])  
+    }, [])
     
-      const addIngredient = () => {
-        if (!selectedIngredient || mealIngredients.includes(selectedIngredient.ingredientName)) {
-            setIngredientError(true);
-            return;
-        } else {
-            setIngredientError(false);
-        }
-        setIngredients([...mealIngredients, {
-            ingredientId: selectedIngredient.id,
-            ingredientName: selectedIngredient.ingredientName,
-            quantity,
-            unitOfMeasurement
-        }]);
-        setSelectedIngredient(null);
-    };
-
     const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement> ) => {
         if (event.key === 'Enter') {
             if (event.target instanceof HTMLInputElement && event.target.id === 'ingredientInput') {
@@ -63,8 +54,7 @@ const AddMealForm = ({closeForm, addMeal}:any) => {
     const resetForm = () => {
         setMealName('');
         setIconUrl('');
-        setIngredient('');
-        setIngredients([]);
+        setMealIngredients([]);
         setMealNameError(false);
         setIconUrlError(false);
         setIngredientError(false);
@@ -88,26 +78,47 @@ const AddMealForm = ({closeForm, addMeal}:any) => {
         }
         
         if (formValid) {
-            createMeal({mealName, iconUrl, mealIngredients}).then((res) => {
-                const id = res.id
-                addMeal({id, mealName, iconUrl, mealIngredients})
-                closeForm();
-            });
+            if(meal){
+                editMeal( {id: meal.id ,mealName, iconUrl,mealIngredients })
+            }
+            else{
+                addMeal({mealName, iconUrl, mealIngredients})
+
+            }
+            closeForm();
             resetForm();
         }
     }
 
-    const {createMeal} = useMeals();
-    
-    return (
-        <div className={styles.box}>
-            <form onSubmit={handleSubmit} className={styles.formBox}>
-                <div className={styles.colRow}>
-                    <label>
-                        Meal Name: 
-                    </label>
-                    <input type="text" value={mealName} onChange={(event)=>setMealName(event.target.value)} />
-                    {mealNameError && <span style={{color: 'red'}}>Meal name is required</span>}
+    const addIngredient = () => {
+        if (!selectedIngredient) {
+            setIngredientError(true);
+            return;
+        } 
+        setIngredientError(false);
+        setMealIngredients([
+            ...mealIngredients, 
+            {
+                id: null,
+                ingredientId: selectedIngredient.id,
+                ingredientName: selectedIngredient.ingredientName,
+                quantity: selectedQuantity,
+                unitOfMeasurement: selectedUnitOfMeasurement
+            }
+        ]);
+        setSelectedIngredient(null);
+        setSelectedQuantity(0);
+        setSelectedUnitOfMeasurement('g');
+    };
+
+    return <div className={styles.box}>
+        <form onSubmit={handleSubmit} className={styles.formBox}>
+        <div className={styles.colRow}>
+                <label>
+                    Meal Name: 
+                </label>
+                <input type="text" value={mealName} onChange={(event)=>setMealName(event.target.value)} />
+                {mealNameError && <span style={{color: 'red'}}>Meal name is required</span>}
                 </div>
                 <div className={styles.colRow}>
                     <label>
@@ -121,16 +132,16 @@ const AddMealForm = ({closeForm, addMeal}:any) => {
                         Ingredients
                     </label>
                     <div className={styles.ingredientForm}>
-                        <input className={styles.qtyStyle} type="text" id="quantity" value={quantity} onChange={(event)=>setQuantity(Number(event.target.value))}/>
+                        <input className={styles.qtyStyle} type="text" id="quantity" value={selectedQuantity} onChange={(event)=>setSelectedQuantity(Number(event.target.value))}/>
                         <FormControl fullWidth variant="standard" sx={{ marginBottom: 2, width: 50 , display: 'inline-block' }}>
                             <InputLabel id="unitOfMeasurement-label">Unit of Measurement</InputLabel>
                             <Select
                                 sx={{ width: 50 , display: 'inline-block'}}
                                 labelId="unitOfMeasurement-label"
                                 id="unitOfMeasurement"
-                                value={unitOfMeasurement}
+                                value={selectedUnitOfMeasurement}
                                 label="Unit of Measurement"
-                                onChange={(event) => setUnitOfMeasurement(event.target.value)}
+                                onChange={(event) => setSelectedUnitOfMeasurement(event.target.value)}
                             >
                                 <MenuItem value="g">g</MenuItem>
                                 <MenuItem value="ml">ml</MenuItem>
@@ -164,9 +175,10 @@ const AddMealForm = ({closeForm, addMeal}:any) => {
                     ))}
                 </ul>
                 <button type="submit">Submit</button>
-            </form>
-        </div>
-    );
-};
+        </form>
 
-export default AddMealForm;
+    </div>
+    
+}
+
+export default MealForm;
