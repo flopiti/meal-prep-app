@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { Meal } from "@/types/Meal";
 import { useIngredients } from "@/hooks/useIngredients";
-import { Ingredient } from "@/components/Modals/AddMealForm";
+import { Ingredient } from "@/types/Ingredient";
 
 interface MealContextType {
     likedMeals : Meal[];
