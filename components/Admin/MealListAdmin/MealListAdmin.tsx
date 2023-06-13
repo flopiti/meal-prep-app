@@ -26,16 +26,15 @@ const MealListAdmin = () => {
     const [error, setError] = useState<string | null>(null);
     const [chosenMeal, setChosenMeal] = useState<any>(null);
 
-
-    const createMealState = async (meal:any) => {
-        createMeal(meal).then((meal)=>{
-            setMeals([...meals, meal])
+    const createMealState = async (meal:Meal) => {
+        createMeal(meal).then((returnedMeal:Meal)=>{
+            setMeals([...meals, returnedMeal])
             setIsAddModalOpen(false)
         })
     }
 
-    const editMealState = async (meal:any) => {
-        editMeal(meal).then((editedMeal:any) => {
+    const editMealState = async (meal:Meal) => {
+        editMeal(meal).then((editedMeal:Meal) => {
             setMeals(meals.map((m) => m.id === editedMeal.id ? editedMeal : m))
             setIsEditModalOpen(false)
         }).catch((err:any) => {
