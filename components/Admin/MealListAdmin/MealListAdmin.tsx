@@ -28,7 +28,8 @@ const MealListAdmin = () => {
 
 
     const createMealState = async (meal:any) => {
-        createMeal(meal).then((meal)=>{
+        createMeal(meal).then((returnedMeal)=>{
+            console.log(returnedMeal)
             setMeals([...meals, meal])
             setIsAddModalOpen(false)
         })
