@@ -9,11 +9,17 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
     try {
         console.log('about to call')
       const response = await axios.post(
-        'https://api.openai.com/v1/completions',
+        'https://api.openai.com/v1/chat/completions',
+        
         {
-            model: "text-davinci-003",
-          prompt,
-          max_tokens: 400,
+          model: "gpt-4",
+          messages: [
+            {
+              role: "system",
+              content: prompt
+            }
+          ],
+          max_tokens: 800,
         },
         {
           headers: {
@@ -22,8 +28,8 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
           },
         }
       );
-      console.log(response.data.choices[0].text)
-      res.status(200).json(response.data.choices[0].text);
+      console.log(response.data.choices[0].message.content)
+      res.status(200).json(response.data.choices[0].message.content);
     } catch (error) {
       res.status(500).json({ error: 'Error communicating with OpenAI API' });
     }
