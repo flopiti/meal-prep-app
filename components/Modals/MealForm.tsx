@@ -171,20 +171,15 @@ const MealForm = ({meal, addMeal, editMeal, closeForm}:MealFormProps) => {
             unitOfMeasurement: string;
         } 
         
-        please provide me with the the json for the meal : ${mealName} by creating a
-        of ingredient and quantities (mealIngredients). `;
-
-        console.log(prompt)
+        Please provide me with ONLY the the json for the meal : ${mealName} by creating a recipe
+        of ingredient and quantities (mealIngredients). Make sure it's a valid json object.
+        Make sure to leave the id to null for each mealIngredient.
+        `;
         AskChat(prompt).then((data:any) => {
-            console.log(typeof data )
             data = JSON.parse(data);
-            console.log(data.mealIngredients);
-            const meal: Meal = data as Meal; // This is the type assertion
-            console.log(meal.mealIngredients);
-            //take this json and convert it to a meal object
-            //setMealName(data.mealName);
+            const meal: Meal = data as Meal; 
 
-            setMealIngredients(data.mealIngredients); 
+            setMealIngredients(meal.mealIngredients); 
         }).catch((error) => {
             console.log(error);
         }
