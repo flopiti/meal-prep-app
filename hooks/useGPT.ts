@@ -1,26 +1,32 @@
 import axios from "axios";
+import { useState } from 'react';
 
 export const useGPT = () => {
-    const makeRequest = async (options:any) => {  
-        try {
-          if (options.authenticated) {
-            options.config.headers = {
-              ...options.config.headers,
-            };
-          }
-          const response = await axios(options.config);
-          const { data } = response;
-          return data;
-        } catch (error:any) {
-          if (axios.isAxiosError(error) && error.response) {
-            console.log('error')
-            return error.response.data;
-          }
-          return error.message;
-        }
-          };
+    const [isLoading, setIsLoading] = useState(false);
 
-        const AskChat = async (prompt: string) => {
+    const makeRequest = async (options:any) => {
+        setIsLoading(true);
+        try {
+            if (options.authenticated) {
+                options.config.headers = {
+                    ...options.config.headers,
+                };
+            }
+            const response = await axios(options.config);
+            const { data } = response;
+            setIsLoading(false);
+            return data;
+        } catch (error:any) {
+            setIsLoading(false);
+            if (axios.isAxiosError(error) && error.response) {
+                console.log('error')
+                return error.response.data;
+            }
+            return error.message;
+        }
+    };
+
+    const AskChat = async (prompt: string) => {
         const options = {
             config: {
                 method: 'POST',
@@ -40,6 +46,5 @@ export const useGPT = () => {
             throw error;  // Or handle error as needed
         }
     }
-    return { AskChat };
+    return { AskChat, isLoading };
 };
-
