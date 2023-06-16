@@ -1,3 +1,4 @@
+import { Meal } from "@/types/Meal";
 import axios from "axios";
 
 export const useMeals = () => {
@@ -39,18 +40,7 @@ export const useMeals = () => {
         };
         return await makeRequest(options);
         }
-    const createMeal = async (meal:any) => { 
-        const options = {
 
-            config: {
-            method: 'POST',
-            url: `/api/meals`,
-            data: meal,
-            },
-            authenticated: true,
-        };
-        return await makeRequest(options);
-        }
     const likeMeal  = async (id:number) => {
         const options = {
             config: {
@@ -95,17 +85,89 @@ export const useMeals = () => {
         return await makeRequest(options);
         }   
 
-    const editMeal = async (meal: any) => {
-        const options = {
-            config: {
-            method: 'PUT',
-            url: `/api/meals/${meal.id}`,
-            data: meal,
-            },
-            authenticated: true,
-        };
-        return await makeRequest(options);
-        }
-        
+        const createMeal = async (meal:Meal) => {
+            const ingredientPromises = meal.mealIngredients.map((mealIngredient) => {
+              const option = {
+                config: {
+                  method: 'GET',
+                  url: `/api/ingredients?name=${mealIngredient.ingredientName}`,
+                },
+                authenticated: true,
+              }
+          
+              return makeRequest(option).then((ingredients) => {
+                if (ingredients.length === 0) {
+                  const option = {
+                    config: {
+                      method: 'POST',
+                      url: `/api/ingredients`,
+                      data: {id:mealIngredient.id ,name: mealIngredient.ingredientName},
+                    },
+                    authenticated: true,
+                  }
+                  return makeRequest(option).then((ingredient) => {
+                    mealIngredient.ingredientId = ingredient.id;
+                  })
+                } else {
+                  mealIngredient.ingredientId = ingredients[0].id;
+                }
+              })
+            });
+          
+            await Promise.all(ingredientPromises);
+          
+            const options = {
+              config: {
+                method: 'POST',
+                url: `/api/meals`,
+                data: meal,
+              },
+              authenticated: true,
+            };
+            return await makeRequest(options);
+          }
+          
+          const editMeal = async (meal: any) => {
+            const ingredientPromises = meal.mealIngredients.map((mealIngredient:any) => {
+              const optionx = {
+                config: {
+                  method: 'GET',
+                  url: `/api/ingredients?name=${mealIngredient.ingredientName}`,
+                },
+                authenticated: true,
+              }
+          
+              return makeRequest(optionx).then((ingredientsc) => {
+                if (ingredientsc.length === 0) {
+                  const option = {
+                    config: {
+                      method: 'POST',
+                      url: `/api/ingredients`,
+                      data: {name: mealIngredient.ingredientName},
+                    },
+                    authenticated: true,
+                  }
+                  return makeRequest(option).then((ingredientAdded) => {
+                    mealIngredient.ingredientId = ingredientAdded.id;
+                  })
+                } else {
+                  mealIngredient.ingredientId = ingredientsc[0].id;
+                }
+              })
+            });
+          
+            await Promise.all(ingredientPromises);
+          
+            const options = {
+              config: {
+                method: 'PUT',
+                url: `/api/meals/${meal.id}`,
+                data: meal,
+              },
+              authenticated: true,
+            };
+            return await makeRequest(options);
+          }
+          
     return { getMeals, getMeal, createMeal, likeMeal, unlikeMeal, getMealsLike, deleteMeal, editMeal};
     }
