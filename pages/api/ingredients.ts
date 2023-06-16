@@ -6,7 +6,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 
 const handleGetMethod = async (req: NextApiRequest, res: NextApiResponse) => {
     const {accessToken} = await getAccessToken(req, res)
-    const response = await axios.get(`${process.env.BACKEND_URL}/ingredients`, {
+    const response = await axios.get(`${process.env.BACKEND_URL}/ingredients?${req.query.name ? `name=${req.query.name}` : ''}`, {
         headers: {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
