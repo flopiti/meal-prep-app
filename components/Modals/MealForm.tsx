@@ -5,6 +5,7 @@ import { MealIngredient } from "@/types/MealIngredient";
 import { useEffect, useState } from "react";
 import styles from '@/styles/MealForm.module.css';
 import { Autocomplete, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import axios from "axios";
 
 interface MealFormProps {
     meal: Meal | null;
@@ -33,6 +34,47 @@ const MealForm = ({meal, addMeal, editMeal, closeForm}:MealFormProps) => {
         getIngredients().then((data:Ingredient[]) =>  setAllIngredients(data));
     }, [])
     
+    const makeRequest = async (options:any) => {  
+        try {
+          if (options.authenticated) {
+            options.config.headers = {
+              ...options.config.headers,
+            };
+          }
+          const response = await axios(options.config);
+          const { data } = response;
+          return data;
+        } catch (error:any) {
+          if (axios.isAxiosError(error) && error.response) {
+            console.log('error')
+            return error.response.data;
+          }
+          return error.message;
+        }
+          };
+
+        const AskChat = async (prompt: string) => {
+        const options = {
+            config: {
+                method: 'POST',
+                url: `/api/GPT`,
+                data: JSON.stringify({ prompt }),  // Changed 'body' to 'data' for axios request
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            },
+            authenticated: true,
+        };
+        try {
+            const data = await makeRequest(options);
+            return data;
+        } catch (error) {
+            console.error(`Error in AskChat: ${error}`);
+            throw error;  // Or handle error as needed
+        }
+    }
+
+
     const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement> ) => {
         if (event.key === 'Enter') {
             if (event.target instanceof HTMLInputElement && event.target.id === 'ingredientInput') {
@@ -110,14 +152,55 @@ const MealForm = ({meal, addMeal, editMeal, closeForm}:MealFormProps) => {
         setSelectedUnitOfMeasurement('g');
     };
 
+    const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setMealName(event.target.value);
+    };
+
+    const handleAsk = (mealName:string) => {
+
+        const prompt = `Based on these typescript objects : 
+
+        Meal = {
+            mealName: string;
+            mealIngredients: MealIngredient[];
+        };
+        MealIngredient {
+            id: number | null;
+            ingredientName: string;
+            quantity: number;
+            unitOfMeasurement: string;
+        } 
+        
+        please provide me with the the json for the meal : ${mealName} by creating a
+        of ingredient and quantities (mealIngredients). `;
+
+        console.log(prompt)
+        AskChat(prompt).then((data:any) => {
+            console.log(typeof data )
+            data = JSON.parse(data);
+            console.log(data.mealIngredients);
+            const meal: Meal = data as Meal; // This is the type assertion
+            console.log(meal.mealIngredients);
+            //take this json and convert it to a meal object
+            //setMealName(data.mealName);
+
+            setMealIngredients(data.mealIngredients); 
+        }).catch((error) => {
+            console.log(error);
+        }
+        );
+    };
+
+
     return <div className={styles.box}>
         <form onSubmit={handleSubmit} className={styles.formBox}>
-        <div className={styles.colRow}>
-                <label>
-                    Meal Name: 
-                </label>
-                <input type="text" value={mealName} onChange={(event)=>setMealName(event.target.value)} />
-                {mealNameError && <span style={{color: 'red'}}>Meal name is required</span>}
+                <div className={styles.colRow}>
+                    <label>
+                        Meal Name: 
+                    </label>
+                    <input type="text" value={mealName} onChange={handleNameChange} />
+                    <button type="button" onClick={()=>handleAsk(mealName)}>Ask</button> 
+                    {mealNameError && <span style={{color: 'red'}}>Meal name is required</span>}
                 </div>
                 <div className={styles.colRow}>
                     <label>
