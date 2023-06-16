@@ -2,10 +2,10 @@ import { useIngredients } from "@/hooks/useIngredients";
 import { Ingredient } from "@/types/Ingredient";
 import { Meal } from "@/types/Meal";
 import { MealIngredient } from "@/types/MealIngredient";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import styles from '@/styles/MealForm.module.css';
 import { Autocomplete, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
-import axios from "axios";
+import { useGPT } from "@/hooks/useGPT";
 
 interface MealFormProps {
     meal: Meal | null;
@@ -30,51 +30,12 @@ const MealForm = ({meal, addMeal, editMeal, closeForm}:MealFormProps) => {
     const [iconUrlError, setIconUrlError] = useState(false);
     const [ingredientError, setIngredientError] = useState(false);
 
+    const { AskChat,isLoading } = useGPT();
+
     useEffect(() => {
         getIngredients().then((data:Ingredient[]) =>  setAllIngredients(data));
     }, [])
     
-    const makeRequest = async (options:any) => {  
-        try {
-          if (options.authenticated) {
-            options.config.headers = {
-              ...options.config.headers,
-            };
-          }
-          const response = await axios(options.config);
-          const { data } = response;
-          return data;
-        } catch (error:any) {
-          if (axios.isAxiosError(error) && error.response) {
-            console.log('error')
-            return error.response.data;
-          }
-          return error.message;
-        }
-          };
-
-        const AskChat = async (prompt: string) => {
-        const options = {
-            config: {
-                method: 'POST',
-                url: `/api/GPT`,
-                data: JSON.stringify({ prompt }),  // Changed 'body' to 'data' for axios request
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            },
-            authenticated: true,
-        };
-        try {
-            const data = await makeRequest(options);
-            return data;
-        } catch (error) {
-            console.error(`Error in AskChat: ${error}`);
-            throw error;  // Or handle error as needed
-        }
-    }
-
-
     const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement> ) => {
         if (event.key === 'Enter') {
             if (event.target instanceof HTMLInputElement && event.target.id === 'ingredientInput') {
@@ -197,65 +158,71 @@ const MealForm = ({meal, addMeal, editMeal, closeForm}:MealFormProps) => {
                     <button type="button" onClick={()=>handleAsk(mealName)}>Ask</button> 
                     {mealNameError && <span style={{color: 'red'}}>Meal name is required</span>}
                 </div>
-                <div className={styles.colRow}>
-                    <label>
-                        Icon Url:
-                    </label>
-                    <input type="text" value={iconUrl} onChange={(event)=>setIconUrl(event.target.value)} />
-                    {iconUrlError && <span style={{color: 'red'}}>Please enter a valid URL for the icon</span>}
-                </div>
-                <div className={styles.rowVert}>
-                    <label>
-                        Ingredients
-                    </label>
-                    <div className={styles.ingredientForm}>
-                        <input className={styles.qtyStyle} type="text" id="quantity" value={selectedQuantity} onChange={(event)=>setSelectedQuantity(Number(event.target.value))}/>
-                        <FormControl fullWidth variant="standard" sx={{ marginBottom: 2, width: 50 , display: 'inline-block' }}>
-                            <InputLabel id="unitOfMeasurement-label">Unit of Measurement</InputLabel>
-                            <Select
-                                sx={{ width: 50 , display: 'inline-block'}}
-                                labelId="unitOfMeasurement-label"
-                                id="unitOfMeasurement"
-                                value={selectedUnitOfMeasurement}
-                                label="Unit of Measurement"
-                                onChange={(event) => setSelectedUnitOfMeasurement(event.target.value)}
-                            >
-                                <MenuItem value="g">g</MenuItem>
-                                <MenuItem value="ml">ml</MenuItem>
-                                <MenuItem value="unit">unit</MenuItem>
-                                <MenuItem value="tsp">tsp</MenuItem>
-                                <MenuItem value="tbsp">tbsp</MenuItem>
-                                <MenuItem value="cup">cup</MenuItem>
-                                <MenuItem value="can">can</MenuItem>
-                            </Select>
-                        </FormControl>  
-                        <Autocomplete
-                            disablePortal
-                            id="combo-box-demo"
-                            options={allIngredients}
-                            getOptionLabel={(option:any) => option.ingredientName}
-                            sx={{ width: 250 , display: 'inline-block'}}
-                            renderInput={(params) => <TextField {...params} label="ingredient" />}
-                            value={selectedIngredient}
-                            onChange={(_, value:any) => setSelectedIngredient(value)}
-                            onKeyDown={handleKeyPress}
-                        />
+
+                {
+                    isLoading ? <h2>loading...</h2> : 
+                    <div>
+                    <div className={styles.colRow}>
+                        <label>
+                            Icon Url:
+                        </label>
+                        <input type="text" value={iconUrl} onChange={(event)=>setIconUrl(event.target.value)} />
+                        {iconUrlError && <span style={{color: 'red'}}>Please enter a valid URL for the icon</span>}
                     </div>
-
-                </div>
-                {ingredientError && <span style={{color: 'red'}}>Please enter an ingredient</span>}
-
-                <button type="button" onClick={addIngredient}>Add Ingredient</button>
-                <ul>
-                    {mealIngredients.map((ingredient:any, index:any) => (
-                        <li key={index} className={styles.ingredientItem}>
-                            <span>
-                                {ingredient.quantity} {ingredient.unitOfMeasurement} {ingredient.ingredientName}
-                            </span>
-                            <button type="button" className={styles.removeIngredientButton} onClick={() => setMealIngredients(mealIngredients.filter((_, i) => i !== index))}>X</button>
-                        </li>
-                    ))}
-                </ul>
+                    <div className={styles.rowVert}>
+                        <label>
+                            Ingredients
+                        </label>
+                        <div className={styles.ingredientForm}>
+                            <input className={styles.qtyStyle} type="text" id="quantity" value={selectedQuantity} onChange={(event)=>setSelectedQuantity(Number(event.target.value))}/>
+                            <FormControl fullWidth variant="standard" sx={{ marginBottom: 2, width: 50 , display: 'inline-block' }}>
+                                <InputLabel id="unitOfMeasurement-label">Unit of Measurement</InputLabel>
+                                <Select
+                                    sx={{ width: 50 , display: 'inline-block'}}
+                                    labelId="unitOfMeasurement-label"
+                                    id="unitOfMeasurement"
+                                    value={selectedUnitOfMeasurement}
+                                    label="Unit of Measurement"
+                                    onChange={(event) => setSelectedUnitOfMeasurement(event.target.value)}
+                                >
+                                    <MenuItem value="g">g</MenuItem>
+                                    <MenuItem value="ml">ml</MenuItem>
+                                    <MenuItem value="unit">unit</MenuItem>
+                                    <MenuItem value="tsp">tsp</MenuItem>
+                                    <MenuItem value="tbsp">tbsp</MenuItem>
+                                    <MenuItem value="cup">cup</MenuItem>
+                                    <MenuItem value="can">can</MenuItem>
+                                </Select>
+                            </FormControl>  
+                            <Autocomplete
+                                disablePortal
+                                id="combo-box-demo"
+                                options={allIngredients}
+                                getOptionLabel={(option:any) => option.ingredientName}
+                                sx={{ width: 250 , display: 'inline-block'}}
+                                renderInput={(params) => <TextField {...params} label="ingredient" />}
+                                value={selectedIngredient}
+                                onChange={(_, value:any) => setSelectedIngredient(value)}
+                                onKeyDown={handleKeyPress}
+                            />
+                        </div>
+    
+                    </div>
+                    {ingredientError && <span style={{color: 'red'}}>Please enter an ingredient</span>}
+    
+                    <button type="button" onClick={addIngredient}>Add Ingredient</button>
+                    <ul>
+                        {mealIngredients.map((ingredient:any, index:any) => (
+                            <li key={index} className={styles.ingredientItem}>
+                                <span>
+                                    {ingredient.quantity} {ingredient.unitOfMeasurement} {ingredient.ingredientName}
+                                </span>
+                                <button type="button" className={styles.removeIngredientButton} onClick={() => setMealIngredients(mealIngredients.filter((_, i) => i !== index))}>X</button>
+                            </li>
+                        ))}
+                    </ul>
+                    </div>
+                }
                 <button type="submit">Submit</button>
         </form>
 
