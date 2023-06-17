@@ -10,6 +10,7 @@ import { useScheduledMealContext } from '@/providers/ScheduledMealContext';
 import ModalX from './ModalX';
 import ScheduleMealModal from './Modals/ScheduleMealModal';
 import XButton from './Utils/Xbutton/Xbutton';
+import Image from 'next/image';
 
 const ScheduledMeal = ({ meal, mealType, day} :any) => {
 
@@ -98,7 +99,8 @@ const ScheduledMeal = ({ meal, mealType, day} :any) => {
                 </DropZone>
                 ) : (
                         <DropZone onDrop={handleDrop}>
-                            Drop here
+                            <Image src="/empty-plate.png" width={135} height={120} alt={''} />
+                            <h4 className={styles.addMeal}>Add Meal</h4>
                         </DropZone>
                 )
             }
