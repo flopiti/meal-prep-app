@@ -45,12 +45,10 @@ const ScheduleMealModal = ({closeForm, day, mealType} :any) => {
                 <button onClick={() => {
                     postScheduledMeal(day, mealType, meal.id).then((res:any) => {
                         scheduleMeal({
-                            mealName: res.mealName,
+                            id: res.id, 
                             date: res.date,
                             mealType: res.mealType,
-                            id: res.id, 
-                            iconUrl: res.iconUrl,
-                            mealId: meal.id
+                            mealId: meal.id, 
                         });
                         closeForm();
                     });
