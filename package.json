@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start -p 3006",
     "lint": "next lint",
-    "mock": "json-server --watch db.json --port 3000 --host 0.0.0.0"
+    "mock": "node data/server.js"
   },
   "dependencies": {
     "@rive-app/react-canvas": "^3.0.46",

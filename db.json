@@ -7,6 +7,18 @@
     {
       "id": 2,
       "name": "Jane"
+    },
+    {
+      "auth0Id": "6433a2eac391bfb7c374fb6d",
+      "name": "npieraut@live.fr",
+      "email": "npieraut@live.fr",
+      "id": 3
+    },
+    {
+      "auth0Id": "6433a2eac391bfb7c374fb6d",
+      "name": "npieraut@live.fr",
+      "email": "npieraut@live.fr",
+      "id": 4
     }
   ],
   "posts": [
@@ -93,6 +105,18 @@
       "date": "2023-03-10",
       "mealType": "lunch",
       "mealId": 12
+    },
+    {
+      "date": "2023-07-08T04:00:00.000Z",
+      "mealType": "breakfast",
+      "mealId": 23,
+      "id": 17
+    },
+    {
+      "date": "2023-07-07T04:00:00.000Z",
+      "mealType": "lunch",
+      "mealId": 2,
+      "id": 18
     }
   ],
   "meals": [
