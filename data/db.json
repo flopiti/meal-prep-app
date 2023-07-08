@@ -1,0 +1,82 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "John"
+    },
+    {
+      "id": 2,
+      "name": "Jane"
+    },
+    {
+      "auth0Id": "6433a2eac391bfb7c374fb6d",
+      "name": "npieraut@live.fr",
+      "email": "npieraut@live.fr",
+      "id": 3
+    }
+  ],
+  "scheduled-meals": [
+  ],
+  "meals": [
+    {
+      "id": 1,
+      "mealName": "Eggs and Bacon",
+      "iconUrl": "https://i.ibb.co/vHfdkhb/2-eggs-3-bacon.png",
+      "ingredients": []
+    },
+    {
+      "id": 2,
+      "mealName": "Toast Peanut Butter",
+      "iconUrl": "https://i.ibb.co/vm2Nbz3/pb-toast.png",
+      "ingredients": []
+    },
+    {
+      "id": 3,
+      "mealName": "2 Eggs",
+      "iconUrl": "https://i.ibb.co/c3zqDWN/2-eggs.png",
+      "ingredients": []
+    },
+    {
+      "id": 4,
+      "mealName": "Aloo Gobi",
+      "iconUrl": "https://i.ibb.co/fYJkSPZ/aloo-gobi.png",
+      "ingredients": []
+    },
+    {
+      "id": 5,
+      "mealName": "Cheeseburger",
+      "iconUrl": "https://i.ibb.co/3FHm1bV/cheeseburger.png",
+      "ingredients": []
+    },
+    {
+      "id": 6,
+      "mealName": "Chicken Korma",
+      "iconUrl": "https://i.ibb.co/jbZsMXB/chicken-korma.png",
+      "ingredients": []
+    },
+    {
+      "id": 7,
+      "mealName": "Pancakes",
+      "iconUrl": "https://i.ibb.co/RBT5SVM/pancake.png",
+      "ingredients": []
+    },
+    {
+      "id": 8,
+      "mealName": "Hot Dogs",
+      "iconUrl": "https://i.ibb.co/D5wfDzy/hot-dogs.png",
+      "ingredients": []
+    },
+    {
+      "id": 9,
+      "mealName": "Fried Rice Egg Chicken",
+      "iconUrl": "https://i.ibb.co/mRc1YDm/fried-rice-egg-chicken.png",
+      "ingredients": []
+    },
+    {
+      "id": 10,
+      "mealName": "Fettucine Alfredo",
+      "iconUrl": "https://i.ibb.co/Lz5q55y/fettucine-alfredo.png",
+      "ingredients": []
+    }
+  ]
+}

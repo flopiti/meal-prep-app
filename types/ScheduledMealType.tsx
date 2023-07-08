@@ -3,6 +3,6 @@ export type ScheduledMeal = {
     date: string;
     mealType: string;
     mealId: number;
-    mealName: string;
-    iconUrl: string;
+    mealName?: string;
+    iconUrl?: string;
   }
