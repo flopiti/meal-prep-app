@@ -22,8 +22,9 @@ server.post('/scheduled-meals', (req, res) => {
         mealName: meal.mealName,
         mealId: mealId,
         date: req.body.date,
+        mealType: req.body.mealType
     }
-
+    scheduledMeals.insert(differentObject).write();
     res.status(201).jsonp(differentObject);
   } else {
     res.status(400).jsonp({
