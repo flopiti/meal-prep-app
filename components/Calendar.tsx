@@ -9,25 +9,46 @@ import { useScheduledMeals } from '@/hooks/useScheduledMeals';
 import { useScheduledMealContext } from '@/providers/ScheduledMealContext';
 import { useMealContext } from '@/providers/MealContext';
 import { useMeals } from '@/hooks/useMeals';
+import axios from 'axios';
+import useSWR from 'swr';
 
 const Calendar = ({}:any) => {
 
   const [isMobile, setIsMobile] = useState(false);
   const [datesToCover, setDatesToCover ]= useState(getDateStrings(new Date));
 
-  const { getScheduledMeals } = useScheduledMeals();
+  const fetcher = (url:string) => axios.get(url).then(res => res.data)
+
+  const {data : scheduledMeals, error: scheduledMealsError } = useSWR('/api/scheduled-meals', fetcher)
+
   const { setScheduledMeals } = useScheduledMealContext();
   const { getMeals } = useMeals();
   const { setMeals } = useMealContext();
 
   useEffect(() => {
-    getScheduledMeals().then((data:any) => setScheduledMeals(data))
+    if (scheduledMeals) {
+      setScheduledMeals(scheduledMeals);
+    }
     if (window.innerWidth < 768) {
       setIsMobile(true);
     }
     getMeals().then((data:any) => setMeals(data))
-  }, []);
+  }, [scheduledMeals]);
+  const handleSwipe = (direction: any) => {
+    if (direction === 'left') {
+      pushOneDateForward();
+    } else if (direction === 'right') {
+      pushOneDateBack();
+    }
+  };
+  useSwipe(handleSwipe);
 
+
+  if (scheduledMealsError) return <div>Failed to load scheduled</div>
+
+  if(!scheduledMeals){
+    return <div>Loading...</div>
+  }
   const pushOneDateForward = () => {
     const newDate = new Date(datesToCover[1]);
     setDatesToCover(getDateStrings(newDate));
@@ -39,14 +60,7 @@ const Calendar = ({}:any) => {
     setDatesToCover(getDateStrings(new Date(newDate)));
   }
 
-  const handleSwipe = (direction: any) => {
-    if (direction === 'left') {
-      pushOneDateForward();
-    } else if (direction === 'right') {
-      pushOneDateBack();
-    }
-  };
-  useSwipe(handleSwipe);
+
   
   return (
     <div>
