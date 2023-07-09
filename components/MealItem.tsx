@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styles from '../styles/MealList.module.css';
-import LikeAnimation from './LikeAnimation';
 import Image from 'next/image';
 import XButton from './Utils/Xbutton/Xbutton';
 import { motion } from 'framer-motion';
@@ -56,7 +55,6 @@ const MealItem: React.FC<MealItemProps> = ({ meal, liked, onLikeChange , removeM
                 </div>
             )}
             </li>
-            <LikeAnimation liked={liked} onLikeChange={onLikeChange}/>
         </div>
     );
 };
