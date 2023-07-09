@@ -1,7 +1,6 @@
 import styles from '@/styles/Home.module.css'
 import Image from 'next/image'
 import React, { useState } from "react";
-import LikeAnimation from './LikeAnimation';
 
 export type Meal = {
     id: number,
@@ -24,7 +23,7 @@ const LikedMealsList = ({meals, unlikeMeal, setLikedMeals}:any) => {
     }
     return (
         <div className={styles.mealList}>
-            {
+            {/* {
                 meals?.map((meal:Meal, index:number) => {
                     return (
                     <span 
@@ -41,7 +40,7 @@ const LikedMealsList = ({meals, unlikeMeal, setLikedMeals}:any) => {
                         }
                     </span>)
                 })
-            }
+            } */}
         </div>
         );
     };
