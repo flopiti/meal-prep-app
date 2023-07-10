@@ -18,7 +18,7 @@ const Day: React.FC<DayProps> = ({ date }) => {
   const renderScheduledMeal = (mealType: MealType) => {
     const meal = mealsOfTheDay.find((meal: any) => meal.mealType === mealType) || null;
     return (
-      <ScheduledMealZone meal={meal} mealType={mealType} day={new Date(date).toISOString().slice(0, 10)} />
+      <ScheduledMealZone key={`${date}${mealType}`} meal={meal} mealType={mealType} day={new Date(date).toISOString().slice(0, 10)} />
     );
   }
   return (
