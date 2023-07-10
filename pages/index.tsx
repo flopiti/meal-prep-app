@@ -12,19 +12,20 @@ export default function Home() {
 
   const [fontLoaded, setFontLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+
   useEffect(() => {
     const font = new FontFaceObserver('FugazOne');
     const font2 = new FontFaceObserver('Galada');
-    font.load().then(() => {
+  
+    Promise.all([font.load(), font2.load()]).then(() => {
       setFontLoaded(true);
-  });
-    font2.load().then(() => {
-      setFontLoaded(true);
-  });
+    });
+  
     if (window.innerWidth < 768) {
       setIsMobile(true);
     }
-  }, []);
+  }, []);  
+
   if (!fontLoaded) {
     return <></>;
 }
