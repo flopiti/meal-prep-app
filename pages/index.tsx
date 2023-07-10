@@ -8,10 +8,13 @@ import { ScheduledMealProvider } from '@/providers/ScheduledMealContext'
 import { MealProvider } from '@/providers/MealContext'
 import FontFaceObserver from 'fontfaceobserver';
 
+
+
 export default function Home() {
 
   const [fontLoaded, setFontLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const checkMobile = () => setIsMobile(window.innerWidth < 768);
 
   useEffect(() => {
     const font = new FontFaceObserver('FugazOne');
@@ -21,13 +24,10 @@ export default function Home() {
       setFontLoaded(true);
     });
   
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);  
-
-
 
   if (!fontLoaded) {
     return <></>;
