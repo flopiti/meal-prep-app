@@ -21,10 +21,13 @@ export default function Home() {
       setFontLoaded(true);
     });
   
-    if (window.innerWidth < 768) {
-      setIsMobile(true);
-    }
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);  
+
+
 
   if (!fontLoaded) {
     return <></>;
