@@ -12,7 +12,6 @@ import ScheduleMealModal from './Modals/ScheduleMealModal';
 import XButton from './Utils/Xbutton/Xbutton';
 import Image from 'next/image';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import { Meal } from '@/types/Meal';
 import { MealType } from '@/types/MealType';
 import { ScheduledMeal } from '@/types/ScheduledMealType';
 
@@ -54,8 +53,8 @@ const ScheduledMealZone = ({ meal, mealType, day, loading} :ScheduledMealZonePro
     };
     const handleDrop = (mealId:number, iconUrl:string, scheduledMealId:number) => {
         if(scheduledMealId){
-            putScheduledMeal(scheduledMealId,  mealName!, day, mealType, iconUrl).then((res:any) => { 
-                getMeal(res.mealId).then((meal:any) => {
+            putScheduledMeal(scheduledMealId,  mealName!, day, mealType, iconUrl).then((res: ScheduledMeal) => { 
+                getMeal(String(res.mealId)).then((meal:any) => {
                     changeMeal(
                         {
                             id: res.id, 
@@ -70,7 +69,7 @@ const ScheduledMealZone = ({ meal, mealType, day, loading} :ScheduledMealZonePro
               });
         }
         else{
-            postScheduledMeal( day, mealType, mealId).then((res:any) => {
+            postScheduledMeal( day, mealType, mealId).then((res:ScheduledMeal) => {
                 scheduleMeal({
                     mealName: res.mealName,
                     date: res.date,
