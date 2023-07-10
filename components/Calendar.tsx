@@ -85,10 +85,10 @@ const Calendar = ({}:any) => {
       {
         isMobile ? <Day
         key={datesToCover[0]}
-        day={datesToCover[0]}
+        date={datesToCover[0]}
       /> : 
         datesToCover.map((day, index) => {
-          return <Day key={index} day={day}/>
+          return <Day key={index} date={day}/>
         })
       }
       </div>
