@@ -119,6 +119,13 @@
   align-items: center;
 }
 
+.flexSkeleton{
+  flex:1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .date{
   display: flex;
   justify-content: center;
