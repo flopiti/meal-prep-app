@@ -12,18 +12,23 @@ import axios from 'axios';
 import useSWR from 'swr';
 import { GetDateStrings } from '@/utils/getDateStrings';
 
-const Calendar = ({}:any) => {
+const Calendar = () => {
 
   const [isMobile, setIsMobile] = useState(false);
   const [datesToCover, setDatesToCover ]= useState(GetDateStrings(new Date));
-
   const fetcher = (url:string) => axios.get(url).then(res => res.data)
-
   const {data : scheduledMeals, error: scheduledMealsError } = useSWR('/api/scheduled-meals', fetcher)
   const { setScheduledMeals } = useScheduledMealContext();
   const { getMeals } = useMeals();
   const { setMeals } = useMealContext();
-
+  const handleSwipe = (direction: string) => {
+    if (direction === 'left') {
+      pushOneDateForward();
+    } else if (direction === 'right') {
+      pushOneDateBack();
+    }
+  };
+  useSwipe(handleSwipe);
   useEffect(() => {
     if (scheduledMeals) {
       setScheduledMeals(scheduledMeals);
@@ -33,19 +38,6 @@ const Calendar = ({}:any) => {
     }
     getMeals().then((data:any) => setMeals(data))
   }, [scheduledMeals]);
-
-
-  const handleSwipe = (direction: any) => {
-    if (direction === 'left') {
-      pushOneDateForward();
-    } else if (direction === 'right') {
-      pushOneDateBack();
-    }
-  };
-  useSwipe(handleSwipe);
-
-
-  if (scheduledMealsError) return <div>Failed to load scheduled</div>
 
   const pushOneDateForward = () => {
     const newDate = new Date(datesToCover[1]);
@@ -57,10 +49,11 @@ const Calendar = ({}:any) => {
     newDate.setDate(newDate.getDate() - 1);
     setDatesToCover(GetDateStrings(new Date(newDate)));
   }
-  
+
+  if (scheduledMealsError) return <div>Failed to load scheduled</div>
   return (
-    <div>
-      <div className={styles.dayArrows}>
+    <div id='calendar'>
+      <div id='calendar-control-arrows' className={styles.dayArrows}>
           <motion.button
             whileTap={{ x: -5 }}
             className={styles.xbutton} 
@@ -77,13 +70,11 @@ const Calendar = ({}:any) => {
             />
           </motion.button>
       </div>
-      <div className={styles.calendar}>
+      <div id='calendar-days' className={styles.calendar}>
       {
-        isMobile ? <Day
-        key={datesToCover[0]}
-        date={datesToCover[0]}
-      /> : 
-        datesToCover.map((day, index) => {
+        isMobile ? 
+        <Day key={datesToCover[0]} date={datesToCover[0]}/> : 
+        datesToCover.map((day:string, index:number) => {
           return <Day key={index} date={day} loading={!scheduledMeals}/>
         })
       }
