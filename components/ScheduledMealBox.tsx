@@ -23,9 +23,7 @@ const ScheduledMealBox = ({mealId, mealName, iconUrl, deleteMeal,scheduledMealId
     
     return (
         <div className={styles.containerMeal} key={mealId} draggable onDragStart={()=>handleDragStart(event, mealId)}>    
-            {!isImageLoaded && <Skeleton width={'100%'} height={'100%'}
-            />}
-
+            {!isImageLoaded && <div>...</div>}
             <motion.div 
             className={styles.mealChoice}
             animate={{  scale: [0.25, 1] }}
