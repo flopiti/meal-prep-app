@@ -82,25 +82,15 @@ const ScheduledMealZone = ({ meal, mealType, day} :any) => {
                     <XButton onClick={()=>deleteMeal()}>X</XButton>
                 </motion.div> ) : null
             }
-            <button onClick={showScheduleModal}
-                className={styles.mealButton}
-                >
-            <motion.div 
-                className={styles.scheduledSpot}
-            >
+            <button onClick={showScheduleModal} className={styles.mealButton}>
+            <motion.div className={styles.scheduledSpot}>
             {
-                meal ? (                        
-                <DropZone onDrop={handleDrop}>
-                    <ScheduledMealBox mealName={mealName} iconUrl={iconUrl} deleteMeal={deleteMeal} mealId={meal.id} 
-                    scheduledMealId={meal.id}
-                    />
+                meal ? <DropZone onDrop={handleDrop}>
+                    <ScheduledMealBox mealName={mealName} iconUrl={iconUrl} deleteMeal={deleteMeal} mealId={meal.id} scheduledMealId={meal.id}/>
+                </DropZone> : <DropZone onDrop={handleDrop}>
+                        <Image src="/empty-plate.png" width={135} height={120} alt={''} priority={true}/>
+                        <h4 className={styles.addMeal}>Add Meal</h4>
                 </DropZone>
-                ) : (
-                        <DropZone onDrop={handleDrop}>
-                            <Image src="/empty-plate.png" width={135} height={120} alt={''} priority={true}/>
-                            <h4 className={styles.addMeal}>Add Meal</h4>
-                        </DropZone>
-                )
             }
             </motion.div>
             </button>
