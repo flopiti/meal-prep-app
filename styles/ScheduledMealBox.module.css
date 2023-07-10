@@ -33,6 +33,7 @@
   .containerMeal {
     position: relative;
     width: 200px;
+    height: 120px;
   }
 
 .buttonContainer {
