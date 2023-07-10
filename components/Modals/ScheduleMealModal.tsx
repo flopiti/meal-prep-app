@@ -5,6 +5,7 @@ import styles from '@/styles/ScheduleMealModal.module.css';
 import Image from 'next/image';
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+
 const ScheduleMealModal = ({closeForm, day, mealType} :any) => {
     const {meals} = useMealContext();  
     const {scheduleMeal} = useScheduledMealContext();

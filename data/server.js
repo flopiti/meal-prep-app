@@ -6,7 +6,9 @@ const middlewares = jsonServer.defaults()
 
 server.use(middlewares)
 server.use(jsonServer.bodyParser)
-
+server.use((req, res, next) => {
+  setTimeout(next, 2000); // Adds a delay of 2000 milliseconds (2 seconds)
+});
 server.post('/scheduled-meals', (req, res) => {
   const mealId = req.body.mealId;
   

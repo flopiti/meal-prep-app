@@ -31,9 +31,9 @@
   }
 
   .containerMeal {
-    display: flex;
     position: relative;
     width: 200px;
+    height: 120px;
   }
 
 .buttonContainer {

@@ -1,32 +1,49 @@
-
-import React, { useEffect, useState } from 'react'
+import {useEffect, useState } from 'react'
 import styles from '@/styles/Home.module.css'
 import Day from '@/components/Day'
 import useSwipe from '@/hooks/useSwipe';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { useScheduledMeals } from '@/hooks/useScheduledMeals';
 import { useScheduledMealContext } from '@/providers/ScheduledMealContext';
 import { useMealContext } from '@/providers/MealContext';
 import { useMeals } from '@/hooks/useMeals';
+import axios from 'axios';
+import useSWR from 'swr';
 
-const Calendar = ({}:any) => {
-
+const Calendar = () => {
+  const getDateStrings = (mainDate: Date) => {
+    const dateStrings = [];
+    for (let i = 0; i < 3; i++) {
+      const date = new Date(mainDate.getTime() + i * 24 * 60 * 60 * 1000);
+      const dateString = date.toISOString().slice(0, 10);
+      dateStrings.push(dateString);
+    }
+    return dateStrings;
+  }
   const [isMobile, setIsMobile] = useState(false);
   const [datesToCover, setDatesToCover ]= useState(getDateStrings(new Date));
-
-  const { getScheduledMeals } = useScheduledMeals();
+  const fetcher = (url:string) => axios.get(url).then(res => res.data)
+  const {data : scheduledMeals, error: scheduledMealsError } = useSWR('/api/scheduled-meals', fetcher)
   const { setScheduledMeals } = useScheduledMealContext();
   const { getMeals } = useMeals();
   const { setMeals } = useMealContext();
-
+  const handleSwipe = (direction: string) => {
+    if (direction === 'left') {
+      pushOneDateForward();
+    } else if (direction === 'right') {
+      pushOneDateBack();
+    }
+  };
+  useSwipe(handleSwipe);
   useEffect(() => {
-    getScheduledMeals().then((data:any) => setScheduledMeals(data))
+    if (scheduledMeals) {
+      setScheduledMeals(scheduledMeals);
+    }
     if (window.innerWidth < 768) {
       setIsMobile(true);
     }
     getMeals().then((data:any) => setMeals(data))
-  }, []);
+  }, [scheduledMeals]);
 
   const pushOneDateForward = () => {
     const newDate = new Date(datesToCover[1]);
@@ -39,18 +56,10 @@ const Calendar = ({}:any) => {
     setDatesToCover(getDateStrings(new Date(newDate)));
   }
 
-  const handleSwipe = (direction: any) => {
-    if (direction === 'left') {
-      pushOneDateForward();
-    } else if (direction === 'right') {
-      pushOneDateBack();
-    }
-  };
-  useSwipe(handleSwipe);
-  
+  if (scheduledMealsError) return <div>Failed to load scheduled</div>
   return (
-    <div>
-      <div className={styles.dayArrows}>
+    <div id='calendar'>
+      <div id='calendar-control-arrows' className={styles.dayArrows}>
           <motion.button
             whileTap={{ x: -5 }}
             className={styles.xbutton} 
@@ -67,14 +76,12 @@ const Calendar = ({}:any) => {
             />
           </motion.button>
       </div>
-      <div className={styles.calendar}>
+      <div id='calendar-days' className={styles.calendar}>
       {
-        isMobile ? <Day
-        key={datesToCover[0]}
-        day={datesToCover[0]}
-      /> : 
-        datesToCover.map((day, index) => {
-          return <Day key={index} day={day}/>
+        isMobile ? 
+        <Day key={datesToCover[0]} date={datesToCover[0]}/> : 
+        datesToCover.map((day:string, index:number) => {
+          return <Day key={index} date={day} loading={!scheduledMeals}/>
         })
       }
       </div>
@@ -83,13 +90,3 @@ const Calendar = ({}:any) => {
 }  
 
 export default Calendar;
-
-export const getDateStrings = (mainDate: Date) => {
-  const dateStrings = [];
-  for (let i = 0; i < 3; i++) {
-    const date = new Date(mainDate.getTime() + i * 24 * 60 * 60 * 1000);
-    const dateString = date.toISOString().slice(0, 10);
-    dateStrings.push(dateString);
-  }
-  return dateStrings;
-}
