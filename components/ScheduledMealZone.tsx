@@ -74,7 +74,7 @@ const ScheduledMealZone = ({ meal, mealType, day} :any) => {
     return (
         <div className={styles.meal}>
             {
-                meal ? (            <motion.div className={styles.buttonContainer}
+                meal ? (<motion.div className={styles.buttonContainer}
                     initial={fadeIn.initial}
                     animate={fadeIn.animate}
                     transition={{ duration: 2 }}
@@ -82,9 +82,7 @@ const ScheduledMealZone = ({ meal, mealType, day} :any) => {
                     <XButton onClick={()=>deleteMeal()}>X</XButton>
                 </motion.div> ) : null
             }
-            <button onClick={() => {
-                    showScheduleModal()
-                }}
+            <button onClick={showScheduleModal}
                 className={styles.mealButton}
                 >
             <motion.div 
@@ -106,9 +104,9 @@ const ScheduledMealZone = ({ meal, mealType, day} :any) => {
             }
             </motion.div>
             </button>
-                <ModalX open={isScheduleModalOpen} setOpen={setIsScheduleModalOpen}> 
-                    <ScheduleMealModal day={day} mealType={mealType} closeForm={()=>setIsScheduleModalOpen(false)} meal={meal} editMeal={putScheduledMeal} />
-                </ModalX>
+            <ModalX open={isScheduleModalOpen} setOpen={setIsScheduleModalOpen}> 
+                <ScheduleMealModal day={day} mealType={mealType} closeForm={()=>setIsScheduleModalOpen(false)} meal={meal} editMeal={putScheduledMeal} />
+            </ModalX>
 
         </div>
     );
