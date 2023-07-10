@@ -7,6 +7,7 @@ import WebApp from '@/components/_layouts/WebApp'
 import { ScheduledMealProvider } from '@/providers/ScheduledMealContext'
 import { MealProvider } from '@/providers/MealContext'
 import FontFaceObserver from 'fontfaceobserver';
+import { SkeletonTheme } from 'react-loading-skeleton'
 
 const Home: React.FC = () => {
 
@@ -19,28 +20,29 @@ const Home: React.FC = () => {
     const font2 = new FontFaceObserver('Galada');
   
     Promise.all([font.load(), font2.load()]).then(() => {
-      setFontLoaded(true);
+      setTimeout(() => {
+        setFontLoaded(true);
+      }, 5000); // 5000 milliseconds = 5 seconds
     });
   
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
-  }, []);  
+  }, []);
 
-  if (!fontLoaded) {
-    return <></>;
-}
   return (
     <ScheduledMealProvider>
       <MealProvider>
-        <main style={{height: '96vh'  }}>
-          {
-            isMobile ?
-            <MobileApp/>
-            :
-            <WebApp/>
-          }
-        </main>
+        <SkeletonTheme baseColor="#B4A28A" highlightColor="#207765">
+          <main style={{height: '96vh'  }}>
+            {
+              isMobile ?
+              <MobileApp/>
+              :
+              <WebApp/>
+            }
+          </main>
+        </SkeletonTheme>
       </MealProvider>
     </ScheduledMealProvider>
   )
