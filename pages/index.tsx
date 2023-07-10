@@ -6,15 +6,28 @@ import MobileApp from '@/components/_layouts/MobileApp'
 import WebApp from '@/components/_layouts/WebApp'
 import { ScheduledMealProvider } from '@/providers/ScheduledMealContext'
 import { MealProvider } from '@/providers/MealContext'
+import FontFaceObserver from 'fontfaceobserver';
+
 export default function Home() {
 
+  const [fontLoaded, setFontLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
+    const font = new FontFaceObserver('FugazOne');
+    const font2 = new FontFaceObserver('Galada');
+    font.load().then(() => {
+      setFontLoaded(true);
+  });
+    font2.load().then(() => {
+      setFontLoaded(true);
+  });
     if (window.innerWidth < 768) {
       setIsMobile(true);
     }
   }, []);
-
+  if (!fontLoaded) {
+    return <></>;
+}
   return (
     <ScheduledMealProvider>
       <MealProvider>
