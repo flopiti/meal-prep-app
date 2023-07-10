@@ -1,5 +1,4 @@
-
-import React, { useEffect, useState } from 'react'
+import {useEffect, useState } from 'react'
 import styles from '@/styles/Home.module.css'
 import Day from '@/components/Day'
 import useSwipe from '@/hooks/useSwipe';
