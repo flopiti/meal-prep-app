@@ -52,37 +52,25 @@ const ScheduledMealZone = ({ meal, mealType, day, loading} :ScheduledMealZonePro
         initial: { opacity: 0 },
         animate: { opacity: 1 },
     };
-    const handleDrop = (mealId:number, iconUrl:string, scheduledMealId:number) => {
-        if(scheduledMealId){
-            putScheduledMeal(scheduledMealId,  mealName!, day, mealType, iconUrl).then((res: ScheduledMeal) => { 
-                getMeal(String(res.mealId)).then((meal:Meal) => {
-                    changeMeal(
-                        {
-                            id: res.id, 
-                            date: res.date,
-                            mealType: res.mealType,
-                            mealId: res.mealId,
-                            mealName: meal.mealName, 
-                            iconUrl: meal.iconUrl
-                        }
-                    )
-                })
-              });
-        }
-        else{
-            postScheduledMeal( day, mealType, mealId).then((res:ScheduledMeal) => {
-                scheduleMeal({
-                    mealName: res.mealName,
-                    date: res.date,
-                    mealType: res.mealType,
-                    id: res.id, 
-                    iconUrl: res.iconUrl,
-                    mealId: mealId
-                });
+    
+    const handleDrop = async (mealId:number, iconUrl:string, scheduledMealId:number) => {
+        if(scheduledMealId) {
+            const res: ScheduledMeal = await putScheduledMeal(scheduledMealId, mealName!, day, mealType, iconUrl);
+            const meal: Meal = await getMeal(String(res.mealId));
+            changeMeal({
+                ...res,
+                mealName: meal.mealName,
+                iconUrl: meal.iconUrl
+            });
+        } else {
+            const res: ScheduledMeal = await postScheduledMeal(day, mealType, mealId);
+            scheduleMeal({
+                ...res,
+                mealId
             });
         }
     };
-
+    
     if(loading) return (
     <div className={styles.meal}>
         <SkeletonTheme baseColor="#4C9283" highlightColor="#B4A28A">
