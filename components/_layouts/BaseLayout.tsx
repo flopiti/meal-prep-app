@@ -7,11 +7,11 @@ interface BaseLayoutProps {
 
 const BaseLayout = ({ children } : BaseLayoutProps) => {
     return (
-            <div className={styles.main}>
-                <ProfileIcon name={""} picture={""} />
-                {children}
-            </div>
-            );
+    <div className={styles.main}>
+        <ProfileIcon name={""} picture={""} />
+        {children}
+    </div>
+    );
     };
 
 export default BaseLayout;
