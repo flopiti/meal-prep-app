@@ -1,4 +1,5 @@
-import axios from "axios";
+import { ScheduledMeal } from "@/types/ScheduledMealType";
+import axios, { AxiosResponse } from "axios";
 
 export const useScheduledMeals = () => {
     const makeRequest = async (options:any) => {  
