@@ -111,7 +111,7 @@ const ScheduledMealZone = ({ meal, mealType, day, loading} :ScheduledMealZonePro
                     <ScheduledMealBox mealName={mealName} iconUrl={iconUrl} deleteMeal={deleteMeal} mealId={meal.id} scheduledMealId={meal.id}/>
                 </DropZone> : <DropZone onDrop={handleDrop}>
                         <Image src="/empty-plate.png" width={135} height={120} alt={''} priority={true}/>
-                        <h4 className={styles.addMeal}>Add Meal</h4>
+                        <h4 className={styles.addMeal}>{t('addMeal')}</h4>
                 </DropZone>
             }
             </motion.div>
