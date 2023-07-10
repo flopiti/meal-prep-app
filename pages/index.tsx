@@ -8,7 +8,7 @@ import { ScheduledMealProvider } from '@/providers/ScheduledMealContext'
 import { MealProvider } from '@/providers/MealContext'
 import FontFaceObserver from 'fontfaceobserver';
 
-export default function Home() {
+const Home: React.FC = () => {
 
   const [fontLoaded, setFontLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -45,6 +45,8 @@ export default function Home() {
     </ScheduledMealProvider>
   )
 }
+
+export default Home;
 
 export const getServerSideProps = withPageAuthRequired({
   getServerSideProps: async ({ locale }: GetServerSidePropsContext) => {
