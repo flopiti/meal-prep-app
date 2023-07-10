@@ -6,9 +6,7 @@ interface WebAppProps {
 
 const WebApp = ({}:WebAppProps) => (
     <div className={styles.flexMain}>
-        <div style={{display: 'inline-block'}}>
-            <Calendar/>
-        </div>
+        <Calendar/>
     </div>
 );
 
