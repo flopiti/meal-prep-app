@@ -5,7 +5,6 @@ import Day from '@/components/Day'
 import useSwipe from '@/hooks/useSwipe';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { useScheduledMeals } from '@/hooks/useScheduledMeals';
 import { useScheduledMealContext } from '@/providers/ScheduledMealContext';
 import { useMealContext } from '@/providers/MealContext';
 import { useMeals } from '@/hooks/useMeals';
@@ -20,7 +19,6 @@ const Calendar = ({}:any) => {
   const fetcher = (url:string) => axios.get(url).then(res => res.data)
 
   const {data : scheduledMeals, error: scheduledMealsError } = useSWR('/api/scheduled-meals', fetcher)
-
   const { setScheduledMeals } = useScheduledMealContext();
   const { getMeals } = useMeals();
   const { setMeals } = useMealContext();
@@ -34,6 +32,8 @@ const Calendar = ({}:any) => {
     }
     getMeals().then((data:any) => setMeals(data))
   }, [scheduledMeals]);
+
+
   const handleSwipe = (direction: any) => {
     if (direction === 'left') {
       pushOneDateForward();
@@ -46,9 +46,6 @@ const Calendar = ({}:any) => {
 
   if (scheduledMealsError) return <div>Failed to load scheduled</div>
 
-  if(!scheduledMeals){
-    return <div>Loading...</div>
-  }
   const pushOneDateForward = () => {
     const newDate = new Date(datesToCover[1]);
     setDatesToCover(getDateStrings(newDate));
@@ -59,8 +56,6 @@ const Calendar = ({}:any) => {
     newDate.setDate(newDate.getDate() - 1);
     setDatesToCover(getDateStrings(new Date(newDate)));
   }
-
-
   
   return (
     <div>
@@ -88,7 +83,7 @@ const Calendar = ({}:any) => {
         date={datesToCover[0]}
       /> : 
         datesToCover.map((day, index) => {
-          return <Day key={index} date={day}/>
+          return <Day key={index} date={day} loading={!scheduledMeals}/>
         })
       }
       </div>
