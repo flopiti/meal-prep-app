@@ -9,8 +9,7 @@ import { MealProvider } from '@/providers/MealContext'
 import FontFaceObserver from 'fontfaceobserver';
 import { SkeletonTheme } from 'react-loading-skeleton'
 
-const Home: React.FC = () => {
-
+const Home = () => {
   const [fontLoaded, setFontLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -22,7 +21,7 @@ const Home: React.FC = () => {
     Promise.all([font.load(), font2.load()]).then(() => {
       setTimeout(() => {
         setFontLoaded(true);
-      }, 5000); // 5000 milliseconds = 5 seconds
+      }, 5000);
     });
   
     checkMobile();
