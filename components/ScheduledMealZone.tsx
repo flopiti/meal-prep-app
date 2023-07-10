@@ -34,7 +34,7 @@ const ScheduledMealZone = ({ meal, mealType, day, loading} :ScheduledMealZonePro
     const [isScheduleModalOpen, setIsScheduleModalOpen] = useState<boolean>(false);
 
     if (meal){
-        getMeal(meal.mealId.toString()).then((res:any) => {
+        getMeal(String(meal.mealId)).then((res:any) => {
             setIconUrl(res.iconUrl)
             setMealName(res.mealName)
         })
@@ -83,16 +83,15 @@ const ScheduledMealZone = ({ meal, mealType, day, loading} :ScheduledMealZonePro
         }
     };
 
-      if(loading) return (
-        <div className={styles.meal}>
-            <SkeletonTheme baseColor="#4C9283" highlightColor="#B4A28A">
-                <div className={styles.mealButton}>
-                    <Skeleton containerClassName={styles.scheduledSpot} width={'100%'} height={'100%'}/>
-                </div>
-            </SkeletonTheme>
-        </div>
-        )
-
+    if(loading) return (
+    <div className={styles.meal}>
+        <SkeletonTheme baseColor="#4C9283" highlightColor="#B4A28A">
+            <div className={styles.mealButton}>
+                <Skeleton containerClassName={styles.scheduledSpot} width={'100%'} height={'120px'}/>
+            </div>
+        </SkeletonTheme>
+    </div>
+    )
       
     return (
         <div className={styles.meal}>       
