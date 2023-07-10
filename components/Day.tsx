@@ -4,12 +4,15 @@ import { MealType, mealTypes } from '@/types/MealType';
 import { ScheduledMeal } from '@/types/ScheduledMealType';
 import ScheduledMealZone from './ScheduledMealZone';
 import { formatDate } from '@/utils/FormatDate';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css'
 
 interface DayProps {
   date: string;
+  loading?: boolean;
 }
 
-const Day: React.FC<DayProps> = ({ date }) => { 
+const Day: React.FC<DayProps> = ({ date, loading }) => { 
   const { scheduledMeals } = useScheduledMealContext();
 
   const mealsOfTheDay = scheduledMeals.filter((scheduledMeal: ScheduledMeal) => scheduledMeal.date === date);
@@ -24,7 +27,7 @@ const Day: React.FC<DayProps> = ({ date }) => {
   return (
     <div>
       <div className={styles.date}>
-        {formattedDate}
+        {loading ? <Skeleton containerClassName={styles.flexSkeleton} width={'50%'} height={'70%'}/> : formattedDate}
       </div>
       <div className={styles.day}>
         {mealTypes.map(renderScheduledMeal)}
