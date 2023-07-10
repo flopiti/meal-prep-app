@@ -1,35 +1,24 @@
 import styles from '@/styles/Home.module.css';
-import ScheduledMeal from './ScheduledMeal';
 import { useScheduledMealContext } from '@/providers/ScheduledMealContext';
 import { MealType, mealTypes } from '@/types/MealType';
-import { getOrdinalSuffix } from '@/utils/GetOrdinalSuffix';
+import { ScheduledMeal } from '@/types/ScheduledMealType';
+import ScheduledMealZone from './ScheduledMealZone';
+import { formatDate } from '@/utils/FormatDate';
 
 interface DayProps {
-  day: Date;
+  date: string;
 }
 
-const Day: React.FC<DayProps> = ({ day }) => {
+const Day: React.FC<DayProps> = ({ date }) => { 
   const { scheduledMeals } = useScheduledMealContext();
-  
-  const mealsOfTheDay = scheduledMeals.filter((meal: any) => meal.date === day);
-  
-  const formatDate = (date: Date) => {
-    const adjustedDate = new Date(date);
-    adjustedDate.setMinutes(adjustedDate.getMinutes() + adjustedDate.getTimezoneOffset());
-    
-    const dayOfWeek = adjustedDate.toLocaleDateString('en-US', { weekday: 'long' });
-    const dayOfMonth = adjustedDate.getDate();
-    const ordinalSuffix = getOrdinalSuffix(dayOfMonth);
-    
-    return `${dayOfWeek} ${dayOfMonth}${ordinalSuffix}`;
-  }
-  
-  const formattedDate = formatDate(day);
+
+  const mealsOfTheDay = scheduledMeals.filter((scheduledMeal: ScheduledMeal) => scheduledMeal.date === date);
+  const formattedDate = formatDate(date);
 
   const renderScheduledMeal = (mealType: MealType) => {
     const meal = mealsOfTheDay.find((meal: any) => meal.mealType === mealType) || null;
     return (
-      <ScheduledMeal meal={meal} mealType={mealType} day={new Date(day).toISOString().slice(0, 10)} />
+      <ScheduledMealZone meal={meal} mealType={mealType} day={new Date(date).toISOString().slice(0, 10)} />
     );
   }
   return (
