@@ -28,8 +28,11 @@ const ScheduledMealZone = ({ meal, mealType, day, loading} :ScheduledMealZonePro
     const { deleteScheduledMeal, putScheduledMeal } = useScheduledMeals();
     const { getMeal } = useMeals();
     const { removeMeal, changeMeal, scheduleMeal } = useScheduledMealContext();
-    const[iconUrl, setIconUrl] = useState<string|null>(null)
-    const[mealName, setMealName] = useState<string|null>(null)
+    const { postScheduledMeal } = useScheduledMeals();
+    const[iconUrl, setIconUrl] = useState<string|null>(null);
+    const[mealName, setMealName] = useState<string|null>(null);
+    const [isScheduleModalOpen, setIsScheduleModalOpen] = useState<boolean>(false);
+
     if (meal){
         getMeal(meal.mealId.toString()).then((res:any) => {
             setIconUrl(res.iconUrl)
@@ -42,18 +45,16 @@ const ScheduledMealZone = ({ meal, mealType, day, loading} :ScheduledMealZonePro
             removeMeal(meal.id)
         });
     };
-    const [isScheduleModalOpen, setIsScheduleModalOpen] = useState<boolean>(false);
     const showScheduleModal = () => {
         setIsScheduleModalOpen(true);
     };
-    const { postScheduledMeal } = useScheduledMeals();
     const fadeIn = {
         initial: { opacity: 0 },
         animate: { opacity: 1 },
-      };
-    const handleDrop = (mealId:any, iconUrl:any, scheduledMealId:any) => {
+    };
+    const handleDrop = (mealId:number, iconUrl:string, scheduledMealId:number) => {
         if(scheduledMealId){
-            putScheduledMeal(scheduledMealId,  mealName!, day, mealType, iconUrl, mealId,  iconUrl).then((res:any) => { 
+            putScheduledMeal(scheduledMealId,  mealName!, day, mealType, iconUrl).then((res:any) => { 
                 getMeal(res.mealId).then((meal:any) => {
                     changeMeal(
                         {
@@ -80,7 +81,7 @@ const ScheduledMealZone = ({ meal, mealType, day, loading} :ScheduledMealZonePro
                 });
             });
         }
-      };
+    };
 
       if(loading) return (
         <div className={styles.meal}>
