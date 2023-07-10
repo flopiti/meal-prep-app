@@ -99,7 +99,7 @@ const ScheduledMealZone = ({ meal, mealType, day} :any) => {
                 </DropZone>
                 ) : (
                         <DropZone onDrop={handleDrop}>
-                            <Image src="/empty-plate.png" width={135} height={120} alt={''} />
+                            <Image src="/empty-plate.png" width={135} height={120} alt={''} priority={true}/>
                             <h4 className={styles.addMeal}>Add Meal</h4>
                         </DropZone>
                 )
