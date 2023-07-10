@@ -8,8 +8,6 @@ import { ScheduledMealProvider } from '@/providers/ScheduledMealContext'
 import { MealProvider } from '@/providers/MealContext'
 import FontFaceObserver from 'fontfaceobserver';
 
-
-
 export default function Home() {
 
   const [fontLoaded, setFontLoaded] = useState(false);
@@ -35,14 +33,14 @@ export default function Home() {
   return (
     <ScheduledMealProvider>
       <MealProvider>
-        <div style={{height: '96vh'  }}>
+        <main style={{height: '96vh'  }}>
           {
             isMobile ?
             <MobileApp/>
             :
             <WebApp/>
           }
-        </div>
+        </main>
       </MealProvider>
     </ScheduledMealProvider>
   )
