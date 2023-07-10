@@ -9,12 +9,12 @@ import { useMealContext } from '@/providers/MealContext';
 import { useMeals } from '@/hooks/useMeals';
 import axios from 'axios';
 import useSWR from 'swr';
-import { GetDateStrings } from '@/utils/getDateStrings';
+import { getDateStrings } from '@/utils/getDateStrings';
 
 const Calendar = () => {
 
   const [isMobile, setIsMobile] = useState(false);
-  const [datesToCover, setDatesToCover ]= useState(GetDateStrings(new Date));
+  const [datesToCover, setDatesToCover ]= useState(getDateStrings(new Date));
   const fetcher = (url:string) => axios.get(url).then(res => res.data)
   const {data : scheduledMeals, error: scheduledMealsError } = useSWR('/api/scheduled-meals', fetcher)
   const { setScheduledMeals } = useScheduledMealContext();
@@ -40,13 +40,13 @@ const Calendar = () => {
 
   const pushOneDateForward = () => {
     const newDate = new Date(datesToCover[1]);
-    setDatesToCover(GetDateStrings(newDate));
+    setDatesToCover(getDateStrings(newDate));
   }
 
   const pushOneDateBack = () => {
     const newDate = (new Date(datesToCover[0]));
     newDate.setDate(newDate.getDate() - 1);
-    setDatesToCover(GetDateStrings(new Date(newDate)));
+    setDatesToCover(getDateStrings(new Date(newDate)));
   }
 
   if (scheduledMealsError) return <div>Failed to load scheduled</div>
