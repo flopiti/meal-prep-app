@@ -20,6 +20,16 @@ const Day: React.FC<DayProps> = ({ date, loading }) => {
 
   const renderScheduledMeal = (mealType: MealType) => {
     const meal = mealsOfTheDay.find((meal: any) => meal.mealType === mealType) || null;
+
+    if(loading){
+      return (
+        <div key={`${date}${mealType}`} className={styles.mealZone}>
+          <SkeletonTheme baseColor="#4C9283" highlightColor="#B4A28A">
+            <Skeleton width={'100%'} height={'120px'}/>
+          </SkeletonTheme>
+        </div>
+      );
+    }
     return (
       <ScheduledMealZone key={`${date}${mealType}`} meal={meal} mealType={mealType} day={new Date(date).toISOString().slice(0, 10)} />
     );
