@@ -11,9 +11,19 @@ import ModalX from './ModalX';
 import ScheduleMealModal from './Modals/ScheduleMealModal';
 import XButton from './Utils/Xbutton/Xbutton';
 import Image from 'next/image';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import { Meal } from '@/types/Meal';
+import { MealType } from '@/types/MealType';
+import { ScheduledMeal } from '@/types/ScheduledMealType';
 
-const ScheduledMealZone = ({ meal, mealType, day} :any) => {
+interface ScheduledMealZoneProps {
+    meal: ScheduledMeal | null;
+    mealType: MealType;
+    day: string;
+    loading?: boolean;
+}
 
+const ScheduledMealZone = ({ meal, mealType, day, loading} :ScheduledMealZoneProps) => {
     const { t } = useTranslation('common')
     const { deleteScheduledMeal, putScheduledMeal } = useScheduledMeals();
     const { getMeal } = useMeals();
@@ -21,7 +31,7 @@ const ScheduledMealZone = ({ meal, mealType, day} :any) => {
     const[iconUrl, setIconUrl] = useState<string|null>(null)
     const[mealName, setMealName] = useState<string|null>(null)
     if (meal){
-        getMeal(meal.mealId).then((res:any) => {
+        getMeal(meal.mealId.toString()).then((res:any) => {
             setIconUrl(res.iconUrl)
             setMealName(res.mealName)
         })
@@ -71,8 +81,20 @@ const ScheduledMealZone = ({ meal, mealType, day} :any) => {
             });
         }
       };
-    return (
+
+      if(loading) return (
         <div className={styles.meal}>
+            <SkeletonTheme baseColor="#4C9283" highlightColor="#B4A28A">
+                <div className={styles.mealButton}>
+                    <Skeleton containerClassName={styles.scheduledSpot} width={'100%'} height={'100%'}/>
+                </div>
+            </SkeletonTheme>
+        </div>
+        )
+
+      
+    return (
+        <div className={styles.meal}>       
             {
                 meal ? (<motion.div className={styles.buttonContainer}
                     initial={fadeIn.initial}
@@ -97,7 +119,6 @@ const ScheduledMealZone = ({ meal, mealType, day} :any) => {
             <ModalX open={isScheduleModalOpen} setOpen={setIsScheduleModalOpen}> 
                 <ScheduleMealModal day={day} mealType={mealType} closeForm={()=>setIsScheduleModalOpen(false)} meal={meal} editMeal={putScheduledMeal} />
             </ModalX>
-
         </div>
     );
 };
