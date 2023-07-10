@@ -9,10 +9,17 @@ import { useMealContext } from '@/providers/MealContext';
 import { useMeals } from '@/hooks/useMeals';
 import axios from 'axios';
 import useSWR from 'swr';
-import { getDateStrings } from '@/utils/getDateStrings';
 
 const Calendar = () => {
-
+  const getDateStrings = (mainDate: Date) => {
+    const dateStrings = [];
+    for (let i = 0; i < 3; i++) {
+      const date = new Date(mainDate.getTime() + i * 24 * 60 * 60 * 1000);
+      const dateString = date.toISOString().slice(0, 10);
+      dateStrings.push(dateString);
+    }
+    return dateStrings;
+  }
   const [isMobile, setIsMobile] = useState(false);
   const [datesToCover, setDatesToCover ]= useState(getDateStrings(new Date));
   const fetcher = (url:string) => axios.get(url).then(res => res.data)
