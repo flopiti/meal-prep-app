@@ -29,26 +29,26 @@
   border: 0;
   box-shadow: 0 5px 30px 0 rgb(0 0 0 / 10%);
   animation: fadeIn 1s ease both;
-  background: rgba(45, 136, 117,0.75);
-  font-family: 'FugazOne', cursive;
+  background: rgba(45, 136, 117, 0.75);
+  font-family: "FugazOne", cursive;
   color: white;
   text-align: center;
 }
 
 .primary {
-	display: inline-block;
-	font-size: 0.8rem;
-	color: #fff !important;
-	background: rgb(var(--vs-primary) / 100%);
-	padding: 13px 25px;
-	border-radius: 17px;
-	transition: background-color 0.1s ease;
-	box-sizing: border-box;
-	transition: all 0.25s ease;
-	border: 0;
-	cursor: pointer;
-	box-shadow: 0 10px 20px -10px rgb(var(--vs-primary) / 50%);
-	/* &:hover {
+  display: inline-block;
+  font-size: 0.8rem;
+  color: #fff !important;
+  background: rgb(var(--vs-primary) / 100%);
+  padding: 13px 25px;
+  border-radius: 17px;
+  transition: background-color 0.1s ease;
+  box-sizing: border-box;
+  transition: all 0.25s ease;
+  border: 0;
+  cursor: pointer;
+  box-shadow: 0 10px 20px -10px rgb(var(--vs-primary) / 50%);
+  /* &:hover {
 		box-shadow: 0 20px 20px -10px rgb(var(--vs-primary) / 50%);
 		transform: translateY(-5px);
 	} */
@@ -69,7 +69,9 @@
   position: absolute;
   top: 15px;
   right: 10px;
-  transition: ease filter, transform 0.3s;
+  transition:
+    ease filter,
+    transform 0.3s;
   cursor: pointer;
   transform-origin: center;
   /* &:hover {

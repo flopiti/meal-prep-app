@@ -1,4 +1,4 @@
-version: '3.9'
+version: "3.9"
 
 services:
   nextjs:
@@ -9,7 +9,7 @@ services:
     environment:
       BACKEND_URL: http://springboot:8080
     networks:
-    - memealsapi_meal-network1
+      - memealsapi_meal-network1
 
 networks:
   memealsapi_meal-network1:

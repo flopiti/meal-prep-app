@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 function useSwipe(onSwipe: any) {
   const [startX, setStartX] = useState(null);
   const [startY, setStartY] = useState(null);
 
   useEffect(() => {
-    const handleTouchStart = (e:any) => {
+    const handleTouchStart = (e: any) => {
       setStartX(e.touches[0].clientX);
       setStartY(e.touches[0].clientY);
     };
 
-    const handleTouchMove = (e:any) => {
+    const handleTouchMove = (e: any) => {
       if (!startX || !startY) {
         return;
       }
@@ -20,15 +20,15 @@ function useSwipe(onSwipe: any) {
 
       if (Math.abs(xDiff) > Math.abs(yDiff)) {
         if (xDiff > 0) {
-          onSwipe('left');
+          onSwipe("left");
         } else {
-          onSwipe('right');
+          onSwipe("right");
         }
       } else {
         if (yDiff > 0) {
-          onSwipe('up');
+          onSwipe("up");
         } else {
-          onSwipe('down');
+          onSwipe("down");
         }
       }
 
@@ -36,12 +36,12 @@ function useSwipe(onSwipe: any) {
       setStartY(null);
     };
 
-    document.addEventListener('touchstart', handleTouchStart);
-    document.addEventListener('touchmove', handleTouchMove);
+    document.addEventListener("touchstart", handleTouchStart);
+    document.addEventListener("touchmove", handleTouchMove);
 
     return () => {
-      document.removeEventListener('touchstart', handleTouchStart);
-      document.removeEventListener('touchmove', handleTouchMove);
+      document.removeEventListener("touchstart", handleTouchStart);
+      document.removeEventListener("touchmove", handleTouchMove);
     };
   }, [startX, startY, onSwipe]);
 

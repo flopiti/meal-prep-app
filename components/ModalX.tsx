@@ -1,13 +1,12 @@
-import React, { EventHandler } from 'react';
-import styles from '../styles/Modal.module.css';
+import React, { EventHandler } from "react";
+import styles from "../styles/Modal.module.css";
 
-const ModalX = ({ open , setOpen, children}:any) => {
-
+const ModalX = ({ open, setOpen, children }: any) => {
   const onClose = () => {
-      setOpen(false);
+    setOpen(false);
   };
 
-return (
+  return (
     <>
       {open && (
         <div className={styles.container}>
@@ -21,8 +20,7 @@ return (
         </div>
       )}
     </>
-    );
+  );
 };
-
 
 export default ModalX;

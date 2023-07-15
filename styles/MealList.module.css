@@ -1,77 +1,74 @@
-.mealList{
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    height: 80%;
-    margin: 10px;
-    margin-top: 25px;
-    justify-content: flex-start;
-    
+.mealList {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  margin: 10px;
+  margin-top: 25px;
+  justify-content: flex-start;
 }
-.buttons{
-    display: flex;
-    flex-direction: column;
+.buttons {
+  display: flex;
+  flex-direction: column;
 }
 .mealItem {
-    position: relative;
-    display: inline-block;
-    width: 85%;
-
-    
+  position: relative;
+  display: inline-block;
+  width: 85%;
 }
-.fullBox{
-    border: 1px solid #ccc;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    position:relative;
+.fullBox {
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  position: relative;
 }
 
-.nameAndImage{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+.nameAndImage {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
-.iconSmall{
-    margin: 5px;
+.iconSmall {
+  margin: 5px;
 }
-.list{
-    display: flex;
-    flex-direction: column;
-    max-height: 80%;
+.list {
+  display: flex;
+  flex-direction: column;
+  max-height: 80%;
 }
 .ingredientsBox {
-    display: none;
-    position: absolute;
-    z-index: 3;
-    top: 100%;
-    left: 0;
-    min-width: 200px;
-    background-color: #f9f9f9;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    padding: 8px;
-    border-radius: 4px;
+  display: none;
+  position: absolute;
+  z-index: 3;
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 8px;
+  border-radius: 4px;
 }
 
-.subheader{
-    margin-bottom: 5px;
-    margin-top: 5px;
+.subheader {
+  margin-bottom: 5px;
+  margin-top: 5px;
 }
 
 .mealItem:hover .ingredientsBox {
-    display: block;
+  display: block;
 }
 .buttonContainer {
-    height: 20px;
-    width: 20px;
-    margin-right: 1px;
-    position: absolute;
-    top: 4px; 
-    right: 4px; 
-    z-index:2;
-    margin: 2px;
+  height: 20px;
+  width: 20px;
+  margin-right: 1px;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  z-index: 2;
+  margin: 2px;
 }

@@ -1,48 +1,47 @@
-.mealIcon{
-    margin-top: .25rem;
-    margin-bottom: .25rem;
-    margin-right: .5rem;
-    margin-left: .5rem;
-  
-  }
+.mealIcon {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+}
 
-.mealChoice{
-    font-family: 'FugazOne', sans-serif;
-    font-size: 1.5rem;
-    overflow: hidden;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-    z-index: 1;
-    color: white;
-  }  
+.mealChoice {
+  font-family: "FugazOne", sans-serif;
+  font-size: 1.5rem;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+  color: white;
+}
 
-  .mealName{
-    position: relative;
-    z-index: -1;
-    top: -25px;
-    margin-bottom: -25px;
-  }
+.mealName {
+  position: relative;
+  z-index: -1;
+  top: -25px;
+  margin-bottom: -25px;
+}
 
-  .containerMeal {
-    position: relative;
-    width: 200px;
-    height: 120px;
-  }
+.containerMeal {
+  position: relative;
+  width: 200px;
+  height: 120px;
+}
 
 .buttonContainer {
-    height: 20px;
-    width: 20px;
-    margin-right: 1px;
-    position: absolute;
-    top: 4px; 
-    right: 4px; 
-    z-index:2;
-    margin: 2px;
+  height: 20px;
+  width: 20px;
+  margin-right: 1px;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  z-index: 2;
+  margin: 2px;
 }

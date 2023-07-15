@@ -1,35 +1,35 @@
 .box {
-    width: 600px;
-    font-size:20px;
+  width: 600px;
+  font-size: 20px;
 }
 
-.meals{
-    display: flex;
-    flex-direction: row;
-    overflow: hidden;
-    padding: 10px;
-    margin-bottom: 80px;
+.meals {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  padding: 10px;
+  margin-bottom: 80px;
 }
 
-.mealButton{
-    width: 100%;
-    height: 100%;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    margin-right: 10px;
+.mealButton {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin-right: 10px;
 }
 .hoverArea {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 50px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50px;
 }
 
 .hoverArea.left {
-    left: 0;
+  left: 0;
 }
 
 .hoverArea.right {
-    right: 0;
+  right: 0;
 }

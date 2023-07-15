@@ -1,4 +1,3 @@
-
 html,
 body {
   max-width: 100vw;
@@ -6,10 +5,9 @@ body {
 }
 
 body {
-  background: #E1CBAD;
-  font-family: 'Red Hat Display', sans-serif;
+  background: #e1cbad;
+  font-family: "Red Hat Display", sans-serif;
   font-weight: 600;
-  
 }
 
 a {

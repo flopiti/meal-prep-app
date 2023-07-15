@@ -1,41 +1,41 @@
-.main{
+.main {
   max-width: 1200px;
   margin-right: auto;
   margin-left: auto;
   max-height: 96vh;
 }
 
-.title{
+.title {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
   margin-top: 0.5rem;
-  display: flex;  
+  display: flex;
   justify-content: center;
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-style: italic;
   font-weight: 900;
   text-decoration: underline;
 }
 @font-face {
-  font-family: 'FugazOne';
-  src: url('/fonts/FugazOne-Regular.ttf') format('truetype'); 
+  font-family: "FugazOne";
+  src: url("/fonts/FugazOne-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Galada';
-  src: url('/fonts/Galada-Regular.ttf') format('truetype'); 
+  font-family: "Galada";
+  src: url("/fonts/Galada-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
-.mainLogo{
+.mainLogo {
   margin-left: 10px;
 }
 
-.xbutton{
+.xbutton {
   height: 3vh;
   float: right;
   border: none;
@@ -44,20 +44,20 @@
   cursor: pointer;
 }
 
-.dayTitle{
+.dayTitle {
   display: block;
   height: 5vh;
-  margin-top: 0.67em; 
-  margin-bottom: 0.67em; 
-  margin-left: 0; 
-  margin-right: 0; 
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  margin-left: 0;
+  margin-right: 0;
   font-weight: bold;
 }
 
-.addMeal{
-  position : absolute;
+.addMeal {
+  position: absolute;
 }
-.day{
+.day {
   width: 250px;
   padding: 1rem;
   display: flex;
@@ -68,10 +68,10 @@
   border-radius: 70px;
   margin-left: 25px;
   margin-right: 25px;
-  box-shadow: -10px 10px 10px 0px rgba(0,0,0,.25);
+  box-shadow: -10px 10px 10px 0px rgba(0, 0, 0, 0.25);
 }
 
-.calendar{
+.calendar {
   display: flex;
   width: 100%;
   align-items: flex-start;
@@ -79,12 +79,12 @@
   margin-bottom: 20px;
 }
 
-.dayArrows{
+.dayArrows {
   display: flex;
   justify-content: space-between;
 }
 
-.dropzone{
+.dropzone {
   min-height: 120px;
   width: 100%;
   display: flex;
@@ -101,7 +101,7 @@
   top: 20px;
   margin-top: -20px;
 }
-.mealButton{
+.mealButton {
   width: 100%;
   height: 100%;
   display: flex;
@@ -112,44 +112,44 @@
   cursor: pointer;
 }
 
-.meal{
+.meal {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
 
-.flexSkeleton{
-  flex:1;
+.flexSkeleton {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.date{
+.date {
   display: flex;
   justify-content: center;
-  font-family: 'Galada', cursive;
+  font-family: "Galada", cursive;
 }
 
-.scheduledSpot{
-  width: 100%;  
+.scheduledSpot {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  color:white;
-  font-family: 'FugazOne', sans-serif;
+  color: white;
+  font-family: "FugazOne", sans-serif;
   font-size: 1.5rem;
   padding-bottom: 1rem;
   padding-top: 1rem;
 }
 
-.mealBox{
+.mealBox {
   background: #f03f35;
-  border : 1px solid #000;
+  border: 1px solid #000;
 }
 
-.mealType{
+.mealType {
   height: 20%;
   width: 100%;
   display: flex;
@@ -157,25 +157,25 @@
   align-items: center;
 }
 
-.mealItem{
+.mealItem {
   border: 1px solid #000;
   height: 3vh;
-  margin:.25rem;
-  padding: .25rem;
+  margin: 0.25rem;
+  padding: 0.25rem;
   border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.mealIconSmall{
-  margin-top: .5rem;
-  margin-bottom: .25rem;
-  margin-right: .5rem;
-  margin-left: .5rem;
+.mealIconSmall {
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
 }
 
-.mealList{
+.mealList {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;

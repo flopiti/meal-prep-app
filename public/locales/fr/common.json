@@ -1,16 +1,16 @@
 {
-    "addMeal": "Ajouter un repas",
-    "breakfast": "Déjeuner",
-    "lunch": "Dîner",
-    "dinner": "Souper",
-    "required": {
-        "mealName":"Nom du repas est requis",
-        "iconUrl": "URL de l'icône est requis",
-        "ingredient": "Nom de l'ingrédient est requis"
-    },
-    "addIngredient": "Ajouter un ingrédient",
-    "submit": "Soumettre",
-    "mealName": "Nom du repas",
-    "admin": "Admin",
-    "logout": "Se déconnecter"
+  "addMeal": "Ajouter un repas",
+  "breakfast": "Déjeuner",
+  "lunch": "Dîner",
+  "dinner": "Souper",
+  "required": {
+    "mealName": "Nom du repas est requis",
+    "iconUrl": "URL de l'icône est requis",
+    "ingredient": "Nom de l'ingrédient est requis"
+  },
+  "addIngredient": "Ajouter un ingrédient",
+  "submit": "Soumettre",
+  "mealName": "Nom du repas",
+  "admin": "Admin",
+  "logout": "Se déconnecter"
 }
