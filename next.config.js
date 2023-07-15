@@ -1,14 +1,13 @@
 /** @type {import('next').NextConfig} */
 
-const { i18n } = require('./next-i18next.config')
-
+const { i18n } = require("./next-i18next.config");
 
 const nextConfig = {
   i18n,
   reactStrictMode: true,
   assetPrefix: process.env.NEXT_PUBLIC_URL,
   images: {
-    domains: ['ibb.co', 'i.ibb.co', 'example.com'],
+    domains: ["ibb.co", "i.ibb.co", "example.com"],
   },
   serverRuntimeConfig: {
     auth0Domain: process.env.AUTH0_DOMAIN,
@@ -19,7 +18,7 @@ const nextConfig = {
   },
   publicRuntimeConfig: {
     // Add any public runtime configs here, if needed
-  }
-}
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

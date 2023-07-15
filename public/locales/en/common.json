@@ -1,17 +1,17 @@
 {
-    "addMeal": "Add Meal",
-    "breakfast": "Breakfast",
-    "lunch": "Lunch",
-    "dinner": "Dinner",
-    "required": {
-        "mealName":"Meal name is required",
-        "iconUrl": "Icon url is required",
-        "ingredient": "Ingredient is required"
-    },
-    "addIngredient": "Add ingredient",
-    "submit": "Submit",
-    "mealName": "Meal Name",
-    "admin": "Admin",
-    "logout": "Logout",
-    "hungry": "What are you hungry for?"
+  "addMeal": "Add Meal",
+  "breakfast": "Breakfast",
+  "lunch": "Lunch",
+  "dinner": "Dinner",
+  "required": {
+    "mealName": "Meal name is required",
+    "iconUrl": "Icon url is required",
+    "ingredient": "Ingredient is required"
+  },
+  "addIngredient": "Add ingredient",
+  "submit": "Submit",
+  "mealName": "Meal Name",
+  "admin": "Admin",
+  "logout": "Logout",
+  "hungry": "What are you hungry for?"
 }

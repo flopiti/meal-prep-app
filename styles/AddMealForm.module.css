@@ -1,36 +1,36 @@
-.formBox{
-    display: flex;
-    flex-direction: column;
+.formBox {
+  display: flex;
+  flex-direction: column;
 }
 .box {
-    width: 400px;
+  width: 400px;
 }
 
-.colRow{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    margin-top: 10px;
+.colRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
-.qtyStyle{
-    width: 50px;
-    height: 20px;
-    display: inline;
+.qtyStyle {
+  width: 50px;
+  height: 20px;
+  display: inline;
 }
-.rowVert{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    margin-top: 10px; 
+.rowVert {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
-.ingredientForm{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    align-items: center;
+.ingredientForm {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  align-items: center;
 }

@@ -1,29 +1,29 @@
-import styles from '@/styles/Home.module.css'
-import Image from 'next/image'
+import styles from "@/styles/Home.module.css";
+import Image from "next/image";
 import React, { useState } from "react";
 
 export type Meal = {
-    id: number,
-    mealName: string,
-    ingredients: string[],
-    iconUrl: string,
-  }
+  id: number;
+  mealName: string;
+  ingredients: string[];
+  iconUrl: string;
+};
 
-const LikedMealsList = ({meals, unlikeMeal, setLikedMeals}:any) => {
+const LikedMealsList = ({ meals, unlikeMeal, setLikedMeals }: any) => {
+  const handleDragStart = (event: any, index: number) => {
+    event.dataTransfer.setData("1", meals[index].id);
+  };
 
-    const handleDragStart = (event:any, index:number) => {
-        event.dataTransfer.setData('1', meals[index].id);
-      };
-
-    const unlikeAndRemoveMeal = (id:number) => {
-        unlikeMeal(id).then(() => {
-            setLikedMeals(meals.filter((likedMeal: { id: number; }) => likedMeal.id !== id));
-        }
-        )
-    }
-    return (
-        <div className={styles.mealList}>
-            {/* {
+  const unlikeAndRemoveMeal = (id: number) => {
+    unlikeMeal(id).then(() => {
+      setLikedMeals(
+        meals.filter((likedMeal: { id: number }) => likedMeal.id !== id),
+      );
+    });
+  };
+  return (
+    <div className={styles.mealList}>
+      {/* {
                 meals?.map((meal:Meal, index:number) => {
                     return (
                     <span 
@@ -41,8 +41,8 @@ const LikedMealsList = ({meals, unlikeMeal, setLikedMeals}:any) => {
                     </span>)
                 })
             } */}
-        </div>
-        );
-    };
+    </div>
+  );
+};
 
 export default LikedMealsList;

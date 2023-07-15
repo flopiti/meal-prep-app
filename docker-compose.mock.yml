@@ -1,4 +1,4 @@
-version: '3.9'
+version: "3.9"
 
 services:
   meal-app:
@@ -12,7 +12,7 @@ services:
       BACKEND_URL: http://mock-api:3000
     entrypoint: npm run dev
     networks:
-    - meal-network
+      - meal-network
 
   mock-api:
     container_name: mock-meals

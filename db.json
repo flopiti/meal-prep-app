@@ -418,12 +418,7 @@
       "id": 20,
       "mealName": "Eggs & Bacon",
       "iconUrl": "https://i.ibb.co/d5YV4Vz/Im-Apollo216-A-breakfast-plate-with-bacon-and-eggs-in-the-style-41a6f0c2-857d-462e-ad33-d65c4e334c30.png",
-      "ingredients": [
-        "eggs",
-        "bacon",
-        "salt",
-        "black pepper"
-      ]
+      "ingredients": ["eggs", "bacon", "salt", "black pepper"]
     },
     {
       "id": 21,
@@ -447,10 +442,7 @@
       "id": 22,
       "mealName": "Oreos",
       "iconUrl": "https://i.ibb.co/cCH91b5/oro.png",
-      "ingredients": [
-        "oreos",
-        "milk"
-      ]
+      "ingredients": ["oreos", "milk"]
     },
     {
       "id": 23,
@@ -469,22 +461,13 @@
       "id": 24,
       "mealName": "Popcorn",
       "iconUrl": "https://i.ibb.co/bJxSr1v/popcorn.png",
-      "ingredients": [
-        "popcorn",
-        "butter",
-        "salt"
-      ]
+      "ingredients": ["popcorn", "butter", "salt"]
     },
     {
       "id": 25,
       "mealName": "Avocado Toast",
       "iconUrl": "https://i.ibb.co/6FfgPrg/avocado-toast.png",
-      "ingredients": [
-        "avocado",
-        "bread",
-        "salt",
-        "black pepper"
-      ]
+      "ingredients": ["avocado", "bread", "salt", "black pepper"]
     }
   ],
   "meal-likes": [
