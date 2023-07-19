@@ -4,11 +4,11 @@ import { UserProvider } from "@auth0/nextjs-auth0/client";
 import BaseLayout from "@/components/_layouts/BaseLayout";
 import { appWithTranslation } from "next-i18next";
 import Head from "next/head";
-import { Provider } from 'react-redux';
-import store from '@/providers/store';
+import { Provider } from "react-redux";
+import store from "@/providers/store";
 
 const App = ({ Component, pageProps }: AppProps) => {
-  return ( 
+  return (
     <Provider store={store}>
       <UserProvider>
         <Head>

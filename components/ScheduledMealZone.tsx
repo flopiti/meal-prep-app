@@ -14,7 +14,11 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { MealType } from "@/types/MealType";
 import { ScheduledMeal } from "@/types/ScheduledMealType";
 import { Meal } from "@/types/Meal";
-import { changeMeal, removeMeal, scheduleMeal } from "@/providers/ScheduledMealSlice";
+import {
+  changeMeal,
+  removeMeal,
+  scheduleMeal,
+} from "@/providers/ScheduledMealSlice";
 import { useAppDispatch } from "@/hooks/reduxHooks";
 
 interface ScheduledMealZoneProps {
@@ -75,17 +79,21 @@ const ScheduledMealZone = ({
         iconUrl,
       );
       const meal: Meal = await getMeal(String(res.mealId));
-      dispatch(changeMeal({
-        ...res,
-        mealName: meal.mealName,
-        iconUrl: meal.iconUrl,
-      }));
+      dispatch(
+        changeMeal({
+          ...res,
+          mealName: meal.mealName,
+          iconUrl: meal.iconUrl,
+        }),
+      );
     } else {
       const res: ScheduledMeal = await postScheduledMeal(day, mealType, mealId);
-      dispatch(scheduleMeal({
-        ...res,
-        mealId,
-      }));
+      dispatch(
+        scheduleMeal({
+          ...res,
+          mealId,
+        }),
+      );
     }
   };
 

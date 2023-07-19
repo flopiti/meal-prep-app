@@ -15,10 +15,14 @@ const scheduledMealSlice = createSlice({
       state.scheduledMeals.push(action.payload);
     },
     removeMeal: (state, action: PayloadAction<number>) => {
-      state.scheduledMeals = state.scheduledMeals.filter((meal) => meal.id !== action.payload);
+      state.scheduledMeals = state.scheduledMeals.filter(
+        (meal) => meal.id !== action.payload,
+      );
     },
     changeMeal: (state, action: PayloadAction<ScheduledMeal>) => {
-      const index = state.scheduledMeals.findIndex((meal) => meal.id === action.payload.id);
+      const index = state.scheduledMeals.findIndex(
+        (meal) => meal.id === action.payload.id,
+      );
       if (index !== -1) {
         state.scheduledMeals[index] = action.payload;
       }
@@ -29,11 +33,7 @@ const scheduledMealSlice = createSlice({
   },
 });
 
-export const {
-  scheduleMeal,
-  removeMeal,
-  changeMeal,
-  setScheduledMeals,
-} = scheduledMealSlice.actions;
+export const { scheduleMeal, removeMeal, changeMeal, setScheduledMeals } =
+  scheduledMealSlice.actions;
 
 export default scheduledMealSlice.reducer;

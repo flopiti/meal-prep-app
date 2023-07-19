@@ -11,7 +11,7 @@ import useSWR from "swr";
 import { useAppDispatch, useAppSelector } from "@/hooks/reduxHooks";
 import { setScheduledMeals } from "@/providers/ScheduledMealSlice";
 
-const Calendar : React.FC = () => {
+const Calendar: React.FC = () => {
   const getDateStrings = (mainDate: Date) => {
     const dateStrings = [];
     for (let i = 0; i < 3; i++) {
@@ -23,7 +23,7 @@ const Calendar : React.FC = () => {
   };
 
   const dispatch = useAppDispatch();
-  const scheduledMeals = useAppSelector(state => state.scheduledMeals);
+  const scheduledMeals = useAppSelector((state) => state.scheduledMeals);
 
   const [isMobile, setIsMobile] = useState(false);
   const [datesToCover, setDatesToCover] = useState(getDateStrings(new Date()));

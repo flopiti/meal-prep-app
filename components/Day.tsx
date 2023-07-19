@@ -13,7 +13,7 @@ interface DayProps {
 }
 
 const Day: React.FC<DayProps> = ({ date, loading }) => {
-  const scheduledMeals = useAppSelector(state => state.scheduledMeals);
+  const scheduledMeals = useAppSelector((state) => state.scheduledMeals);
   const mealsOfTheDay = scheduledMeals.filter(
     (scheduledMeal: ScheduledMeal) => scheduledMeal.date === date,
   );

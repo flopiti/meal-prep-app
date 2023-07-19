@@ -1,5 +1,5 @@
-import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from './ScheduledMealSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import rootReducer from "./ScheduledMealSlice";
 
 const store = configureStore({
   reducer: rootReducer,

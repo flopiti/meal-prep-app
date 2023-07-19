@@ -29,13 +29,13 @@ const Home = () => {
   }, []);
 
   return (
-      <MealProvider>
-        <SkeletonTheme baseColor="#B4A28A" highlightColor="#207765">
-          <main style={{ height: "96vh" }}>
-            {isMobile ? <MobileApp /> : <WebApp />}
-          </main>
-        </SkeletonTheme>
-      </MealProvider>
+    <MealProvider>
+      <SkeletonTheme baseColor="#B4A28A" highlightColor="#207765">
+        <main style={{ height: "96vh" }}>
+          {isMobile ? <MobileApp /> : <WebApp />}
+        </main>
+      </SkeletonTheme>
+    </MealProvider>
   );
 };
 
