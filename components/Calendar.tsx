@@ -44,7 +44,7 @@ const Calendar: React.FC = () => {
   };
   useSwipe(handleSwipe);
   useEffect(() => {
-    if (scheduledMeals) {
+    if (scheduledMealsData) {
       dispatch(setScheduledMeals(scheduledMealsData));
     }
     if (window.innerWidth < 768) {
