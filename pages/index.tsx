@@ -4,7 +4,6 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import MobileApp from "@/components/_layouts/MobileApp";
 import WebApp from "@/components/_layouts/WebApp";
-import { ScheduledMealProvider } from "@/providers/ScheduledMealContext";
 import { MealProvider } from "@/providers/MealContext";
 import FontFaceObserver from "fontfaceobserver";
 import { SkeletonTheme } from "react-loading-skeleton";
@@ -30,15 +29,13 @@ const Home = () => {
   }, []);
 
   return (
-    <ScheduledMealProvider>
-      <MealProvider>
-        <SkeletonTheme baseColor="#B4A28A" highlightColor="#207765">
-          <main style={{ height: "96vh" }}>
-            {isMobile ? <MobileApp /> : <WebApp />}
-          </main>
-        </SkeletonTheme>
-      </MealProvider>
-    </ScheduledMealProvider>
+    <MealProvider>
+      <SkeletonTheme baseColor="#B4A28A" highlightColor="#207765">
+        <main style={{ height: "96vh" }}>
+          {isMobile ? <MobileApp /> : <WebApp />}
+        </main>
+      </SkeletonTheme>
+    </MealProvider>
   );
 };
 

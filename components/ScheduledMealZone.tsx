@@ -6,7 +6,6 @@ import { useTranslation } from "react-i18next";
 import { useMeals } from "@/hooks/useMeals";
 import { useState } from "react";
 import ScheduledMealBox from "./ScheduledMealBox";
-import { useScheduledMealContext } from "@/providers/ScheduledMealContext";
 import ModalX from "./ModalX";
 import ScheduleMealModal from "./Modals/ScheduleMealModal";
 import XButton from "./Utils/Xbutton/Xbutton";
@@ -15,6 +14,12 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { MealType } from "@/types/MealType";
 import { ScheduledMeal } from "@/types/ScheduledMealType";
 import { Meal } from "@/types/Meal";
+import {
+  changeMeal,
+  removeMeal,
+  scheduleMeal,
+} from "@/providers/ScheduledMealSlice";
+import { useAppDispatch } from "@/hooks/reduxHooks";
 
 interface ScheduledMealZoneProps {
   meal: ScheduledMeal | null;
@@ -29,10 +34,11 @@ const ScheduledMealZone = ({
   day,
   loading,
 }: ScheduledMealZoneProps) => {
+  const dispatch = useAppDispatch();
+
   const { t } = useTranslation("common");
   const { deleteScheduledMeal, putScheduledMeal } = useScheduledMeals();
   const { getMeal } = useMeals();
-  const { removeMeal, changeMeal, scheduleMeal } = useScheduledMealContext();
   const { postScheduledMeal } = useScheduledMeals();
   const [iconUrl, setIconUrl] = useState<string | null>(null);
   const [mealName, setMealName] = useState<string | null>(null);
@@ -48,7 +54,7 @@ const ScheduledMealZone = ({
   const deleteMeal = () => {
     if (!meal) return;
     deleteScheduledMeal(meal.id).then(() => {
-      removeMeal(meal.id);
+      dispatch(removeMeal(meal.id));
     });
   };
   const showScheduleModal = () => {
@@ -73,17 +79,21 @@ const ScheduledMealZone = ({
         iconUrl,
       );
       const meal: Meal = await getMeal(String(res.mealId));
-      changeMeal({
-        ...res,
-        mealName: meal.mealName,
-        iconUrl: meal.iconUrl,
-      });
+      dispatch(
+        changeMeal({
+          ...res,
+          mealName: meal.mealName,
+          iconUrl: meal.iconUrl,
+        }),
+      );
     } else {
       const res: ScheduledMeal = await postScheduledMeal(day, mealType, mealId);
-      scheduleMeal({
-        ...res,
-        mealId,
-      });
+      dispatch(
+        scheduleMeal({
+          ...res,
+          mealId,
+        }),
+      );
     }
   };
 

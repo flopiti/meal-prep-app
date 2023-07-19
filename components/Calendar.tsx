@@ -4,13 +4,14 @@ import Day from "@/components/Day";
 import useSwipe from "@/hooks/useSwipe";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useScheduledMealContext } from "@/providers/ScheduledMealContext";
 import { useMealContext } from "@/providers/MealContext";
 import { useMeals } from "@/hooks/useMeals";
 import axios from "axios";
 import useSWR from "swr";
+import { useAppDispatch, useAppSelector } from "@/hooks/reduxHooks";
+import { setScheduledMeals } from "@/providers/ScheduledMealSlice";
 
-const Calendar = () => {
+const Calendar: React.FC = () => {
   const getDateStrings = (mainDate: Date) => {
     const dateStrings = [];
     for (let i = 0; i < 3; i++) {
@@ -20,14 +21,18 @@ const Calendar = () => {
     }
     return dateStrings;
   };
+
+  const dispatch = useAppDispatch();
+  const scheduledMeals = useAppSelector((state) => state.scheduledMeals);
+
   const [isMobile, setIsMobile] = useState(false);
   const [datesToCover, setDatesToCover] = useState(getDateStrings(new Date()));
   const fetcher = (url: string) => axios.get(url).then((res) => res.data);
-  const { data: scheduledMeals, error: scheduledMealsError } = useSWR(
+
+  const { data: scheduledMealsData, error: scheduledMealsError } = useSWR(
     "/api/scheduled-meals",
     fetcher,
   );
-  const { setScheduledMeals } = useScheduledMealContext();
   const { getMeals } = useMeals();
   const { setMeals } = useMealContext();
   const handleSwipe = (direction: string) => {
@@ -39,14 +44,14 @@ const Calendar = () => {
   };
   useSwipe(handleSwipe);
   useEffect(() => {
-    if (scheduledMeals) {
-      setScheduledMeals(scheduledMeals);
+    if (scheduledMealsData) {
+      dispatch(setScheduledMeals(scheduledMealsData));
     }
     if (window.innerWidth < 768) {
       setIsMobile(true);
     }
     getMeals().then((data: any) => setMeals(data));
-  }, [scheduledMeals]);
+  }, [scheduledMealsData]);
 
   const pushOneDateForward = () => {
     const newDate = new Date(datesToCover[1]);

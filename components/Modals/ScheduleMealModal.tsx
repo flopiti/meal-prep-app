@@ -1,14 +1,15 @@
+import { useAppDispatch, useAppSelector } from "@/hooks/reduxHooks";
 import { useScheduledMeals } from "@/hooks/useScheduledMeals";
 import { useMealContext } from "@/providers/MealContext";
-import { useScheduledMealContext } from "@/providers/ScheduledMealContext";
+import { scheduleMeal } from "@/providers/ScheduledMealSlice";
 import styles from "@/styles/ScheduleMealModal.module.css";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 const ScheduleMealModal = ({ closeForm, day, mealType }: any) => {
+  const dispatch = useAppDispatch();
   const { meals } = useMealContext();
-  const { scheduleMeal } = useScheduledMealContext();
   const { postScheduledMeal } = useScheduledMeals();
   const { t } = useTranslation("common");
   const stopScrolling = () => {
@@ -49,12 +50,14 @@ const ScheduleMealModal = ({ closeForm, day, mealType }: any) => {
               <button
                 onClick={() => {
                   postScheduledMeal(day, mealType, meal.id).then((res: any) => {
-                    scheduleMeal({
-                      id: res.id,
-                      date: res.date,
-                      mealType: res.mealType,
-                      mealId: meal.id,
-                    });
+                    dispatch(
+                      scheduleMeal({
+                        id: res.id,
+                        date: res.date,
+                        mealType: res.mealType,
+                        mealId: meal.id,
+                      }),
+                    );
                     closeForm();
                   });
                 }}
