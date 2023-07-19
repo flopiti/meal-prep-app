@@ -1,11 +1,11 @@
 import styles from "@/styles/Home.module.css";
-import { useScheduledMealContext } from "@/providers/ScheduledMealContext";
 import { MealType, mealTypes } from "@/types/MealType";
 import { ScheduledMeal } from "@/types/ScheduledMealType";
 import ScheduledMealZone from "./ScheduledMealZone";
 import { formatDate } from "@/utils/FormatDate";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { useAppDispatch, useAppSelector } from "@/hooks/reduxHooks";
 
 interface DayProps {
   date: string;
@@ -13,8 +13,7 @@ interface DayProps {
 }
 
 const Day: React.FC<DayProps> = ({ date, loading }) => {
-  const { scheduledMeals } = useScheduledMealContext();
-
+  const scheduledMeals = useAppSelector(state => state.scheduledMeals);
   const mealsOfTheDay = scheduledMeals.filter(
     (scheduledMeal: ScheduledMeal) => scheduledMeal.date === date,
   );
