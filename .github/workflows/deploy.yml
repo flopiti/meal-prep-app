@@ -31,5 +31,5 @@ jobs:
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
             cd /apps/meal-prep-app
-            docker compose -f docker-compose.yml down 
+            docker compose -f docker-compose.yml down --rmi all
             docker compose -f docker-compose.yml up -d --build
