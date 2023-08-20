@@ -155,8 +155,6 @@ const ScheduledMealZone = ({
           day={day}
           mealType={mealType}
           closeForm={() => setIsScheduleModalOpen(false)}
-          meal={meal}
-          editMeal={putScheduledMeal}
         />
       </ModalX>
     </div>

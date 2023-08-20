@@ -11,6 +11,7 @@ interface ScheduleMealModalProps {
   closeForm: () => void;
   day: string;
   mealType: string;
+  
 }
 
 const ScheduleMealModal = ({ closeForm, day, mealType }: ScheduleMealModalProps) => {
