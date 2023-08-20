@@ -7,11 +7,34 @@ import WebApp from "@/components/_layouts/WebApp";
 import { MealProvider } from "@/providers/MealContext";
 import FontFaceObserver from "fontfaceobserver";
 import { SkeletonTheme } from "react-loading-skeleton";
+import { useAppDispatch } from "@/hooks/reduxHooks";
+import { useSelector } from "react-redux";
+import { RootState } from "@/providers/store";
+import { useScheduledMeals } from "@/hooks/useScheduledMeals";
 
 const Home = () => {
   const [fontLoaded, setFontLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const checkMobile = () => setIsMobile(window.innerWidth < 768);
+
+  const scheduledMeals = useSelector((state: RootState) => state.scheduledMeals);
+
+
+  const[scheduledMealIngredients, setScheduledMealIngredients] = useState([]) as any[];
+  const {getScheduledMealIngredients} = useScheduledMeals();
+  const today = new Date();
+  const todayString = today.toISOString().slice(0, 10);
+  // add two days
+  const twoDaysLater = new Date(today.getTime() + 2 * 24 * 60 * 60 * 1000);
+  const twoDaysLaterString = twoDaysLater.toISOString().slice(0, 10);
+
+  console.log(scheduledMealIngredients)
+
+  useEffect(() => {
+    if (scheduledMeals.length > 0) {
+      getScheduledMealIngredients(todayString, twoDaysLaterString).then((data: any) => setScheduledMealIngredients(data));
+    }
+  }, [scheduledMeals]);
 
   useEffect(() => {
     const font = new FontFaceObserver("FugazOne");
