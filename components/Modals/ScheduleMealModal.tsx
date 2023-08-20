@@ -4,10 +4,16 @@ import { useMealContext } from "@/providers/MealContext";
 import { scheduleMeal } from "@/providers/ScheduledMealSlice";
 import styles from "@/styles/ScheduleMealModal.module.css";
 import Image from "next/image";
-import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useRef, useState } from "react";
 
-const ScheduleMealModal = ({ closeForm, day, mealType }: any) => {
+interface ScheduleMealModalProps {
+  closeForm: () => void;
+  day: string;
+  mealType: string;
+}
+
+const ScheduleMealModal = ({ closeForm, day, mealType }: ScheduleMealModalProps) => {
   const dispatch = useAppDispatch();
   const { meals } = useMealContext();
   const { postScheduledMeal } = useScheduledMeals();
@@ -44,9 +50,9 @@ const ScheduleMealModal = ({ closeForm, day, mealType }: any) => {
         <h2>{t("hungry")}</h2>
       </div>
       <div ref={mealsRef} className={styles.meals}>
-        {meals.map((meal: any) => {
+        {meals.map((meal: any, index:number) => {
           return (
-            <div className={styles.meal}>
+            <div className={styles.meal} key={index}>
               <button
                 onClick={() => {
                   postScheduledMeal(day, mealType, meal.id).then((res: any) => {
