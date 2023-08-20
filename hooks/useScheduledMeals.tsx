@@ -1,5 +1,4 @@
-import { ScheduledMeal } from "@/types/ScheduledMealType";
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 
 export const useScheduledMeals = () => {
   const makeRequest = async (options: any) => {
@@ -48,6 +47,18 @@ export const useScheduledMeals = () => {
     return await makeRequest(options);
   };
 
+  const getScheduledMealIngredients = async (startDate: string, endDate: string) => {
+    const options = {
+      config: {
+        method: "GET",
+        url: `/api/scheduled-meals/ingredients`,
+        params: { startDate, endDate },
+      },
+      authenticated: true,
+    };
+    return await makeRequest(options);
+  }
+
   const putScheduledMeal = async (
     id: number,
     mealName: string,
@@ -83,5 +94,6 @@ export const useScheduledMeals = () => {
     postScheduledMeal,
     deleteScheduledMeal,
     putScheduledMeal,
+    getScheduledMealIngredients,
   };
 };
